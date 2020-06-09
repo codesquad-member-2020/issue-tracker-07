@@ -29,7 +29,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IWc-ZM-9AX">
-                                <rect key="frame" x="48" y="272" width="279" height="48"/>
+                                <rect key="frame" x="48" y="272" width="279" height="178"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Gy-Vs-cx1" customClass="BorderView" customModule="IssueTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="279" height="48"/>
@@ -77,6 +77,20 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pzW-T4-VFv" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="58" width="279" height="56"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Username"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="NO"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gzO-z9-5q5" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="124" width="279" height="54"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Password"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -100,7 +114,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="139"/>
+            <point key="canvasLocation" x="138.40000000000001" y="138.91625615763547"/>
         </scene>
     </scenes>
     <resources>

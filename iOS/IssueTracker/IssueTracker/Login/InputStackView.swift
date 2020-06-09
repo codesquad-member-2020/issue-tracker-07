@@ -8,15 +8,22 @@
 
 import UIKit
 
+@IBDesignable
 final class InputStackView: UIStackView {
+    
+    // MARK: - IBInspectables
+    @IBInspectable var title: String? {
+        get { titleLabel.text }
+        set { titleLabel.text = newValue }
+    }
+    @IBInspectable var isSecureTextEntry: Bool {
+        get { inputTextField.isSecureTextEntry }
+        set { inputTextField.isSecureTextEntry = newValue }
+    }
     
     // MARK: - Properties
     private var titleLabel: UILabel!
     private var inputTextField: UITextField!
-    var isSecureTextEntry: Bool {
-        get { inputTextField.isSecureTextEntry }
-        set { inputTextField.isSecureTextEntry = newValue }
-    }
     
     // MARK: - LifeCycle
     override init(frame: CGRect) {

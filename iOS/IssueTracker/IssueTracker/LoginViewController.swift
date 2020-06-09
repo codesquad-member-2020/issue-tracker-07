@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  IssueTracker
 //
 //  Created by 신한섭 on 2020/06/09.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

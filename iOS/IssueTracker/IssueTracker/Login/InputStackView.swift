@@ -13,6 +13,10 @@ final class InputStackView: UIStackView {
     // MARK: - Properties
     private var titleLabel: UILabel!
     private var inputTextField: UITextField!
+    var isSecureTextEntry: Bool {
+        get { inputTextField.isSecureTextEntry }
+        set { inputTextField.isSecureTextEntry = newValue }
+    }
     
     // MARK: - LifeCycle
     override init(frame: CGRect) {

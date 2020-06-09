@@ -16,6 +16,7 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Properties
     private var userNameInputStackView: InputStackView!
+    private var passwordInputStackView: InputStackView!
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -28,10 +29,14 @@ final class LoginViewController: UIViewController {
     private func setUp() {
         userNameInputStackView = setUpInputStackView(with: "Username")
         signInStackView.addArrangedSubview(userNameInputStackView)
+        passwordInputStackView = setUpInputStackView(with: "Password",
+                                                     isPassword: true)
+        signInStackView.addArrangedSubview(passwordInputStackView)
     }
     
-    private func setUpInputStackView(with title: String?) -> InputStackView {
+    private func setUpInputStackView(with title: String?, isPassword: Bool = false) -> InputStackView {
         let inputStackView = InputStackView()
+        inputStackView.isSecureTextEntry = isPassword
         inputStackView.update(with: title)
         return inputStackView
     }

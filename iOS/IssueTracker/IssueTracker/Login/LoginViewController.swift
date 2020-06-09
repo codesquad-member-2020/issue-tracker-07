@@ -19,6 +19,7 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Properties
     private var signInViewModel: SignInViewModel?
+    private var loginUseCase: LoginUseCase = .init()
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -29,6 +30,10 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Methods
     private func setUp() {
+        setUpSignInViewModel()
+    }
+    
+    private func setUpSignInViewModel() {
         signInViewModel = SignInViewModel()
         userNameInputView.bind { [unowned self] userName in
             self.signInViewModel?.userName.value = userName
@@ -49,14 +54,23 @@ final class LoginViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func warningCloseButtonTapped(_ sender: UIButton) {
-        UIView.animateKeyframes(withDuration: 0.75, delay: 0, animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/2) {
-                self.warningView.alpha = 0
+        UIView.animate(withDuration: 0.75) {
+            self.warningView.alpha = 0
+            self.warningView.isHidden = true
+        }
+    }
+    
+    @IBAction func signInButtonTapped(_ sender: UIButton) {
+        loginUseCase.loginFail { response in
+            if response {
+                
+            } else {
+                UIView.animate(withDuration: 0.75) {
+                    self.warningView.alpha = 1
+                    self.warningView.isHidden = false
+                }
             }
-            UIView.addKeyframe(withRelativeStartTime: 1/2, relativeDuration: 1/2) {
-                self.warningView.isHidden = true
-            }
-        })
+        }
     }
 }
 

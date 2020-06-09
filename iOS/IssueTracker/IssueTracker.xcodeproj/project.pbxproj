@@ -17,6 +17,7 @@
 		A51A1D66248F26C3005262DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A51A1D64248F26C3005262DF /* LaunchScreen.storyboard */; };
 		A51A1D6F248F3004005262DF /* BorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51A1D6E248F3004005262DF /* BorderView.swift */; };
 		A51A1D71248F383D005262DF /* BorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51A1D70248F383D005262DF /* BorderButton.swift */; };
+		A54A873E248FB98F00A81604 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A873D248FB98F00A81604 /* Dynamic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		A51A1D67248F26C3005262DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A51A1D6E248F3004005262DF /* BorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderView.swift; sourceTree = "<group>"; };
 		A51A1D70248F383D005262DF /* BorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderButton.swift; sourceTree = "<group>"; };
+		A54A873D248FB98F00A81604 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		A51A1D58248F26C1005262DF /* IssueTracker */ = {
 			isa = PBXGroup;
 			children = (
+				A54A873C248FB97E00A81604 /* Model */,
 				A51A1D59248F26C1005262DF /* AppDelegate.swift */,
 				A51A1D5B248F26C1005262DF /* SceneDelegate.swift */,
 				A51A1D6D248F2FE8005262DF /* CustomView */,
@@ -101,6 +104,14 @@
 				A51A1D70248F383D005262DF /* BorderButton.swift */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		A54A873C248FB97E00A81604 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A54A873D248FB98F00A81604 /* Dynamic.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +188,7 @@
 				A51A1D6F248F3004005262DF /* BorderView.swift in Sources */,
 				A51A1D5E248F26C1005262DF /* LoginViewController.swift in Sources */,
 				A51A1D5A248F26C1005262DF /* AppDelegate.swift in Sources */,
+				A54A873E248FB98F00A81604 /* Dynamic.swift in Sources */,
 				44E5CEA8248F56E9001A46AE /* InputStackView.swift in Sources */,
 				44665F62248F67D10028B18D /* LoginUseCase.swift in Sources */,
 				A51A1D71248F383D005262DF /* BorderButton.swift in Sources */,

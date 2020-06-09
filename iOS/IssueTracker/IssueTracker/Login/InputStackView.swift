@@ -26,6 +26,11 @@ final class InputStackView: UIStackView {
     }
     
     // MARK: - Methods
+    // MARK: Accessible
+    func update(with title: String?) {
+        titleLabel.text = title
+    }
+    
     // MARK: SetUp
     private func setUp() {
         axis = .vertical
@@ -43,6 +48,7 @@ final class InputStackView: UIStackView {
     
     private func setUpInputTextField() {
         inputTextField = UITextField()
+        inputTextField.borderStyle = .roundedRect
         addArrangedSubview(inputTextField)
     }
 }

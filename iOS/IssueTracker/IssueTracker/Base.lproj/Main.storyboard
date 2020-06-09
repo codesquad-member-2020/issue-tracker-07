@@ -28,11 +28,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IWc-ZM-9AX">
+                                <rect key="frame" x="48" y="272" width="318" height="590"/>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="IWc-ZM-9AX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="48" id="C60-BM-OW7"/>
                             <constraint firstItem="bOV-R4-uTG" firstAttribute="top" secondItem="cyN-9V-1U4" secondAttribute="bottom" constant="32" id="N2a-ka-xnw"/>
                             <constraint firstItem="cyN-9V-1U4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NXc-B5-Ixf"/>
+                            <constraint firstItem="IWc-ZM-9AX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eeR-s4-Uxk"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IWc-ZM-9AX" secondAttribute="bottom" priority="1" id="fIu-Tn-4jO"/>
+                            <constraint firstItem="IWc-ZM-9AX" firstAttribute="top" secondItem="bOV-R4-uTG" secondAttribute="bottom" constant="24" id="hB4-ho-09w"/>
                             <constraint firstItem="bOV-R4-uTG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iJn-6a-64X"/>
                             <constraint firstItem="cyN-9V-1U4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="56" id="tL7-2b-MOd"/>
                         </constraints>

@@ -13,6 +13,7 @@
 		A51A1D61248F26C1005262DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A51A1D5F248F26C1005262DF /* Main.storyboard */; };
 		A51A1D63248F26C3005262DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A51A1D62248F26C3005262DF /* Assets.xcassets */; };
 		A51A1D66248F26C3005262DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A51A1D64248F26C3005262DF /* LaunchScreen.storyboard */; };
+		A51A1D6F248F3004005262DF /* BorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51A1D6E248F3004005262DF /* BorderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A51A1D62248F26C3005262DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A51A1D65248F26C3005262DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A51A1D67248F26C3005262DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A51A1D6E248F3004005262DF /* BorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		A51A1D58248F26C1005262DF /* IssueTracker */ = {
 			isa = PBXGroup;
 			children = (
+				A51A1D6D248F2FE8005262DF /* CustomView */,
 				A51A1D59248F26C1005262DF /* AppDelegate.swift */,
 				A51A1D5B248F26C1005262DF /* SceneDelegate.swift */,
 				A51A1D5D248F26C1005262DF /* LoginViewController.swift */,
@@ -65,6 +68,14 @@
 				A51A1D67248F26C3005262DF /* Info.plist */,
 			);
 			path = IssueTracker;
+			sourceTree = "<group>";
+		};
+		A51A1D6D248F2FE8005262DF /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				A51A1D6E248F3004005262DF /* BorderView.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A51A1D6F248F3004005262DF /* BorderView.swift in Sources */,
 				A51A1D5E248F26C1005262DF /* LoginViewController.swift in Sources */,
 				A51A1D5A248F26C1005262DF /* AppDelegate.swift in Sources */,
 				A51A1D5C248F26C1005262DF /* SceneDelegate.swift in Sources */,

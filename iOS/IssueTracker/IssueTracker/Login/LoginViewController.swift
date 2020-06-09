@@ -21,10 +21,13 @@ final class LoginViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func warningCloseButtonTapped(_ sender: UIButton) {
-        UIView.animateKeyframes(withDuration: 0.5, delay: 0, animations: {
-            self.warningView.alpha = 0
-        }, completion: { _ in
-            self.warningView.isHidden = true
+        UIView.animateKeyframes(withDuration: 0.75, delay: 0, animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/2) {
+                self.warningView.alpha = 0
+            }
+            UIView.addKeyframe(withRelativeStartTime: 1/2, relativeDuration: 1/2) {
+                self.warningView.isHidden = true
+            }
         })
     }
 }

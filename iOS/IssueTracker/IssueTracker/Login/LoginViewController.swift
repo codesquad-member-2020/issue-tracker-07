@@ -23,6 +23,12 @@ final class LoginViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUp()
+        signUpButtonBinding()
+    }
+    
+    // MARK: - Methods
+    private func setUp() {
         signInViewModel = SignInViewModel()
         userNameInputView.bind { [unowned self] userName in
             self.signInViewModel?.userName.value = userName
@@ -30,6 +36,9 @@ final class LoginViewController: UIViewController {
         passwordInputView.bind { [unowned self] password in
             self.signInViewModel?.password.value = password
         }
+    }
+    
+    private func signUpButtonBinding() {
         signInViewModel?.isEnabled.bindAndFire { [unowned self] isEnabled in
             self.signInButton.isEnabled = isEnabled
             UIView.animate(withDuration: 0.5, animations: {

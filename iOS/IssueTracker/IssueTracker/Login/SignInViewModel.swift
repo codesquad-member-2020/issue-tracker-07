@@ -15,6 +15,7 @@ final class SignInViewModel {
     var password: Dynamic<String?> = .init(nil)
     var isEnabled: Dynamic<Bool> = .init(false)
     
+    // MARK: - LifeCycle
     init() {
         userName.bind { [unowned self] _ in
             self.isEnabled.value = self.validation()
@@ -24,7 +25,13 @@ final class SignInViewModel {
         }
     }
     
-    func validation() -> Bool {
-        return userName.value?.isEmpty == false && password.value?.isEmpty == false
+    // MARK: - Methods
+    private func validation() -> Bool {
+        guard let userName = userName.value,
+            let password = password.value else { return false }
+        let idValidation = (6...12) ~= userName.count
+        let passwordValidation = (6...12) ~= password.count
+        
+        return idValidation && passwordValidation
     }
 }

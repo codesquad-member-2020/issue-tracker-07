@@ -35,14 +35,26 @@
                                         <rect key="frame" x="0.0" y="0.0" width="279" height="48"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tA-xn-UZm">
-                                                <rect key="frame" x="16" y="17" width="247" height="14.333333333333336"/>
+                                                <rect key="frame" x="16" y="18" width="247" height="12"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incorrect username or password." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZST-Iv-7ii">
-                                                        <rect key="frame" x="0.0" y="0.0" width="247" height="14.333333333333334"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="235" height="12"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                         <color key="textColor" red="0.44205206629999999" green="0.1652151644" blue="0.14900737999999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMn-bj-f4D">
+                                                        <rect key="frame" x="235" y="0.0" width="12" height="12"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="RMn-bj-f4D" secondAttribute="height" multiplier="1:1" id="USu-cH-dPI"/>
+                                                            <constraint firstAttribute="height" constant="12" id="s6H-J1-k4U"/>
+                                                        </constraints>
+                                                        <color key="tintColor" red="0.44205206629999999" green="0.1652151644" blue="0.14900737999999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <state key="normal" image="xmark" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="warningCloseButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="41e-di-gwd"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -81,6 +93,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="warningView" destination="8Gy-Vs-cx1" id="Bxv-pr-MZQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -89,5 +104,6 @@
     </scenes>
     <resources>
         <image name="githubTitle" width="85.333335876464844" height="85.333335876464844"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
     </resources>
 </document>

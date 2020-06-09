@@ -29,23 +29,39 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IWc-ZM-9AX">
-                                <rect key="frame" x="48" y="272" width="279" height="60"/>
+                                <rect key="frame" x="48" y="272" width="279" height="48"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Gy-Vs-cx1" customClass="BorderView" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="279" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="279" height="48"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tA-xn-UZm">
+                                                <rect key="frame" x="16" y="17" width="247" height="14.333333333333336"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incorrect username or password." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZST-Iv-7ii">
+                                                        <rect key="frame" x="0.0" y="0.0" width="247" height="14.333333333333334"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                        <color key="textColor" red="0.44205206629999999" green="0.1652151644" blue="0.14900737999999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
                                         <color key="backgroundColor" red="0.95642822979999997" green="0.87050896879999995" blue="0.87843149899999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="7NT-N4-0sB"/>
+                                            <constraint firstAttribute="height" constant="48" id="7NT-N4-0sB"/>
+                                            <constraint firstItem="3tA-xn-UZm" firstAttribute="leading" secondItem="8Gy-Vs-cx1" secondAttribute="leading" constant="16" id="7qR-hZ-g2w"/>
+                                            <constraint firstItem="3tA-xn-UZm" firstAttribute="centerX" secondItem="8Gy-Vs-cx1" secondAttribute="centerX" id="Hbh-pG-Jcc"/>
+                                            <constraint firstItem="3tA-xn-UZm" firstAttribute="centerY" secondItem="8Gy-Vs-cx1" secondAttribute="centerY" id="xBa-N9-2oA"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="10"/>
+                                                <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                 <color key="value" red="0.83102375269999995" green="0.76069736480000005" blue="0.76862782240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="2"/>
+                                                <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>

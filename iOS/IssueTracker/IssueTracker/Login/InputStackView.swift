@@ -24,6 +24,7 @@ final class InputStackView: UIStackView {
     // MARK: - Properties
     private var titleLabel: UILabel!
     private var inputTextField: UITextField!
+    private var handler: (String?) -> () = {_ in}
     
     // MARK: - LifeCycle
     override init(frame: CGRect) {
@@ -40,6 +41,10 @@ final class InputStackView: UIStackView {
     // MARK: Accessible
     func update(with title: String?) {
         titleLabel.text = title
+    }
+    
+    func bind(_ handler: @escaping (String?) -> ()) {
+        self.handler = handler
     }
     
     // MARK: SetUp
@@ -60,6 +65,13 @@ final class InputStackView: UIStackView {
     private func setUpInputTextField() {
         inputTextField = UITextField()
         inputTextField.borderStyle = .roundedRect
+        inputTextField.delegate = self
         addArrangedSubview(inputTextField)
+    }
+}
+
+extension InputStackView: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        handler(textField.text)
     }
 }

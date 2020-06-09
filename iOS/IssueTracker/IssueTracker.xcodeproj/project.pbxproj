@@ -17,6 +17,7 @@
 		A51A1D66248F26C3005262DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A51A1D64248F26C3005262DF /* LaunchScreen.storyboard */; };
 		A51A1D6F248F3004005262DF /* BorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51A1D6E248F3004005262DF /* BorderView.swift */; };
 		A51A1D71248F383D005262DF /* BorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51A1D70248F383D005262DF /* BorderButton.swift */; };
+		A54A873B248F7F3000A81604 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A873A248F7F3000A81604 /* SignInViewModel.swift */; };
 		A54A873E248FB98F00A81604 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A873D248FB98F00A81604 /* Dynamic.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		A51A1D67248F26C3005262DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A51A1D6E248F3004005262DF /* BorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderView.swift; sourceTree = "<group>"; };
 		A51A1D70248F383D005262DF /* BorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderButton.swift; sourceTree = "<group>"; };
+		A54A873A248F7F3000A81604 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		A54A873D248FB98F00A81604 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +62,7 @@
 			children = (
 				A51A1D5D248F26C1005262DF /* LoginViewController.swift */,
 				44E5CEA7248F56E9001A46AE /* InputStackView.swift */,
+				A54A873A248F7F3000A81604 /* SignInViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				A51A1D5A248F26C1005262DF /* AppDelegate.swift in Sources */,
 				A54A873E248FB98F00A81604 /* Dynamic.swift in Sources */,
 				44E5CEA8248F56E9001A46AE /* InputStackView.swift in Sources */,
+				A54A873B248F7F3000A81604 /* SignInViewModel.swift in Sources */,
 				44665F62248F67D10028B18D /* LoginUseCase.swift in Sources */,
 				A51A1D71248F383D005262DF /* BorderButton.swift in Sources */,
 				A51A1D5C248F26C1005262DF /* SceneDelegate.swift in Sources */,

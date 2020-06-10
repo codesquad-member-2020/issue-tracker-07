@@ -52,6 +52,11 @@ final class LoginViewController: UIViewController {
         }
     }
     
+    // MARK: - Events
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        view.endEditing(true)
+    }
+    
     // MARK: - IBActions
     @IBAction func warningCloseButtonTapped(_ sender: UIButton) {
         UIView.animate(withDuration: 0.75) {

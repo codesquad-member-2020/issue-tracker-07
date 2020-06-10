@@ -34,6 +34,7 @@ final class LoginViewController: UIViewController {
     private func setUp() {
         setUpSignInViewModel()
         setUpObservers()
+        setUpInputViews()
     }
     
     private func setUpSignInViewModel() {
@@ -49,6 +50,13 @@ final class LoginViewController: UIViewController {
     private func setUpObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    private func setUpInputViews() {
+        userNameInputView.inputTextField.returnKeyType = .next
+        passwordInputView.inputTextField.returnKeyType = .done
+        userNameInputView.inputTextField.delegate = self
+        passwordInputView.inputTextField.delegate = self
     }
     
     private func signUpButtonBinding() {
@@ -109,3 +117,20 @@ final class LoginViewController: UIViewController {
     }
 }
 
+extension LoginViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let actions: [UIReturnKeyType : () -> ()] = [
+            .done : {[unowned self] in
+                self.view.endEditing(true)
+            },
+            .next : {[unowned self] in
+                self.passwordInputView.inputTextField.becomeFirstResponder()
+            }
+        ]
+        
+        guard let action = actions[textField.returnKeyType] else {return true}
+        action()
+        return true
+    }
+}

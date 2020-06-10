@@ -23,7 +23,7 @@ final class InputStackView: UIStackView {
     
     // MARK: - Properties
     private var titleLabel: UILabel!
-    private var inputTextField: UITextField!
+    private(set) var inputTextField: UITextField!
     private var handler: (String?) -> () = {_ in}
     
     // MARK: - LifeCycle

@@ -15,7 +15,7 @@ public class JwtService {
     @Value("${JWT_SECRET_KEY}")
     private String JWT_SECRET_KEY;
 
-    public String makeJwtToken(String userEmail) {
+    public String makeJwtToken(String userName) {
         final SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS256;
         final String TYP = "typ";
         final String ALG = "HS256";
@@ -23,7 +23,7 @@ public class JwtService {
         header.put(TYP, "JWT");
         header.put(ALG, "HS256");
         Map < String, Object > payload = new HashMap<>();
-        payload.put("USER_EMAIL", userEmail);
+        payload.put("USER_NAME", userName);
         return Jwts.builder()
                    .setHeader(header)
                    .setClaims(payload)

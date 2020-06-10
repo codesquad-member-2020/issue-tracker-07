@@ -1,8 +1,11 @@
 package kr.codesquad.issuetracker07.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 @Entity
@@ -14,7 +17,15 @@ import javax.persistence.Id;
 public class User {
 
     @Id
-    private String email;
+    @JsonProperty("login")
+    private String name;
+
+    @JsonProperty("avatar_url")
+    private String avatarUrl;
 
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    @NonNull
+    private AuthProvider authProvider;
 }

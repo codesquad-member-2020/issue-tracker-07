@@ -26,4 +26,41 @@ final class BorderButton: UIButton {
         get { layer.cornerRadius }
         set { layer.cornerRadius = newValue }
     }
+    
+    // MARK: - LifeCycle
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setUp()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setUp()
+    }
+    
+    // MARK: - Methods
+    private func setUp() {
+        self.addTarget(self, action: #selector(animate(_:)), for: .touchUpInside)
+        self.addTarget(self, action: #selector(animate(_:)), for: .touchDown)
+        self.addTarget(self, action: #selector(animate(_:)), for: .touchUpOutside)
+        tintColor = backgroundColor
+    }
+    
+    private func scaleUp(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.15) {
+            sender.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }
+    }
+    
+    private func scaleDown(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.15) {
+            sender.transform = CGAffineTransform(scaleX: 0.92, y: 0.92)
+        }
+    }
+    
+    // MARK: - Objc
+    @objc private func animate(_ sender: UIButton) {
+        isSelected.toggle()
+        isSelected ? scaleDown(sender) : scaleUp(sender)
+    }
 }

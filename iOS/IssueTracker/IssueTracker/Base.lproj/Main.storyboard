@@ -16,41 +16,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="githubTitle" translatesAutoresizingMaskIntoConstraints="NO" id="cyN-9V-1U4">
-                                <rect key="frame" x="147.66666666666666" y="100" width="80" height="80"/>
+                                <rect key="frame" x="147.66666666666666" y="164" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cyN-9V-1U4" secondAttribute="height" multiplier="1:1" id="lFv-pj-jui"/>
                                     <constraint firstAttribute="height" constant="80" id="t0h-Xo-6s5"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to IssueTracker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOV-R4-uTG">
-                                <rect key="frame" x="46" y="212" width="283" height="36"/>
+                                <rect key="frame" x="46" y="276" width="283" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="IWc-ZM-9AX">
-                                <rect key="frame" x="48" y="272" width="279" height="335"/>
+                                <rect key="frame" x="48" y="336" width="279" height="265.66666666666674"/>
                                 <subviews>
                                     <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Gy-Vs-cx1" customClass="BorderView" customModule="IssueTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="-48" width="279" height="48"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tA-xn-UZm">
-                                                <rect key="frame" x="16" y="18" width="247" height="12"/>
+                                                <rect key="frame" x="16" y="0.0" width="263" height="48"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incorrect username or password." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZST-Iv-7ii">
-                                                        <rect key="frame" x="0.0" y="0.0" width="235" height="12"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="215" height="48"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                         <color key="textColor" red="0.44205206629999999" green="0.1652151644" blue="0.14900737999999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMn-bj-f4D">
-                                                        <rect key="frame" x="235" y="0.0" width="12" height="12"/>
+                                                        <rect key="frame" x="215" y="0.0" width="48" height="48"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="RMn-bj-f4D" secondAttribute="height" multiplier="1:1" id="USu-cH-dPI"/>
-                                                            <constraint firstAttribute="height" constant="12" id="s6H-J1-k4U"/>
+                                                            <constraint firstAttribute="height" constant="48" id="s6H-J1-k4U"/>
                                                         </constraints>
                                                         <color key="tintColor" red="0.44205206629999999" green="0.1652151644" blue="0.14900737999999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <state key="normal" image="xmark" catalog="system"/>
+                                                        <state key="normal" image="xmark" catalog="system">
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="12"/>
+                                                        </state>
                                                         <connections>
                                                             <action selector="warningCloseButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="41e-di-gwd"/>
                                                         </connections>
@@ -62,7 +64,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="7NT-N4-0sB"/>
                                             <constraint firstItem="3tA-xn-UZm" firstAttribute="leading" secondItem="8Gy-Vs-cx1" secondAttribute="leading" constant="16" id="7qR-hZ-g2w"/>
-                                            <constraint firstItem="3tA-xn-UZm" firstAttribute="centerX" secondItem="8Gy-Vs-cx1" secondAttribute="centerX" id="Hbh-pG-Jcc"/>
+                                            <constraint firstAttribute="trailing" secondItem="3tA-xn-UZm" secondAttribute="trailing" id="a22-XY-qvp"/>
                                             <constraint firstItem="3tA-xn-UZm" firstAttribute="centerY" secondItem="8Gy-Vs-cx1" secondAttribute="centerY" id="xBa-N9-2oA"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -78,99 +80,102 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pzW-T4-VFv" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="279" height="56"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="279" height="62.333333333333336"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="Username"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gzO-z9-5q5" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="71" width="279" height="54"/>
+                                        <rect key="frame" x="0.0" y="77.333333333333314" width="279" height="62.333333333333343"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="YES"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="Password"/>
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="slb-08-Cka" customClass="BorderButton" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="140" width="279" height="34"/>
-                                        <color key="backgroundColor" red="0.36470588235294116" green="0.72156862745098038" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="YQr-XQ-aZT"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="Sign in">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.36048567300000001" green="0.54863870140000004" blue="0.31760686640000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="0.5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="signInButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YqM-pv-wXC"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKW-4g-ygW" customClass="BorderButton" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="189" width="279" height="34"/>
-                                        <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="RsW-Lz-3Tj"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
-                                        <state key="normal" title="Sign in with GitHub" image="githubButton">
-                                            <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="0.5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ho-aN-WPV" customClass="BorderButton" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="238" width="279" height="34"/>
-                                        <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="Ce4-bE-tWn"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="2"/>
-                                        <state key="normal" title="Sign in with Apple" image="AppleButton">
-                                            <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="0.5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QuY-l3-zOj">
+                                        <rect key="frame" x="0.0" y="154.66666666666669" width="279" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="slb-08-Cka" customClass="BorderButton" customModule="IssueTracker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="163" height="48"/>
+                                                <color key="backgroundColor" red="0.36470588235294116" green="0.72156862745098038" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="YQr-XQ-aZT"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" title="Sign in">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.36048567300000001" green="0.54863870140000004" blue="0.31760686640000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="signInButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YqM-pv-wXC"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKW-4g-ygW" customClass="BorderButton" customModule="IssueTracker" customModuleProvider="target">
+                                                <rect key="frame" x="173" y="0.0" width="48" height="48"/>
+                                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="MKW-4g-ygW" secondAttribute="height" id="aFr-2x-5QO"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" image="githubButton">
+                                                    <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ho-aN-WPV" customClass="BorderButton" customModule="IssueTracker" customModuleProvider="target">
+                                                <rect key="frame" x="231" y="0.0" width="48" height="48"/>
+                                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="1ho-aN-WPV" secondAttribute="height" id="3FE-eE-g9H"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" image="AppleButton">
+                                                    <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZC7-5B-nPy" customClass="BorderButton" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="287" width="279" height="48"/>
-                                        <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="217.66666666666663" width="279" height="48"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="Zaw-Gd-N6e"/>
+                                            <constraint firstAttribute="height" constant="48" id="FYG-3a-tdg"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <state key="normal" title="New to IssueTracker? Create an account.">
-                                            <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Sign Up">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -180,7 +185,7 @@
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
@@ -196,7 +201,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IWc-ZM-9AX" secondAttribute="bottom" priority="1" id="fIu-Tn-4jO"/>
                             <constraint firstItem="IWc-ZM-9AX" firstAttribute="top" secondItem="bOV-R4-uTG" secondAttribute="bottom" constant="24" id="hB4-ho-09w"/>
                             <constraint firstItem="bOV-R4-uTG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iJn-6a-64X"/>
-                            <constraint firstItem="cyN-9V-1U4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="56" id="tL7-2b-MOd"/>
+                            <constraint firstItem="cyN-9V-1U4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="tL7-2b-MOd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

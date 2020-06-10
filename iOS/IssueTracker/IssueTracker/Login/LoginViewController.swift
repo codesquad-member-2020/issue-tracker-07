@@ -65,10 +65,12 @@ final class LoginViewController: UIViewController {
             if response {
                 
             } else {
-                UIView.animate(withDuration: 0.75) {
-                    self.warningView.alpha = 1
-                    self.warningView.isHidden = false
-                }
+                UIView.animate(withDuration: 0.75,
+                               delay: 0,
+                               options: .allowUserInteraction,
+                               animations: {
+                                self.warningView.alpha = 1
+                                self.warningView.isHidden = false })
             }
         }
     }

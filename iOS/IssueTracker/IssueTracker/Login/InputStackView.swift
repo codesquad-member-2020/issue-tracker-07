@@ -67,6 +67,7 @@ final class InputStackView: UIStackView {
         inputTextField.borderStyle = .roundedRect
         inputTextField.addTarget(self, action: #selector(inputEditing(_:)), for: .editingChanged)
         addArrangedSubview(inputTextField)
+        inputTextField.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
     // MARK: Objc

@@ -65,13 +65,12 @@ final class InputStackView: UIStackView {
     private func setUpInputTextField() {
         inputTextField = UITextField()
         inputTextField.borderStyle = .roundedRect
-        inputTextField.delegate = self
+        inputTextField.addTarget(self, action: #selector(inputEditing(_:)), for: .editingChanged)
         addArrangedSubview(inputTextField)
     }
-}
-
-extension InputStackView: UITextFieldDelegate {
-    func textFieldDidChangeSelection(_ textField: UITextField) {
-        handler(textField.text)
+    
+    // MARK: Objc
+    @objc private func inputEditing(_ sender: UITextField) {
+        handler(sender.text)
     }
 }

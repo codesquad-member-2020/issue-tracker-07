@@ -209,6 +209,7 @@
                         <outlet property="passwordInputView" destination="gzO-z9-5q5" id="Jkq-9Y-fX9"/>
                         <outlet property="signInButton" destination="slb-08-Cka" id="FNN-Rx-GXe"/>
                         <outlet property="signInStackView" destination="IWc-ZM-9AX" id="Kdl-f3-c6L"/>
+                        <outlet property="signUpButton" destination="ZC7-5B-nPy" id="Kuc-3d-nPz"/>
                         <outlet property="userNameInputView" destination="pzW-T4-VFv" id="sBn-7c-ul6"/>
                         <outlet property="warningView" destination="8Gy-Vs-cx1" id="Bxv-pr-MZQ"/>
                     </connections>

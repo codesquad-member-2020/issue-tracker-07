@@ -16,10 +16,12 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak var userNameInputView: InputStackView!
     @IBOutlet weak var passwordInputView: InputStackView!
     @IBOutlet weak var signInButton: BorderButton!
+    @IBOutlet weak var signUpButton: BorderButton!
     
     // MARK: - Properties
     private var signInViewModel: SignInViewModel?
     private var loginUseCase: LoginUseCase = .init()
+    private var isKeyboardShown = false
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -31,6 +33,7 @@ final class LoginViewController: UIViewController {
     // MARK: - Methods
     private func setUp() {
         setUpSignInViewModel()
+        setUpObservers()
     }
     
     private func setUpSignInViewModel() {
@@ -41,6 +44,11 @@ final class LoginViewController: UIViewController {
         passwordInputView.bind { [unowned self] password in
             self.signInViewModel?.password.value = password
         }
+    }
+    
+    private func setUpObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     private func signUpButtonBinding() {
@@ -78,6 +86,26 @@ final class LoginViewController: UIViewController {
                                 self.warningView.isHidden = false })
             }
         }
+    }
+    
+    // MARK: - Objc
+    @objc func keyboardWillAppear(_ notification: Notification) {
+        guard !isKeyboardShown else {
+            isKeyboardShown = true
+            return
+        }
+        
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        let signUpButtonY = signUpButton.convert(view.frame.origin, to: view).y
+        let move = -(keyboardSize.height - (view.frame.height - signUpButtonY))
+        view.transform = CGAffineTransform(translationX: 0, y: move)
+        
+        isKeyboardShown.toggle()
+    }
+    
+    @objc func keyboardWillDisappear() {
+        view.transform = .identity
+        isKeyboardShown = false
     }
 }
 

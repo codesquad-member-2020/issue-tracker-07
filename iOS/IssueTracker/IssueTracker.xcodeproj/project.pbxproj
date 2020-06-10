@@ -20,6 +20,7 @@
 		A54A873B248F7F3000A81604 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A873A248F7F3000A81604 /* SignInViewModel.swift */; };
 		A54A873E248FB98F00A81604 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A873D248FB98F00A81604 /* Dynamic.swift */; };
 		A5BC41D32491163C00F094CF /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BC41D22491163C00F094CF /* EndPoint.swift */; };
+		A5BC41D724911A7100F094CF /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BC41D624911A7100F094CF /* OAuthManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		A54A873A248F7F3000A81604 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		A54A873D248FB98F00A81604 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		A5BC41D22491163C00F094CF /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		A5BC41D624911A7100F094CF /* OAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			children = (
 				A54A873D248FB98F00A81604 /* Dynamic.swift */,
 				A5BC41D22491163C00F094CF /* EndPoint.swift */,
+				A5BC41D624911A7100F094CF /* OAuthManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A51A1D6F248F3004005262DF /* BorderView.swift in Sources */,
+				A5BC41D724911A7100F094CF /* OAuthManager.swift in Sources */,
 				A51A1D5E248F26C1005262DF /* LoginViewController.swift in Sources */,
 				A5BC41D32491163C00F094CF /* EndPoint.swift in Sources */,
 				A51A1D5A248F26C1005262DF /* AppDelegate.swift in Sources */,

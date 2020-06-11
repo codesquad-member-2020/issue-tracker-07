@@ -101,9 +101,9 @@ final class LoginViewController: UIViewController {
         let loginEndPoint = EndPoint(path: .githubLogin).url
         OAuthManager(presentationContextProvider: self).reqeustToken(url: loginEndPoint, handler: { result in
             switch result {
-            case .failure(let error):
-                break
             case .success(let token):
+                NetworkManager.token = token
+            case .failure(let error):
                 break
             }
         })

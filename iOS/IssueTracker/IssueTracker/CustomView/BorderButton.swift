@@ -47,15 +47,15 @@ final class BorderButton: UIButton {
     }
     
     private func scaleUp(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.15) {
+        UIView.animate(withDuration: 0.15, delay: 0, options: .allowUserInteraction, animations: {
             sender.transform = CGAffineTransform(scaleX: 1, y: 1)
-        }
+        })
     }
     
     private func scaleDown(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.15) {
+        UIView.animate(withDuration: 0.15, delay: 0, options: .allowUserInteraction, animations: {
             sender.transform = CGAffineTransform(scaleX: 0.92, y: 0.92)
-        }
+        })
     }
     
     // MARK: - Objc

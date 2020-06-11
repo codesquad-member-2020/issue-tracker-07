@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 final class LoginViewController: UIViewController {
     
@@ -96,6 +97,18 @@ final class LoginViewController: UIViewController {
         }
     }
     
+    @IBAction func githubLoginButtonTapped(_ sender: UIButton) {
+        let loginEndPoint = EndPoint(path: .githubLogin).url
+        OAuthManager(presentationContextProvider: self).reqeustToken(url: loginEndPoint, handler: { result in
+            switch result {
+            case .failure(let error):
+                break
+            case .success(let token):
+                break
+            }
+        })
+    }
+    
     // MARK: - Objc
     @objc func keyboardWillAppear(_ notification: Notification) {
         guard !isKeyboardShown else {
@@ -132,5 +145,11 @@ extension LoginViewController: UITextFieldDelegate {
         guard let action = actions[textField.returnKeyType] else {return true}
         action()
         return true
+    }
+}
+
+extension LoginViewController: ASWebAuthenticationPresentationContextProviding {
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        return ASPresentationAnchor()
     }
 }

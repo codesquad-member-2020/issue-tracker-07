@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SignUpViewModel {
+final class SignUpViewModel {
     
     // MARK: - Properties
     var userName: Dynamic<String?> = .init(nil)

@@ -26,7 +26,7 @@ enum OAuthError: Error {
     }
 }
 
-class OAuthManager {
+final class OAuthManager {
     
     // MARK: - Properties
     static var token: String?

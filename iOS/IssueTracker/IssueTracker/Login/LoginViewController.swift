@@ -104,8 +104,7 @@ final class LoginViewController: UIViewController {
             case .success(let token):
                 NetworkManager.token = token
             case .failure(let error):
-                let errorAlert = UIAlertController.alert(title: "에러 발생", message: error.message, actions: ["닫기" : nil])
-                self.present(errorAlert, animated: true)
+                self.alert(title: "에러 발생", message: error.message, actions: ["닫기" : nil])
             }
         })
     }
@@ -113,8 +112,7 @@ final class LoginViewController: UIViewController {
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
         guard let signupViewController = storyboard?.instantiateViewController(identifier: SignUpViewController.identifier) as? SignUpViewController else { return }
         signupViewController.successHandler = { [unowned self] in
-            let alert = UIAlertController.alert(title: "회원가입 성공!", message: "회원가입이 완료되었습니다.", actions: ["닫기": .none])
-            self.present(alert, animated: true)
+            self.alert(title: "회원가입 성공!", message: "회원가입이 완료되었습니다.", actions: ["닫기": .none])
         }
         present(signupViewController, animated: true)
     }

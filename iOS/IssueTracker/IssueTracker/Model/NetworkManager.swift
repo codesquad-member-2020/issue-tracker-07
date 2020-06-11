@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class NetworkManager {
+final class NetworkManager {
     
     // MARK: - Properties
     static var token: String?

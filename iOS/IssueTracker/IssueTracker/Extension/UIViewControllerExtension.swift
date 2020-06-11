@@ -1,5 +1,5 @@
 //
-//  UIAlertControllerExtension.swift
+//  UIViewControllerExtension.swift
 //  IssueTracker
 //
 //  Created by 신한섭 on 2020/06/11.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-extension UIAlertController {
-    static func alert(title: String?, message: String?, actions: [String : ((UIAlertAction) -> ())?]) -> UIAlertController {
+extension UIViewController {
+    func alert(title: String?, message: String?, actions: [String : ((UIAlertAction) -> ())?]) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         actions.forEach { key, value in
             alert.addAction(UIAlertAction(title: key, style: .default, handler: value))
         }
         
-        return alert
+        present(alert, animated: true)
     }
 }

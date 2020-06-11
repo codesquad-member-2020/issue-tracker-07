@@ -231,7 +231,19 @@
                     <view key="view" contentMode="scaleToFill" id="bVY-4A-cBm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create your account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLq-li-VrS">
+                                <rect key="frame" x="57.666666666666657" y="54.333333333333371" width="260" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="pLq-li-VrS" firstAttribute="centerY" secondItem="5u8-x3-vrs" secondAttribute="centerY" multiplier="0.2" id="Bbs-rp-rOj"/>
+                            <constraint firstItem="pLq-li-VrS" firstAttribute="centerX" secondItem="5u8-x3-vrs" secondAttribute="centerX" id="gKB-uW-x5l"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="5u8-x3-vrs"/>
                     </view>
                 </viewController>

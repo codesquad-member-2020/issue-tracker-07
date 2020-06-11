@@ -68,6 +68,21 @@ final class LoginViewController: UIViewController {
         }
     }
     
+    private func presentIssueListViewController() {
+        guard let issueListViewController = self.storyboard?.instantiateViewController(withIdentifier: IssueListViewController.identifier) else { return }
+        issueListViewController.modalPresentationStyle = .fullScreen
+        self.present(issueListViewController, animated: true)
+    }
+    
+    private func showWarningView() {
+        UIView.animate(withDuration: 0.75,
+                       delay: 0,
+                       options: .allowUserInteraction,
+                       animations: {
+                        self.warningView.alpha = 1
+                        self.warningView.isHidden = false })
+    }
+    
     // MARK: - Events
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         view.endEditing(true)
@@ -82,28 +97,18 @@ final class LoginViewController: UIViewController {
     }
     
     @IBAction func signInButtonTapped(_ sender: UIButton) {
-        guard let id = signInViewModel?.userName.value,
-            let password = signInViewModel?.password.value else { return }
-        let body = UserCertification(userName: id, password: password)
-        NetworkManager.request(url: EndPoint(path: .localLogin).url, method: .post, body: body, statusCodeRange: 200...299, decodable: SignInResponse.self, successHandler: { [unowned self] response in
-            if response.status {
-                NetworkManager.token = response.jwtToken
-                guard let issueListViewController = self.storyboard?.instantiateViewController(withIdentifier: IssueListViewController.identifier) else { return }
-                issueListViewController.modalPresentationStyle = .fullScreen
-                self.present(issueListViewController, animated: true)
-            } else {
-                UIView.animate(withDuration: 0.75,
-                               delay: 0,
-                               options: .allowUserInteraction,
-                               animations: {
-                                self.warningView.alpha = 1
-                                self.warningView.isHidden = false })
-            }
-        }, failHandler: { [unowned self] error in
-            self.alert(title: "에러 발생", message: error.localizedDescription, actions: ["닫기": .none])
-        })
-        
-        
+        let body = UserCertification(userName: signInViewModel?.userName.value,
+                                     password: signInViewModel?.password.value)
+        NetworkManager.request(url: EndPoint(path: .localLogin).url,
+                               method: .post,
+                               body: body,
+                               statusCodeRange: 200...299,
+                               decodable: SignInResponse.self,
+                               successHandler: { [unowned self] response in
+                                NetworkManager.token = response.jwtToken
+                                response.status ? self.presentIssueListViewController() : self.showWarningView() },
+                               failHandler: { [unowned self] error in
+                                self.alert(title: "에러 발생", message: error.localizedDescription, actions: ["닫기": .none]) })
     }
     
     @IBAction func githubLoginButtonTapped(_ sender: UIButton) {
@@ -159,7 +164,7 @@ extension LoginViewController: UITextFieldDelegate {
             }
         ]
         
-        guard let action = actions[textField.returnKeyType] else {return true}
+        guard let action = actions[textField.returnKeyType] else { return true }
         action()
         return true
     }

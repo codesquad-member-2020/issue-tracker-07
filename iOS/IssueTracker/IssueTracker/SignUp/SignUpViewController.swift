@@ -79,9 +79,7 @@ final class SignUpViewController: UIViewController {
     
     private func success(_ status: Bool) {
         if status {
-            dismiss(animated: true) { 
-                self.successHandler()
-            }
+            dismiss(animated: true) { self.successHandler() }
         } else {
             alert(title: "에러 발생", message: "중복된 아이디입니다.", actions: ["닫기": .none])
         }
@@ -89,14 +87,17 @@ final class SignUpViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func createAccountButtonTapped(_ sender: UIButton) {
-        guard let id = signUpViewModel?.userName.value,
-            let password = signUpViewModel?.password.value else { return }
-        let body = UserCertification(userName: id, password: password)
-        NetworkManager.request(url: EndPoint(path: .signUp).url, method: .post, body: body, statusCodeRange: 200...299, decodable: SignUpResponse.self, successHandler: { model in
-            self.success(model.status)
-        }, failHandler: { error in
-            self.alert(title: "에러 발생", message: error.localizedDescription, actions: ["닫기": .none])
-        })
+        let body = UserCertification(userName: signUpViewModel?.userName.value,
+                                     password: signUpViewModel?.password.value)
+        NetworkManager.request(url: EndPoint(path: .signUp).url,
+                               method: .post,
+                               body: body,
+                               statusCodeRange: 200...299,
+                               decodable: SignUpResponse.self,
+                               successHandler: { model in
+                                self.success(model.status) },
+                               failHandler: { error in
+                                self.alert(title: "에러 발생", message: error.localizedDescription, actions: ["닫기": .none]) })
     }
 }
 

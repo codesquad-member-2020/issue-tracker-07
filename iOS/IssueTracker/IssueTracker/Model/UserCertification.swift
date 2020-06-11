@@ -9,8 +9,8 @@
 import Foundation
 
 struct UserCertification: Codable {
-    let userName: String
-    let password: String
+    let userName: String?
+    let password: String?
     
     enum CodingKeys: String, CodingKey {
         case userName = "id"

@@ -239,7 +239,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="n3R-Vy-g7n">
-                                <rect key="frame" x="48" y="114.33333333333331" width="279" height="158"/>
+                                <rect key="frame" x="48" y="114.33333333333331" width="279" height="245"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kTz-Uv-pr7" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="279" height="73"/>
@@ -252,6 +252,13 @@
                                         <rect key="frame" x="0.0" y="88.000000000000014" width="279" height="69.999999999999986"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="Password"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fN5-lk-Gnv" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="173" width="279" height="72"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Confirm Password"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </stackView>

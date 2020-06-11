@@ -117,6 +117,7 @@ final class LoginViewController: UIViewController {
             switch result {
             case .success(let token):
                 NetworkManager.token = token
+                self.presentIssueListViewController()
             case .failure(let error):
                 self.alert(title: "에러 발생", message: error.message, actions: ["닫기" : nil])
             }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		44665F62248F67D10028B18D /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44665F61248F67D10028B18D /* LoginUseCase.swift */; };
+		4484801524920527007AEFEC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4484801424920527007AEFEC /* SignUpViewController.swift */; };
 		44E5CEA8248F56E9001A46AE /* InputStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E5CEA7248F56E9001A46AE /* InputStackView.swift */; };
 		A51A1D5A248F26C1005262DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51A1D59248F26C1005262DF /* AppDelegate.swift */; };
 		A51A1D5C248F26C1005262DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51A1D5B248F26C1005262DF /* SceneDelegate.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		44665F61248F67D10028B18D /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
+		4484801424920527007AEFEC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		44E5CEA7248F56E9001A46AE /* InputStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStackView.swift; sourceTree = "<group>"; };
 		A51A1D56248F26C1005262DF /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51A1D59248F26C1005262DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,14 @@
 			path = UseCase;
 			sourceTree = "<group>";
 		};
+		44848013249204F7007AEFEC /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				4484801424920527007AEFEC /* SignUpViewController.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		44E5CEA6248F5692001A46AE /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +111,7 @@
 				A51A1D6D248F2FE8005262DF /* CustomView */,
 				44665F60248F645A0028B18D /* UseCase */,
 				44E5CEA6248F5692001A46AE /* Login */,
+				44848013249204F7007AEFEC /* SignUp */,
 				A51A1D5F248F26C1005262DF /* Main.storyboard */,
 				A51A1D62248F26C3005262DF /* Assets.xcassets */,
 				A51A1D64248F26C3005262DF /* LaunchScreen.storyboard */,
@@ -216,6 +227,7 @@
 				A5BC41D32491163C00F094CF /* EndPoint.swift in Sources */,
 				A51A1D5A248F26C1005262DF /* AppDelegate.swift in Sources */,
 				A54A873E248FB98F00A81604 /* Dynamic.swift in Sources */,
+				4484801524920527007AEFEC /* SignUpViewController.swift in Sources */,
 				44E5CEA8248F56E9001A46AE /* InputStackView.swift in Sources */,
 				A54A873B248F7F3000A81604 /* SignInViewModel.swift in Sources */,
 				44665F62248F67D10028B18D /* LoginUseCase.swift in Sources */,

@@ -21,7 +21,6 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Properties
     private var signInViewModel: SignInViewModel?
-    private var loginUseCase: LoginUseCase = .init()
     private var isKeyboardShown = false
     
     // MARK: - LifeCycle
@@ -69,6 +68,21 @@ final class LoginViewController: UIViewController {
         }
     }
     
+    private func presentIssueListViewController() {
+        guard let issueListViewController = self.storyboard?.instantiateViewController(withIdentifier: IssueListViewController.identifier) else { return }
+        issueListViewController.modalPresentationStyle = .fullScreen
+        self.present(issueListViewController, animated: true)
+    }
+    
+    private func showWarningView() {
+        UIView.animate(withDuration: 0.75,
+                       delay: 0,
+                       options: .allowUserInteraction,
+                       animations: {
+                        self.warningView.alpha = 1
+                        self.warningView.isHidden = false })
+    }
+    
     // MARK: - Events
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         view.endEditing(true)
@@ -83,18 +97,18 @@ final class LoginViewController: UIViewController {
     }
     
     @IBAction func signInButtonTapped(_ sender: UIButton) {
-        loginUseCase.loginFail { response in
-            if response {
-                
-            } else {
-                UIView.animate(withDuration: 0.75,
-                               delay: 0,
-                               options: .allowUserInteraction,
-                               animations: {
-                                self.warningView.alpha = 1
-                                self.warningView.isHidden = false })
-            }
-        }
+        let body = UserCertification(userName: signInViewModel?.userName.value,
+                                     password: signInViewModel?.password.value)
+        NetworkManager.request(url: EndPoint(path: .localLogin).url,
+                               method: .post,
+                               body: body,
+                               statusCodeRange: 200...299,
+                               decodable: SignInResponse.self,
+                               successHandler: { [unowned self] response in
+                                NetworkManager.token = response.jwtToken
+                                response.status ? self.presentIssueListViewController() : self.showWarningView() },
+                               failHandler: { [unowned self] error in
+                                self.alert(title: "에러 발생", message: error.localizedDescription, actions: ["닫기": .none]) })
     }
     
     @IBAction func githubLoginButtonTapped(_ sender: UIButton) {
@@ -103,11 +117,19 @@ final class LoginViewController: UIViewController {
             switch result {
             case .success(let token):
                 NetworkManager.token = token
+                self.presentIssueListViewController()
             case .failure(let error):
-                let errorAlert = UIAlertController.alert(title: "에러 발생", message: error.message, actions: ["닫기" : nil])
-                self.present(errorAlert, animated: true)
+                self.alert(title: "에러 발생", message: error.message, actions: ["닫기" : nil])
             }
         })
+    }
+    
+    @IBAction func signUpButtonTapped(_ sender: UIButton) {
+        guard let signupViewController = storyboard?.instantiateViewController(identifier: SignUpViewController.identifier) as? SignUpViewController else { return }
+        signupViewController.successHandler = { [unowned self] in
+            self.alert(title: "회원가입 성공!", message: "회원가입이 완료되었습니다.", actions: ["닫기": .none])
+        }
+        present(signupViewController, animated: true)
     }
     
     // MARK: - Objc
@@ -143,7 +165,7 @@ extension LoginViewController: UITextFieldDelegate {
             }
         ]
         
-        guard let action = actions[textField.returnKeyType] else {return true}
+        guard let action = actions[textField.returnKeyType] else { return true }
         action()
         return true
     }

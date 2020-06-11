@@ -233,23 +233,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create your account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLq-li-VrS">
-                                <rect key="frame" x="57.666666666666657" y="54.333333333333371" width="260" height="36"/>
+                                <rect key="frame" x="57.666666666666657" y="54.333333333333343" width="259.66666666666674" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="n3R-Vy-g7n">
+                                <rect key="frame" x="48" y="114.33333333333331" width="279" height="73"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kTz-Uv-pr7" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="279" height="73"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Username"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="NO"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="pLq-li-VrS" firstAttribute="centerY" secondItem="5u8-x3-vrs" secondAttribute="centerY" multiplier="0.2" id="Bbs-rp-rOj"/>
+                            <constraint firstItem="n3R-Vy-g7n" firstAttribute="centerX" secondItem="5u8-x3-vrs" secondAttribute="centerX" id="Due-aF-tUK"/>
+                            <constraint firstItem="n3R-Vy-g7n" firstAttribute="leading" secondItem="5u8-x3-vrs" secondAttribute="leading" constant="48" id="Yux-7N-cQA"/>
+                            <constraint firstItem="5u8-x3-vrs" firstAttribute="bottom" secondItem="n3R-Vy-g7n" secondAttribute="bottom" priority="1" id="ef3-Cd-iqS"/>
                             <constraint firstItem="pLq-li-VrS" firstAttribute="centerX" secondItem="5u8-x3-vrs" secondAttribute="centerX" id="gKB-uW-x5l"/>
+                            <constraint firstItem="n3R-Vy-g7n" firstAttribute="top" secondItem="pLq-li-VrS" secondAttribute="bottom" constant="24" id="hvf-9h-6QD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5u8-x3-vrs"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qg3-kz-vEK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="865" y="139"/>
+            <point key="canvasLocation" x="864.79999999999995" y="138.91625615763547"/>
         </scene>
     </scenes>
     <resources>

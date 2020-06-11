@@ -75,6 +75,15 @@ final class InputStackView: UIStackView {
         inputTextField.addTarget(self, action: #selector(inputEditing(_:)), for: .editingChanged)
         addArrangedSubview(inputTextField)
         inputTextField.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        disableAutoFill()
+    }
+    
+    private func disableAutoFill() {
+        if #available(iOS 12, *) {
+            inputTextField.textContentType = .oneTimeCode
+        } else {
+            inputTextField.textContentType = .init(rawValue: "")
+        }
     }
     
     // MARK: Objc

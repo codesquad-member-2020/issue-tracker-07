@@ -21,7 +21,6 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Properties
     private var signInViewModel: SignInViewModel?
-    private var loginUseCase: LoginUseCase = .init()
     private var isKeyboardShown = false
     
     // MARK: - LifeCycle
@@ -83,9 +82,15 @@ final class LoginViewController: UIViewController {
     }
     
     @IBAction func signInButtonTapped(_ sender: UIButton) {
-        loginUseCase.loginFail { response in
-            if response {
-                
+        guard let id = signInViewModel?.userName.value,
+            let password = signInViewModel?.password.value else { return }
+        let body = UserCertification(userName: id, password: password)
+        NetworkManager.request(url: EndPoint(path: .localLogin).url, method: .post, body: body, statusCodeRange: 200...299, decodable: SignInResponse.self, successHandler: { [unowned self] response in
+            if response.status {
+                NetworkManager.token = response.jwtToken
+                guard let issueListViewController = self.storyboard?.instantiateViewController(withIdentifier: IssueListViewController.identifier) else { return }
+                issueListViewController.modalPresentationStyle = .fullScreen
+                self.present(issueListViewController, animated: true)
             } else {
                 UIView.animate(withDuration: 0.75,
                                delay: 0,
@@ -94,7 +99,11 @@ final class LoginViewController: UIViewController {
                                 self.warningView.alpha = 1
                                 self.warningView.isHidden = false })
             }
-        }
+        }, failHandler: { [unowned self] error in
+            self.alert(title: "에러 발생", message: error.localizedDescription, actions: ["닫기": .none])
+        })
+        
+        
     }
     
     @IBAction func githubLoginButtonTapped(_ sender: UIButton) {

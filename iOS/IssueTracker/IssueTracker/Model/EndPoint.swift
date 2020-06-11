@@ -13,6 +13,7 @@ struct EndPoint {
     enum Path: CustomStringConvertible {
         case githubLogin
         case signUp
+        case localLogin
         
         var description: String {
             switch self {
@@ -20,6 +21,8 @@ struct EndPoint {
                 return "/api/login/github"
             case .signUp:
                 return "/api/signup"
+            case .localLogin:
+                return "/api/login"
             }
         }
     }

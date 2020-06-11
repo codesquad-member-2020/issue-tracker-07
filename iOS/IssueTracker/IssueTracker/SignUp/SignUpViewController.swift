@@ -91,7 +91,8 @@ final class SignUpViewController: UIViewController {
     @IBAction func createAccountButtonTapped(_ sender: UIButton) {
         guard let id = signUpViewModel?.userName.value,
             let password = signUpViewModel?.password.value else { return }
-        NetworkManager.request(url: EndPoint(path: .signUp).url, method: .post, body: ["id": id, "password": password], statusCodeRange: 200...299, decodable: SignUpResponse.self, successHandler: { model in
+        let body = UserCertification(userName: id, password: password)
+        NetworkManager.request(url: EndPoint(path: .signUp).url, method: .post, body: body, statusCodeRange: 200...299, decodable: SignUpResponse.self, successHandler: { model in
             self.success(model.status)
         }, failHandler: { error in
             self.alert(title: "에러 발생", message: error.localizedDescription, actions: ["닫기": .none])

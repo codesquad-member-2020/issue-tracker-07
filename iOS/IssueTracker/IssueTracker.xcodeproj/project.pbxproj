@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		44665F62248F67D10028B18D /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44665F61248F67D10028B18D /* LoginUseCase.swift */; };
 		4484801524920527007AEFEC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4484801424920527007AEFEC /* SignUpViewController.swift */; };
 		44848018249243C6007AEFEC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 44848017249243C6007AEFEC /* Alamofire */; };
 		4484801A24925D88007AEFEC /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4484801924925D88007AEFEC /* SignUpResponse.swift */; };
@@ -24,6 +23,9 @@
 		A54A873E248FB98F00A81604 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A873D248FB98F00A81604 /* Dynamic.swift */; };
 		A57F63552492154A0083051A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F63542492154A0083051A /* SignUpViewModel.swift */; };
 		A57F635D24921BF10083051A /* SignUpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F635C24921BF10083051A /* SignUpTests.swift */; };
+		A57F6366249261710083051A /* UserCertification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F6365249261710083051A /* UserCertification.swift */; };
+		A57F6368249262580083051A /* SignInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F6367249262580083051A /* SignInResponse.swift */; };
+		A57F636B249264670083051A /* IssueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F636A249264670083051A /* IssueListViewController.swift */; };
 		A5BC41D32491163C00F094CF /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BC41D22491163C00F094CF /* EndPoint.swift */; };
 		A5BC41D724911A7100F094CF /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BC41D624911A7100F094CF /* OAuthManager.swift */; };
 		A5BC41D92491F37800F094CF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BC41D82491F37800F094CF /* NetworkManager.swift */; };
@@ -41,7 +43,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		44665F61248F67D10028B18D /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
 		4484801424920527007AEFEC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4484801924925D88007AEFEC /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		44E5CEA7248F56E9001A46AE /* InputStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStackView.swift; sourceTree = "<group>"; };
@@ -61,6 +62,9 @@
 		A57F635A24921BF10083051A /* SignUpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignUpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A57F635C24921BF10083051A /* SignUpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTests.swift; sourceTree = "<group>"; };
 		A57F635E24921BF10083051A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A57F6365249261710083051A /* UserCertification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCertification.swift; sourceTree = "<group>"; };
+		A57F6367249262580083051A /* SignInResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponse.swift; sourceTree = "<group>"; };
+		A57F636A249264670083051A /* IssueListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListViewController.swift; sourceTree = "<group>"; };
 		A5BC41D22491163C00F094CF /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		A5BC41D624911A7100F094CF /* OAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthManager.swift; sourceTree = "<group>"; };
 		A5BC41D82491F37800F094CF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -86,14 +90,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		44665F60248F645A0028B18D /* UseCase */ = {
-			isa = PBXGroup;
-			children = (
-				44665F61248F67D10028B18D /* LoginUseCase.swift */,
-			);
-			path = UseCase;
-			sourceTree = "<group>";
-		};
 		44848013249204F7007AEFEC /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,12 +131,12 @@
 		A51A1D58248F26C1005262DF /* IssueTracker */ = {
 			isa = PBXGroup;
 			children = (
+				A57F6369249264580083051A /* Issue */,
 				A5BC41DA2491F46900F094CF /* Extension */,
 				A54A873C248FB97E00A81604 /* Model */,
 				A51A1D59248F26C1005262DF /* AppDelegate.swift */,
 				A51A1D5B248F26C1005262DF /* SceneDelegate.swift */,
 				A51A1D6D248F2FE8005262DF /* CustomView */,
-				44665F60248F645A0028B18D /* UseCase */,
 				44E5CEA6248F5692001A46AE /* Login */,
 				44848013249204F7007AEFEC /* SignUp */,
 				A51A1D5F248F26C1005262DF /* Main.storyboard */,
@@ -167,6 +163,8 @@
 				A5BC41D22491163C00F094CF /* EndPoint.swift */,
 				A5BC41D624911A7100F094CF /* OAuthManager.swift */,
 				A5BC41D82491F37800F094CF /* NetworkManager.swift */,
+				A57F6365249261710083051A /* UserCertification.swift */,
+				A57F6367249262580083051A /* SignInResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,6 +176,14 @@
 				A57F635E24921BF10083051A /* Info.plist */,
 			);
 			path = SignUpTests;
+			sourceTree = "<group>";
+		};
+		A57F6369249264580083051A /* Issue */ = {
+			isa = PBXGroup;
+			children = (
+				A57F636A249264670083051A /* IssueListViewController.swift */,
+			);
+			path = Issue;
 			sourceTree = "<group>";
 		};
 		A5BC41DA2491F46900F094CF /* Extension */ = {
@@ -300,15 +306,17 @@
 				A5BC41DC2491F48600F094CF /* UIViewControllerExtension.swift in Sources */,
 				A5BC41D724911A7100F094CF /* OAuthManager.swift in Sources */,
 				4484801A24925D88007AEFEC /* SignUpResponse.swift in Sources */,
+				A57F6366249261710083051A /* UserCertification.swift in Sources */,
 				A51A1D5E248F26C1005262DF /* LoginViewController.swift in Sources */,
 				A5BC41D32491163C00F094CF /* EndPoint.swift in Sources */,
 				A51A1D5A248F26C1005262DF /* AppDelegate.swift in Sources */,
+				A57F6368249262580083051A /* SignInResponse.swift in Sources */,
 				A57F63552492154A0083051A /* SignUpViewModel.swift in Sources */,
 				A54A873E248FB98F00A81604 /* Dynamic.swift in Sources */,
+				A57F636B249264670083051A /* IssueListViewController.swift in Sources */,
 				4484801524920527007AEFEC /* SignUpViewController.swift in Sources */,
 				44E5CEA8248F56E9001A46AE /* InputStackView.swift in Sources */,
 				A54A873B248F7F3000A81604 /* SignInViewModel.swift in Sources */,
-				44665F62248F67D10028B18D /* LoginUseCase.swift in Sources */,
 				A51A1D71248F383D005262DF /* BorderButton.swift in Sources */,
 				A51A1D5C248F26C1005262DF /* SceneDelegate.swift in Sources */,
 			);

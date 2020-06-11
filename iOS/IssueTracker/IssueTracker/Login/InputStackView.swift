@@ -25,6 +25,10 @@ final class InputStackView: UIStackView {
     private var titleLabel: UILabel!
     private(set) var inputTextField: UITextField!
     private var handler: (String?) -> () = {_ in}
+    var textFieldBorderColor: CGColor? {
+        get { inputTextField.layer.borderColor }
+        set { inputTextField.layer.borderColor = newValue }
+    }
     
     // MARK: - LifeCycle
     override init(frame: CGRect) {
@@ -65,6 +69,9 @@ final class InputStackView: UIStackView {
     private func setUpInputTextField() {
         inputTextField = UITextField()
         inputTextField.borderStyle = .roundedRect
+        inputTextField.layer.borderWidth = 1
+        inputTextField.layer.cornerRadius = 5
+        inputTextField.layer.borderColor = UIColor.clear.cgColor
         inputTextField.addTarget(self, action: #selector(inputEditing(_:)), for: .editingChanged)
         addArrangedSubview(inputTextField)
         inputTextField.heightAnchor.constraint(equalToConstant: 48).isActive = true

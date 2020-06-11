@@ -17,7 +17,9 @@ final class SignUpViewController: UIViewController {
     @IBOutlet weak var createAccountButton: BorderButton!
     
     // MARK: - Properties
+    static let identifier: String = "signUp"
     private var signUpViewModel: SignUpViewModel?
+    var successHandler: () -> () = {}
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -74,4 +76,25 @@ final class SignUpViewController: UIViewController {
             })
         }
     }
+    
+    // MARK: - IBActions
+    @IBAction func createAccountButtonTapped(_ sender: UIButton) {
+        guard let id = signUpViewModel?.userName.value,
+            let password = signUpViewModel?.password.value else { return }
+        NetworkManager.request(url: EndPoint(path: .signUp).url, method: .post, body: ["id": id, "password": password], statusCodeRange: 200...299, decodable: SignUpResponse.self, successHandler: { model in
+            if model.status {
+                self.dismiss(animated: true) {
+                    self.successHandler()
+                }
+            } else {
+                let alert = UIAlertController.alert(title: "에러 발생", message: "중복된 아이디입니다.", actions: ["닫기": .none])
+                self.present(alert, animated: true)
+            }
+        }, failHandler: { error in
+            let alert = UIAlertController.alert(title: "에러 발생", message: error.localizedDescription, actions: ["닫기": .none])
+            self.present(alert, animated: true)
+        })
+    }
 }
+
+

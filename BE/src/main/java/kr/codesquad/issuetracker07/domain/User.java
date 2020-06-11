@@ -21,7 +21,7 @@ public class User {
     private String name;
 
     @JsonProperty("avatar_url")
-    private String avatarUrl;
+    private String imageUrl;
 
     private String password;
 

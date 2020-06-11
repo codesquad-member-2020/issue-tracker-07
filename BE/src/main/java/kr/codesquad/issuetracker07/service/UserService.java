@@ -23,7 +23,7 @@ public class UserService {
         return User.builder()
                    .name(id)
                    .password(password)
-                   .avatarUrl("https://codesquad-mocha.s3.ap-northeast-2.amazonaws.com/github.png")
+                   .imageUrl("https://codesquad-mocha.s3.ap-northeast-2.amazonaws.com/github.png")
                    .authProvider(AuthProvider.local)
                    .build();
     }

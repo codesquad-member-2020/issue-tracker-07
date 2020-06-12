@@ -25,8 +25,7 @@ final class Dynamic<T> {
         self.handler = handler
     }
     
-    func bindAndFire(_ handler: Handler?) {
-        self.handler = handler
+    func fire() {
         handler?(value)
     }
 }

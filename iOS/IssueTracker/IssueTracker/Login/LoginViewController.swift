@@ -40,10 +40,10 @@ final class LoginViewController: UIViewController {
     private func setUpSignInViewModel() {
         signInViewModel = SignInViewModel()
         userNameInputView.bind { [unowned self] userName in
-            self.signInViewModel?.userName.value = userName
+            self.signInViewModel?.signInInfo.userName = userName
         }
         passwordInputView.bind { [unowned self] password in
-            self.signInViewModel?.password.value = password
+            self.signInViewModel?.signInInfo.password = password
         }
     }
     
@@ -60,12 +60,13 @@ final class LoginViewController: UIViewController {
     }
     
     private func signUpButtonBinding() {
-        signInViewModel?.isEnabled.bindAndFire { [unowned self] isEnabled in
+        signInViewModel?.isEnabled.bind { [unowned self] isEnabled in
             self.signInButton.isEnabled = isEnabled
             UIView.animate(withDuration: 0.5, animations: {
                 self.signInButton.alpha = isEnabled ? 1 : 0.5
             })
         }
+        signInViewModel?.isEnabled.fire()
     }
     
     private func presentIssueListViewController() {
@@ -85,6 +86,7 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Events
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        super.touchesBegan(touches, with: event)
         view.endEditing(true)
     }
     
@@ -97,18 +99,16 @@ final class LoginViewController: UIViewController {
     }
     
     @IBAction func signInButtonTapped(_ sender: UIButton) {
-        let body = UserCertification(userName: signInViewModel?.userName.value,
-                                     password: signInViewModel?.password.value)
-        NetworkManager.request(url: EndPoint(path: .localLogin).url,
-                               method: .post,
-                               body: body,
-                               statusCodeRange: 200...299,
-                               decodable: SignInResponse.self,
-                               successHandler: { [unowned self] response in
-                                NetworkManager.token = response.jwtToken
-                                response.status ? self.presentIssueListViewController() : self.showWarningView() },
-                               failHandler: { [unowned self] error in
-                                self.alert(title: "에러 발생", message: error.localizedDescription, actions: ["닫기": .none]) })
+        SignInUseCase().createAccount(networkManager: NetworkManager(),
+                                      userName: signInViewModel?.signInInfo.userName,
+                                      password: signInViewModel?.signInInfo.password,
+                                      successHandler: { [unowned self] response in
+                                        NetworkManager.token = response.jwtToken
+                                        response.status ? self.presentIssueListViewController() : self.showWarningView() },
+                                      failHandler: { [unowned self] error in
+                                        let alert = UIAlertController.alert(title: "에러 발생", message: error.localizedDescription, actions: ["닫기": .none])
+                                        self.present(alert, animated: true)
+        })
     }
     
     @IBAction func githubLoginButtonTapped(_ sender: UIButton) {
@@ -119,7 +119,8 @@ final class LoginViewController: UIViewController {
                 NetworkManager.token = token
                 self.presentIssueListViewController()
             case .failure(let error):
-                self.alert(title: "에러 발생", message: error.message, actions: ["닫기" : nil])
+                let alert = UIAlertController.alert(title: "에러 발생", message: error.message, actions: ["닫기" : nil])
+                self.present(alert, animated: true)
             }
         })
     }
@@ -127,7 +128,8 @@ final class LoginViewController: UIViewController {
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
         guard let signupViewController = storyboard?.instantiateViewController(identifier: SignUpViewController.identifier) as? SignUpViewController else { return }
         signupViewController.successHandler = { [unowned self] in
-            self.alert(title: "회원가입 성공!", message: "회원가입이 완료되었습니다.", actions: ["닫기": .none])
+            let alert = UIAlertController.alert(title: "회원가입 성공!", message: "회원가입이 완료되었습니다.", actions: ["닫기": .none])
+            self.present(alert, animated: true)
         }
         present(signupViewController, animated: true)
     }

@@ -8,13 +8,13 @@
 
 import UIKit
 
-extension UIViewController {
-    func alert(title: String?, message: String?, actions: [String : ((UIAlertAction) -> ())?]) {
+extension UIAlertController {
+    static func alert(title: String?, message: String?, actions: [String : ((UIAlertAction) -> ())?]) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         actions.forEach { key, value in
             alert.addAction(UIAlertAction(title: key, style: .default, handler: value))
         }
         
-        present(alert, animated: true)
+        return alert
     }
 }

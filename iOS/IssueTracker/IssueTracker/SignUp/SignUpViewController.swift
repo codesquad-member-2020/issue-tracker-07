@@ -40,64 +40,67 @@ final class SignUpViewController: UIViewController {
     private func setUpSignUpViewModel() {
         signUpViewModel = SignUpViewModel()
         userNameInputView.bind { [unowned self] userName in
-            self.signUpViewModel?.userName.value = userName
+            self.signUpViewModel?.signUpInfo.userName = userName
         }
         passwordInputView.bind { [unowned self] password in
-            self.signUpViewModel?.password.value = password
+            self.signUpViewModel?.signUpInfo.password = password
         }
         confirmPasswordInputView.bind { [unowned self] confirmPassword in
-            self.signUpViewModel?.confirmPassword.value = confirmPassword
+            self.signUpViewModel?.signUpInfo.confirmPassword = confirmPassword
         }
     }
     
     private func setUpUserNameInputView() {
         signUpViewModel?.isUserNameValid.bind { [unowned self] isValid in
+            guard let isValid = isValid else { return }
             self.userNameInputView.textFieldBorderColor = isValid ? UIColor.systemGreen.cgColor : UIColor.systemRed.cgColor
         }
     }
     
     private func setUpPasswordInputView() {
         signUpViewModel?.isPasswordValid.bind { [unowned self] isValid in
+            guard let isValid = isValid else { return }
             self.passwordInputView.textFieldBorderColor = isValid ? UIColor.systemGreen.cgColor : UIColor.systemRed.cgColor
         }
     }
     
     private func setUpConfirmPasswordInputView() {
         signUpViewModel?.isConfirmPasswordValid.bind { [unowned self] isValid in
+            guard let isValid = isValid else { return }
             self.confirmPasswordInputView.textFieldBorderColor = isValid ? UIColor.systemGreen.cgColor : UIColor.systemRed.cgColor
         }
     }
     
     private func setUpCreateButton() {
-        signUpViewModel?.isEnabled.bindAndFire { [unowned self] isEnabled in
+        signUpViewModel?.isEnabled.bind { [unowned self] isEnabled in
             self.createAccountButton.isEnabled = isEnabled
             UIView.animate(withDuration: 0.5, animations: {
                 self.createAccountButton.alpha = isEnabled ? 1 : 0.5
             })
         }
+        signUpViewModel?.isEnabled.fire()
     }
     
     private func success(_ status: Bool) {
         if status {
             dismiss(animated: true) { self.successHandler() }
         } else {
-            alert(title: "에러 발생", message: "중복된 아이디입니다.", actions: ["닫기": .none])
+            let alert = UIAlertController.alert(title: "에러 발생", message: "중복된 아이디입니다.", actions: ["닫기": .none])
+            present(alert, animated: true)
         }
     }
     
     // MARK: - IBActions
     @IBAction func createAccountButtonTapped(_ sender: UIButton) {
-        let body = UserCertification(userName: signUpViewModel?.userName.value,
-                                     password: signUpViewModel?.password.value)
-        NetworkManager.request(url: EndPoint(path: .signUp).url,
-                               method: .post,
-                               body: body,
-                               statusCodeRange: 200...299,
-                               decodable: SignUpResponse.self,
-                               successHandler: { model in
-                                self.success(model.status) },
-                               failHandler: { error in
-                                self.alert(title: "에러 발생", message: error.localizedDescription, actions: ["닫기": .none]) })
+        SignUpUseCase().createAccount(networkManager: NetworkManager(),
+                                      userName: signUpViewModel?.signUpInfo.userName,
+                                      password: signUpViewModel?.signUpInfo.password,
+                                      successHandler: { model in
+                                        self.success(model.status) },
+                                      failHandler: { error in
+                                        let alert = UIAlertController.alert(title: "에러 발생", message: error.localizedDescription, actions: ["닫기": .none])
+                                        self.present(alert, animated: true)
+        })
     }
 }
 

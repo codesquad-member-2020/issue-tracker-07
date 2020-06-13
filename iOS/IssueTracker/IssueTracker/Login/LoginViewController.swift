@@ -70,9 +70,9 @@ final class LoginViewController: UIViewController {
     }
     
     private func presentIssueListViewController() {
-        guard let issueListViewController = self.storyboard?.instantiateViewController(withIdentifier: IssueListViewController.identifier) else { return }
-        issueListViewController.modalPresentationStyle = .fullScreen
-        self.present(issueListViewController, animated: true)
+        guard let tabbarController = self.storyboard?.instantiateViewController(withIdentifier: "Tabbar") else { return }
+        tabbarController.modalPresentationStyle = .fullScreen
+        self.present(tabbarController, animated: true)
     }
     
     private func showWarningView() {

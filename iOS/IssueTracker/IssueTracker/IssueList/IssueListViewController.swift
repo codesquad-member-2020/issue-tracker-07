@@ -9,6 +9,4 @@
 import UIKit
 
 class IssueListViewController: UIViewController {
-    
-    static let identifier: String = "IssueList"
 }

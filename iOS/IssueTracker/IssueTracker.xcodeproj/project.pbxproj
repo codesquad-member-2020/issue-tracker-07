@@ -159,7 +159,7 @@
 		A51A1D58248F26C1005262DF /* IssueTracker */ = {
 			isa = PBXGroup;
 			children = (
-				A57F6369249264580083051A /* Issue */,
+				A57F6369249264580083051A /* IssueList */,
 				A5BC41DA2491F46900F094CF /* Extension */,
 				A54A873C248FB97E00A81604 /* Model */,
 				A51A1D59248F26C1005262DF /* AppDelegate.swift */,
@@ -204,12 +204,12 @@
 			path = SignUpTests;
 			sourceTree = "<group>";
 		};
-		A57F6369249264580083051A /* Issue */ = {
+		A57F6369249264580083051A /* IssueList */ = {
 			isa = PBXGroup;
 			children = (
 				A57F636A249264670083051A /* IssueListViewController.swift */,
 			);
-			path = Issue;
+			path = IssueList;
 			sourceTree = "<group>";
 		};
 		A5BC41DA2491F46900F094CF /* Extension */ = {

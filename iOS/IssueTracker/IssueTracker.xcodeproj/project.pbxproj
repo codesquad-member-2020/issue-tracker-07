@@ -22,6 +22,7 @@
 		A516C5DA249524EC008D3DF2 /* LabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A516C5D9249524EC008D3DF2 /* LabelCollectionViewCell.swift */; };
 		A516C5DC24952658008D3DF2 /* LabelCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A516C5DB24952658008D3DF2 /* LabelCollectionViewDataSource.swift */; };
 		A516C5DE2495277D008D3DF2 /* IssueTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A516C5DD2495277D008D3DF2 /* IssueTableViewDataSource.swift */; };
+		A516C5E02495287B008D3DF2 /* LabelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A516C5DF2495287B008D3DF2 /* LabelLayout.swift */; };
 		A51A1D5A248F26C1005262DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51A1D59248F26C1005262DF /* AppDelegate.swift */; };
 		A51A1D5C248F26C1005262DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51A1D5B248F26C1005262DF /* SceneDelegate.swift */; };
 		A51A1D5E248F26C1005262DF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51A1D5D248F26C1005262DF /* LoginViewController.swift */; };
@@ -68,6 +69,7 @@
 		A516C5D9249524EC008D3DF2 /* LabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionViewCell.swift; sourceTree = "<group>"; };
 		A516C5DB24952658008D3DF2 /* LabelCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		A516C5DD2495277D008D3DF2 /* IssueTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableViewDataSource.swift; sourceTree = "<group>"; };
+		A516C5DF2495287B008D3DF2 /* LabelLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelLayout.swift; sourceTree = "<group>"; };
 		A51A1D56248F26C1005262DF /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51A1D59248F26C1005262DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A51A1D5B248F26C1005262DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +150,26 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		A516C5E12495298F008D3DF2 /* IssueTableView */ = {
+			isa = PBXGroup;
+			children = (
+				A516C5E2249529A4008D3DF2 /* LabelCollectionView */,
+				A516C5D724952285008D3DF2 /* IssueTableViewCell.swift */,
+				A516C5DD2495277D008D3DF2 /* IssueTableViewDataSource.swift */,
+			);
+			path = IssueTableView;
+			sourceTree = "<group>";
+		};
+		A516C5E2249529A4008D3DF2 /* LabelCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				A516C5D9249524EC008D3DF2 /* LabelCollectionViewCell.swift */,
+				A516C5DB24952658008D3DF2 /* LabelCollectionViewDataSource.swift */,
+				A516C5DF2495287B008D3DF2 /* LabelLayout.swift */,
+			);
+			path = LabelCollectionView;
+			sourceTree = "<group>";
+		};
 		A51A1D4D248F26C1005262DF = {
 			isa = PBXGroup;
 			children = (
@@ -218,11 +240,8 @@
 		A57F6369249264580083051A /* IssueList */ = {
 			isa = PBXGroup;
 			children = (
+				A516C5E12495298F008D3DF2 /* IssueTableView */,
 				A57F636A249264670083051A /* IssueListViewController.swift */,
-				A516C5D724952285008D3DF2 /* IssueTableViewCell.swift */,
-				A516C5D9249524EC008D3DF2 /* LabelCollectionViewCell.swift */,
-				A516C5DB24952658008D3DF2 /* LabelCollectionViewDataSource.swift */,
-				A516C5DD2495277D008D3DF2 /* IssueTableViewDataSource.swift */,
 			);
 			path = IssueList;
 			sourceTree = "<group>";
@@ -344,6 +363,7 @@
 			files = (
 				A5BC41D92491F37800F094CF /* NetworkManager.swift in Sources */,
 				443DE7F224939B9C00308A7B /* SignUpUseCase.swift in Sources */,
+				A516C5E02495287B008D3DF2 /* LabelLayout.swift in Sources */,
 				A51A1D6F248F3004005262DF /* BorderView.swift in Sources */,
 				A516C5D824952285008D3DF2 /* IssueTableViewCell.swift in Sources */,
 				A5BC41DC2491F48600F094CF /* UIViewControllerExtension.swift in Sources */,

@@ -9,4 +9,11 @@
 import UIKit
 
 class IssueListViewController: UIViewController {
+    
+    private var searchController = UISearchController()
+    
+    override func viewDidLoad() {
+        searchController.searchBar.placeholder = "Search"
+        navigationItem.searchController = searchController
+    }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aFR-Pi-fOj">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -313,7 +313,7 @@
             </objects>
             <point key="canvasLocation" x="864.79999999999995" y="138.91625615763547"/>
         </scene>
-        <!--Issue List View Controller-->
+        <!--이슈-->
         <scene sceneID="Jye-0d-Xj7">
             <objects>
                 <viewController id="kHA-Zg-ST7" customClass="IssueListViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -323,11 +323,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="EtM-hr-Qtp"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Hy1-zl-kZv"/>
+                    <navigationItem key="navigationItem" title="이슈" leftItemsSupplementBackButton="YES" id="Hy1-zl-kZv">
+                        <barButtonItem key="leftBarButtonItem" title="Filter" id="0AO-vJ-dr5"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="a7C-Bo-D1R"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vNp-hO-EiU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3052" y="139"/>
+            <point key="canvasLocation" x="3244" y="138.91625615763547"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="aGn-uI-cs8">
@@ -352,8 +355,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3nK-1a-OpX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="이슈" image="1.circle" catalog="system" selectedImage="1.circle.fill" id="Beb-cs-Dk5"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eO0-gc-O09">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="eO0-gc-O09">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

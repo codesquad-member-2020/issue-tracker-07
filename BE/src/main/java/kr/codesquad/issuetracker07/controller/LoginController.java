@@ -3,6 +3,8 @@ package kr.codesquad.issuetracker07.controller;
 import kr.codesquad.issuetracker07.domain.AuthProvider;
 import kr.codesquad.issuetracker07.domain.User;
 import kr.codesquad.issuetracker07.dto.LoginVO;
+import kr.codesquad.issuetracker07.response.LoginResponse;
+import kr.codesquad.issuetracker07.response.SignUpResponse;
 import kr.codesquad.issuetracker07.service.AuthService;
 import kr.codesquad.issuetracker07.service.JwtService;
 import kr.codesquad.issuetracker07.service.UserService;
@@ -29,24 +31,20 @@ public class LoginController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<HttpStatus> signInNewUser(@RequestBody LoginVO loginVO) {
+    public ResponseEntity<SignUpResponse> signInNewUser(@RequestBody LoginVO loginVO) {
         if (userService.isExistedUser(loginVO.getId())) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
+            return new ResponseEntity<>(new SignUpResponse(false), HttpStatus.CONFLICT);
         }
         userService.saveUser(userService.makeUser(loginVO.getId(), loginVO.getPassword()), AuthProvider.local);
-
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(new SignUpResponse(true), HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<HttpStatus> loginLocal(@RequestBody LoginVO loginVO, HttpServletResponse response) {
+    public ResponseEntity<LoginResponse> loginLocal(@RequestBody LoginVO loginVO) {
         if (userService.isValidIdAndPassword(loginVO.getId(), loginVO.getPassword(), AuthProvider.local)) {
-            String jwtToken = jwtService.makeJwtToken(loginVO.getId());
-            response.setHeader("Authorization", jwtToken);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(new LoginResponse(true, jwtService.makeJwtToken(loginVO.getId())), HttpStatus.OK);
         }
-
-        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(new LoginResponse(false, ""), HttpStatus.UNAUTHORIZED);
     }
 
     @GetMapping("/login/github")

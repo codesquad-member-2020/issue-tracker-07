@@ -17,6 +17,11 @@ class IssueListViewController: UIViewController {
     private var searchController: UISearchController = UISearchController()
     private var dataSource: UITableViewDataSource = IssueTableViewDataSource()
     private var isEditingMode: Bool = false
+    private var isSelectedAll: Bool = false {
+        didSet {
+            leftNavigationButton.title = isSelectedAll ? "Deselect All" : "Select All"
+        }
+    }
     private var tabbarItems: [UIView]? = .init()
     private let closeIssueButton: BorderButton = .init()
     
@@ -72,32 +77,62 @@ class IssueListViewController: UIViewController {
         }
     }
     
+    private func selectAllCells() {
+        for index in 0..<issueListTableView.numberOfRows(inSection: 0) {
+            issueListTableView.selectRow(at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .none)
+        }
+    }
+    
+    
+    private func deselectAllCells() {
+        for index in 0..<issueListTableView.numberOfRows(inSection: 0) {
+            issueListTableView.deselectRow(at: IndexPath(row: index, section: 0), animated: true)
+        }
+    }
+    
+    @IBAction func leftNavigationButtonTapped(_ sender: UIBarButtonItem) {
+        if isEditingMode {
+            isSelectedAll.toggle()
+            isSelectedAll ? selectAllCells() : deselectAllCells()
+        }
+    }
+    
     @IBAction func rightNavigationButtonTapped(_ sender: UIBarButtonItem) {
         isEditingMode.toggle()
+        isSelectedAll = false
         updateNavigationBar()
         updateTabbar()
         issueListTableView.setEditing(isEditingMode, animated: true)
-        
     }
 }
 
 extension IssueListViewController: UITableViewDelegate {
-
+    
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let closeAction = UIContextualAction(style: .normal, title: "Close",handler: { (_, _, _) in
-
+            
         })
         closeAction.backgroundColor = .systemGreen
-
+        
         return UISwipeActionsConfiguration(actions: [closeAction])
-
+        
     }
-
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete",handler: { (_, _, _) in
-
+            
         })
-
+        
         return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let selectedRows = tableView.indexPathsForSelectedRows?.count else { return }
+        isSelectedAll = (tableView.numberOfRows(inSection: 0) == selectedRows)
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        guard let selectedRows = tableView.indexPathsForSelectedRows?.count else { return }
+        isSelectedAll = (tableView.numberOfRows(inSection: 0) == selectedRows)
     }
 }

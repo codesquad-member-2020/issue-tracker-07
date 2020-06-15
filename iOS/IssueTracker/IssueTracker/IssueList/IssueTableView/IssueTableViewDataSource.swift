@@ -31,7 +31,6 @@ class IssueTableViewDataSource: NSObject, UITableViewDataSource {
         }
         
         cell.configure(issue: issues?[indexPath.row])
-        cell.applyCollectionView(with: LabelCollectionViewDataSource())
         cell.layoutIfNeeded()
         cell.collectionViewHeight.constant = cell.labelCollectionView.collectionViewLayout.collectionViewContentSize.height
         

@@ -9,16 +9,25 @@
 import UIKit
 
 class LabelCollectionViewDataSource: NSObject, UICollectionViewDataSource {
+    
+    var labels: [Label]? {
+        didSet {
+            handler()
+        }
+    }
+    var handler: () -> ()
+    
+    init(handler: @escaping () -> () = {}) {
+        self.handler = handler
+    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return labels?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LabelCollectionViewCell.identifier, for: indexPath) as? LabelCollectionViewCell else {return UICollectionViewCell()}
-        cell.titleLabel.text = (0...Int.random(in: 1...14)).reduce(into: "") {
-            $0 += String($1)
-        }
+        cell.configure(label: labels?[indexPath.item])
         return cell
     }
 }

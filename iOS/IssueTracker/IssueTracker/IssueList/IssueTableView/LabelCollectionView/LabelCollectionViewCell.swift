@@ -12,4 +12,10 @@ class LabelCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     static let identifier: String = "LabelCell"
+    
+    func configure(label: Label?) {
+        titleLabel.text = label?.title
+        contentView.backgroundColor = UIColor(hex: label?.backgroundColor)
+        contentView.layer.borderColor = UIColor(hex: label?.backgroundColor)?.cgColor
+    }
 }

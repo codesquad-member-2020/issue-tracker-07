@@ -18,7 +18,7 @@ class IssueTableViewCell: UITableViewCell {
     @IBOutlet weak var issueDescriptionLabel: UILabel!
     @IBOutlet weak var mileStoneLabel: BorderLabel!
     static let identifier: String = "IssueCell"
-    private var dataSource: UICollectionViewDataSource? {
+    private var dataSource: LabelCollectionViewDataSource? {
         didSet {
             labelCollectionView.dataSource = dataSource
         }
@@ -32,9 +32,9 @@ class IssueTableViewCell: UITableViewCell {
         issueNumerLabel.text = "#\(issue?.id ?? 0)"
         mileStoneLabel.text = issue?.mileStone?.title
         mileStoneLabel.isHidden = issue?.mileStone == nil
-    }
-    
-    func applyCollectionView(with dataSource: UICollectionViewDataSource) {
-        self.dataSource = dataSource
+        dataSource = LabelCollectionViewDataSource(handler: { [unowned self] in
+            self.labelCollectionView.reloadData()
+        })
+        dataSource?.labels = issue?.labels
     }
 }

@@ -353,7 +353,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rwm-M1-uD6" userLabel="Repository Stack View">
                                                             <rect key="frame" x="0.0" y="0.0" width="251" height="20.333333333333332"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="747" text="저장소이름저장소이름저장소이름저장소이름저장소이름저장소이름저장소이름저장소이름저장소이름" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBR-P2-ypu" userLabel="Repository Name Label">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="747" text="저장소" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rBR-P2-ypu" userLabel="Repository Name Label">
                                                                     <rect key="frame" x="0.0" y="0.0" width="220" height="20.333333333333332"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" name="RepositoryNameColor"/>
@@ -397,6 +397,9 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Rwm-M1-uD6" firstAttribute="width" secondItem="gna-y4-JAq" secondAttribute="width" id="Sxw-PM-KgM"/>
+                                                    </constraints>
                                                 </stackView>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="y6y-cm-RAH">
                                                     <rect key="frame" x="64" y="267" width="251" height="18"/>
@@ -462,7 +465,12 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="collectionViewHeight" destination="SAq-QC-RWM" id="w8L-cc-96i"/>
+                                            <outlet property="issueDescriptionLabel" destination="gAu-eK-A9K" id="63t-Mo-2Le"/>
+                                            <outlet property="issueNumerLabel" destination="o0Y-rl-t0X" id="C87-nE-TDR"/>
+                                            <outlet property="issueTitleLabel" destination="rBR-P2-ypu" id="rdR-Qg-lfM"/>
                                             <outlet property="labelCollectionView" destination="y6y-cm-RAH" id="GKY-IG-Tk0"/>
+                                            <outlet property="mileStoneLabel" destination="CKk-O8-gWq" id="CaW-jJ-teZ"/>
+                                            <outlet property="statusImageView" destination="l3z-Yj-9oH" id="Zj0-dz-6OM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

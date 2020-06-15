@@ -12,11 +12,26 @@ class IssueTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var labelCollectionView: UICollectionView!
+    @IBOutlet weak var statusImageView: UIImageView!
+    @IBOutlet weak var issueTitleLabel: UILabel!
+    @IBOutlet weak var issueNumerLabel: UILabel!
+    @IBOutlet weak var issueDescriptionLabel: UILabel!
+    @IBOutlet weak var mileStoneLabel: BorderLabel!
     static let identifier: String = "IssueCell"
     private var dataSource: UICollectionViewDataSource? {
         didSet {
             labelCollectionView.dataSource = dataSource
         }
+    }
+    
+    func configure(issue: Issue?) {
+        selectedBackgroundView = UIView()
+        statusImageView.tintColor = (issue?.isOpen ?? false) ? .systemGreen : .systemRed
+        issueTitleLabel.text = issue?.title
+        issueDescriptionLabel.text = issue?.description
+        issueNumerLabel.text = "#\(issue?.id ?? 0)"
+        mileStoneLabel.text = issue?.mileStone?.title
+        mileStoneLabel.isHidden = issue?.mileStone == nil
     }
     
     func applyCollectionView(with dataSource: UICollectionViewDataSource) {

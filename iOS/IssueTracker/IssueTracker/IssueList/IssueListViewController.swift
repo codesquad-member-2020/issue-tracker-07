@@ -21,11 +21,24 @@ class IssueListViewController: UIViewController {
     private let closeIssueButton: BorderButton = .init()
     
     override func viewDidLoad() {
+        setUp()
+    }
+    
+    private func setUp() {
+        setUpSearchBar()
+        setUpIssueListTableView()
+        setUpCloseIssueButton()
+    }
+    
+    private func setUpSearchBar() {
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
+    }
+    
+    private func setUpIssueListTableView() {
         issueListTableView.dataSource = dataSource
         issueListTableView.delegate = self
-        setUpCloseIssueButton()
+        issueListTableView.allowsMultipleSelectionDuringEditing = true
     }
     
     private func setUpCloseIssueButton() {
@@ -63,26 +76,28 @@ class IssueListViewController: UIViewController {
         isEditingMode.toggle()
         updateNavigationBar()
         updateTabbar()
+        issueListTableView.setEditing(isEditingMode, animated: true)
+        
     }
 }
 
 extension IssueListViewController: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let closeAction = UIContextualAction(style: .normal, title: "Close",handler: { (_, _, _) in
-            
+
         })
         closeAction.backgroundColor = .systemGreen
-        
+
         return UISwipeActionsConfiguration(actions: [closeAction])
-        
+
     }
-    
+
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete",handler: { (_, _, _) in
-            
+
         })
-        
+
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
 }

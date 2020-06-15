@@ -19,6 +19,7 @@ class IssueTableViewDataSource: NSObject, UITableViewDataSource {
             return UITableViewCell()
         }
         
+        cell.selectedBackgroundView = UIView()
         cell.applyCollectionView(with: LabelCollectionViewDataSource())
         cell.layoutIfNeeded()
         cell.collectionViewHeight.constant = cell.labelCollectionView.collectionViewLayout.collectionViewContentSize.height

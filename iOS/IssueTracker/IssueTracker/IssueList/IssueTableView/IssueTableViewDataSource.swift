@@ -10,8 +10,19 @@ import UIKit
 
 class IssueTableViewDataSource: NSObject, UITableViewDataSource {
 
+    var issues: [Issue]? {
+        didSet {
+            handler()
+        }
+    }
+    private var handler: () -> ()
+    
+    init(handler: @escaping () -> () = {}) {
+        self.handler = handler
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return issues?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

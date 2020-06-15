@@ -15,7 +15,7 @@ class IssueListViewController: UIViewController {
     @IBOutlet weak var leftNavigationButton: UIBarButtonItem!
     
     private var searchController: UISearchController = UISearchController()
-    private var dataSource: UITableViewDataSource = IssueTableViewDataSource()
+    private var dataSource: IssueTableViewDataSource!
     private var isEditingMode: Bool = false
     private var isSelectedAll: Bool = false {
         didSet {
@@ -27,12 +27,26 @@ class IssueListViewController: UIViewController {
     
     override func viewDidLoad() {
         setUp()
+        loadIssues()
+    }
+    
+    private func loadIssues() {
+        IssueListUseCase().mockLoadIssueListSueccess(successHandler: { [unowned self] in
+            self.dataSource.issues = $0
+        })
     }
     
     private func setUp() {
         setUpSearchBar()
+        setUpDataSourceBinding()
         setUpIssueListTableView()
         setUpCloseIssueButton()
+    }
+    
+    private func setUpDataSourceBinding() {
+        dataSource = IssueTableViewDataSource(handler: { [unowned self] in
+            self.issueListTableView.reloadData()
+        })
     }
     
     private func setUpSearchBar() {
@@ -108,7 +122,7 @@ class IssueListViewController: UIViewController {
 }
 
 extension IssueListViewController: UITableViewDelegate {
-
+    
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let closeAction = UIContextualAction(style: .normal, title: "Close",handler: { (_, _, _) in
             

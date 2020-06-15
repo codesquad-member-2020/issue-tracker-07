@@ -11,10 +11,10 @@ import Foundation
 struct Issue: Codable {
     var id: Int
     var title: String
-    var description: String
+    var description: String?
     var isOpen: Bool
-    var mileStone: MileStone
-    var labels: [Label]
+    var mileStone: MileStone?
+    var labels: [Label]?
 }
 
 struct MileStone: Codable {

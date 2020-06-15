@@ -10,7 +10,7 @@ import Foundation
 
 struct SignInUseCase {
     
-    func createAccount(networkManager: NetworkManageable,userName: String?, password: String?, successHandler: @escaping (SignInResponse) -> (), failHandler: @escaping (Error) -> ()) {
+    func createAccount(networkManager: NetworkManageable, userName: String?, password: String?, successHandler: @escaping (SignInResponse) -> (), failHandler: @escaping (Error) -> ()) {
         let body = UserCertification(userName: userName, password: password)
         let requestComponents = RequestComponents(url: EndPoint(path: .localLogin).url, method: .post, body: body)
         let responseComponets = ResponseComponents(statusCodeRange: 200...299, decodableType: SignInResponse.self)

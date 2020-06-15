@@ -94,6 +94,7 @@ class IssueListViewController: UIViewController {
         if isEditingMode {
             isSelectedAll.toggle()
             isSelectedAll ? selectAllCells() : deselectAllCells()
+            navigationItem.title = "\(issueListTableView.indexPathsForSelectedRows?.count ?? 0)개 선택"
         }
     }
     
@@ -129,10 +130,12 @@ extension IssueListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let selectedRows = tableView.indexPathsForSelectedRows?.count else { return }
         isSelectedAll = (tableView.numberOfRows(inSection: 0) == selectedRows)
+        navigationItem.title = "\(selectedRows)개 선택"
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard let selectedRows = tableView.indexPathsForSelectedRows?.count else { return }
         isSelectedAll = (tableView.numberOfRows(inSection: 0) == selectedRows)
+        navigationItem.title = "\(selectedRows)개 선택"
     }
 }

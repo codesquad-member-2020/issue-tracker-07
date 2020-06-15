@@ -108,7 +108,7 @@ class IssueListViewController: UIViewController {
 }
 
 extension IssueListViewController: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let closeAction = UIContextualAction(style: .normal, title: "Close",handler: { (_, _, _) in
             

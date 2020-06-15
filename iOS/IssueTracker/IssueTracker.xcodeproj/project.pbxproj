@@ -18,6 +18,7 @@
 		4484801A24925D88007AEFEC /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4484801924925D88007AEFEC /* SignUpResponse.swift */; };
 		44E5CEA8248F56E9001A46AE /* InputStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E5CEA7248F56E9001A46AE /* InputStackView.swift */; };
 		A5012D142494F3670027E192 /* BorderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5012D132494F3670027E192 /* BorderLabel.swift */; };
+		A513C51124979B8A00818C04 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513C51024979B8A00818C04 /* Issue.swift */; };
 		A516C5D824952285008D3DF2 /* IssueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A516C5D724952285008D3DF2 /* IssueTableViewCell.swift */; };
 		A516C5DA249524EC008D3DF2 /* LabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A516C5D9249524EC008D3DF2 /* LabelCollectionViewCell.swift */; };
 		A516C5DC24952658008D3DF2 /* LabelCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A516C5DB24952658008D3DF2 /* LabelCollectionViewDataSource.swift */; };
@@ -65,6 +66,7 @@
 		4484801924925D88007AEFEC /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		44E5CEA7248F56E9001A46AE /* InputStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStackView.swift; sourceTree = "<group>"; };
 		A5012D132494F3670027E192 /* BorderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderLabel.swift; sourceTree = "<group>"; };
+		A513C51024979B8A00818C04 /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		A516C5D724952285008D3DF2 /* IssueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableViewCell.swift; sourceTree = "<group>"; };
 		A516C5D9249524EC008D3DF2 /* LabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionViewCell.swift; sourceTree = "<group>"; };
 		A516C5DB24952658008D3DF2 /* LabelCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				A57F6365249261710083051A /* UserCertification.swift */,
 				A57F6367249262580083051A /* SignInResponse.swift */,
 				443DE7EC24939AC300308A7B /* Network */,
+				A513C51024979B8A00818C04 /* Issue.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5BC41D92491F37800F094CF /* NetworkManager.swift in Sources */,
+				A513C51124979B8A00818C04 /* Issue.swift in Sources */,
 				443DE7F224939B9C00308A7B /* SignUpUseCase.swift in Sources */,
 				A516C5E02495287B008D3DF2 /* LabelLayout.swift in Sources */,
 				A51A1D6F248F3004005262DF /* BorderView.swift in Sources */,

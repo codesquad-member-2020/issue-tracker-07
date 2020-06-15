@@ -11,16 +11,30 @@ import UIKit
 class IssueListViewController: UIViewController {
     
     @IBOutlet weak var issueListTableView: UITableView!
+    @IBOutlet weak var rightNavigationButton: UIBarButtonItem!
+    @IBOutlet weak var leftNavigationButton: UIBarButtonItem!
     
     private var searchController: UISearchController = UISearchController()
     private var dataSource: UITableViewDataSource = IssueTableViewDataSource()
+    private var isEditingMode: Bool = false
     
     override func viewDidLoad() {
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
         issueListTableView.dataSource = dataSource
         issueListTableView.delegate = self
-        
+    }
+    
+    private func updateNavigationBar() {
+        rightNavigationButton.title = isEditingMode ? "Cancel" : "Edit"
+        leftNavigationButton.title = isEditingMode ? "Select All" : "Filter"
+        navigationItem.title = isEditingMode ? "0개 선택" : "이슈"
+        navigationItem.searchController?.searchBar.isHidden = isEditingMode
+    }
+    
+    @IBAction func rightNavigationButtonTapped(_ sender: UIBarButtonItem) {
+        isEditingMode.toggle()
+        updateNavigationBar()
     }
 }
 

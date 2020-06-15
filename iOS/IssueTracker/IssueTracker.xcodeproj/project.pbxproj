@@ -20,6 +20,7 @@
 		A5012D142494F3670027E192 /* BorderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5012D132494F3670027E192 /* BorderLabel.swift */; };
 		A513C51124979B8A00818C04 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513C51024979B8A00818C04 /* Issue.swift */; };
 		A513C51324979CBC00818C04 /* IssueListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513C51224979CBC00818C04 /* IssueListUseCase.swift */; };
+		A513C5152497B54400818C04 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A513C5142497B54400818C04 /* UIColorExtension.swift */; };
 		A516C5D824952285008D3DF2 /* IssueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A516C5D724952285008D3DF2 /* IssueTableViewCell.swift */; };
 		A516C5DA249524EC008D3DF2 /* LabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A516C5D9249524EC008D3DF2 /* LabelCollectionViewCell.swift */; };
 		A516C5DC24952658008D3DF2 /* LabelCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A516C5DB24952658008D3DF2 /* LabelCollectionViewDataSource.swift */; };
@@ -69,6 +70,7 @@
 		A5012D132494F3670027E192 /* BorderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderLabel.swift; sourceTree = "<group>"; };
 		A513C51024979B8A00818C04 /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		A513C51224979CBC00818C04 /* IssueListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListUseCase.swift; sourceTree = "<group>"; };
+		A513C5142497B54400818C04 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		A516C5D724952285008D3DF2 /* IssueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTableViewCell.swift; sourceTree = "<group>"; };
 		A516C5D9249524EC008D3DF2 /* LabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionViewCell.swift; sourceTree = "<group>"; };
 		A516C5DB24952658008D3DF2 /* LabelCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				A5BC41DB2491F48600F094CF /* UIViewControllerExtension.swift */,
+				A513C5142497B54400818C04 /* UIColorExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				A516C5D824952285008D3DF2 /* IssueTableViewCell.swift in Sources */,
 				A5BC41DC2491F48600F094CF /* UIViewControllerExtension.swift in Sources */,
 				A5BC41D724911A7100F094CF /* OAuthManager.swift in Sources */,
+				A513C5152497B54400818C04 /* UIColorExtension.swift in Sources */,
 				443DE7EE24939AF900308A7B /* ResponseComponents.swift in Sources */,
 				443DE7F024939B1200308A7B /* RequestComponents.swift in Sources */,
 				4484801A24925D88007AEFEC /* SignUpResponse.swift in Sources */,

@@ -16,7 +16,7 @@ class IssueTableViewDataSource: NSObject, UITableViewDataSource {
             setUpViewModels()
         }
     }
-    private var viewModels: [IssueViewModel]?
+    var viewModels: [IssueViewModel]?
     private var handler: () -> ()
     
     init(handler: @escaping () -> () = {}) {
@@ -55,7 +55,9 @@ class IssueTableViewDataSource: NSObject, UITableViewDataSource {
     
     private func setUpIsOpenBinding(cell: IssueTableViewCell, viewModel: IssueViewModel) {
         viewModel.isOpen.bind { isOpen in
-            cell.statusImageView.tintColor = isOpen ? .systemGreen : .systemRed
+            UIView.animate(withDuration: 0.75, animations: {
+                cell.statusImageView.tintColor = isOpen ? .systemGreen : .systemOrange
+            })
         }
         viewModel.isOpen.fire()
     }

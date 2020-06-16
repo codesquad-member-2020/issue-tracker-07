@@ -20,6 +20,14 @@ struct IssueListUseCase {
                                failHandler: failHandler)
     }
     
+    func mockRequestCloseSuccess(sucessHandler: @escaping(Bool) -> ()) {
+        sucessHandler(true)
+    }
+    
+    func mockRequestOpenSuccess(sucessHandler: @escaping(Bool) -> ()) {
+        sucessHandler(true)
+    }
+    
     func mockLoadIssueListSuccess(successHandler: @escaping ([Issue]) -> ()) {
         let iOSLabel = Label(id: 0, title: "iOS", backgroundColor: "#5a8da2")
         let featureLabel = Label(id: 1, title: "feature", backgroundColor: "#F800A9")

@@ -130,17 +130,38 @@ class IssueListViewController: UIViewController {
 extension IssueListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let closeAction = UIContextualAction(style: .normal, title: "Close",handler: { (_, _, _) in
-            
+        guard let isOpen = self.dataSource.viewModels?[indexPath.row].isOpen.value else {return nil}
+        let action = isOpen ? closeAction(at: indexPath) : openAction(at: indexPath)
+        
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+    
+    func closeAction(at indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "Close", handler: { (_, _, complete) in
+            IssueListUseCase().mockRequestCloseSuccess(sucessHandler: { result in
+                self.dataSource.viewModels?[indexPath.row].isOpen.value = !result
+                complete(true)
+            })
         })
-        closeAction.backgroundColor = .systemGreen
+        action.backgroundColor = .systemOrange
         
-        return UISwipeActionsConfiguration(actions: [closeAction])
+        return action
+    }
+    
+    func openAction(at indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "Open", handler: { (_, _, complete) in
+            IssueListUseCase().mockRequestOpenSuccess(sucessHandler: { result in
+                self.dataSource.viewModels?[indexPath.row].isOpen.value = result
+                complete(true)
+            })
+        })
+        action.backgroundColor = .systemGreen
         
+        return action
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete",handler: { (_, _, _) in
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: { (_, _, _) in
             
         })
         

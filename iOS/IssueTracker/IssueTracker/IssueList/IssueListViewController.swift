@@ -31,8 +31,14 @@ class IssueListViewController: UIViewController {
     }
     
     private func loadIssues() {
-        IssueListUseCase().mockLoadIssueListSueccess(successHandler: { [unowned self] in
-            self.dataSource.issues = $0
+        IssueListUseCase().loadIssueList(networkManager: NetworkManager(),
+                                         successHandler: { [unowned self] issues in
+                                            self.dataSource.issues = issues },
+                                         failHandler: { [unowned self] error in
+                                            let alert = UIAlertController.alert(title: "에러 발생",
+                                                                                message: error.localizedDescription,
+                                                                                actions: ["닫기": .none])
+                                            self.present(alert, animated: true)
         })
     }
     

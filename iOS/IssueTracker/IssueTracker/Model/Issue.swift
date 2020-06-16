@@ -14,7 +14,16 @@ struct Issue: Codable {
     var contents: String?
     var isOpen: Bool
     var mileStone: MileStone?
-    var labels: [Label]?
+    var labelList: [Label]?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case contents = "description"
+        case isOpen
+        case mileStone
+        case labelList = "label"
+    }
 }
 
 struct MileStone: Codable {

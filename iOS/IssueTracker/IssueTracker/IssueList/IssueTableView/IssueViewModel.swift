@@ -22,7 +22,7 @@ final class IssueViewModel: NSObject {
         number = .init(issue.id)
         contents = .init(issue.contents)
         mileStone = .init(issue.mileStone?.title)
-        labels = .init(issue.labels)
+        labels = .init(issue.labelList)
     }
 }
 

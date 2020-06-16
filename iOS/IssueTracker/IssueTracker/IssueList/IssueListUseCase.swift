@@ -15,13 +15,12 @@ struct IssueListUseCase {
         let responseComponents = ResponseComponents(statusCodeRange: 200...299, decodableType: IssueListResponse.self)
         networkManager.request(requestComponents: requestComponents,
                                responseComponents: responseComponents,
-                               successHandler: {
-                                print($0)},
-                               failHandler: {
-                                print($0.localizedDescription)})
+                               successHandler: { response in
+                                successHandler(response.issueList)},
+                               failHandler: failHandler)
     }
     
-    func mockLoadIssueListSueccess(successHandler: @escaping ([Issue]) -> ()) {
+    func mockLoadIssueListSuccess(successHandler: @escaping ([Issue]) -> ()) {
         let iOSLabel = Label(id: 0, title: "iOS", backgroundColor: "#5a8da2")
         let featureLabel = Label(id: 1, title: "feature", backgroundColor: "#F800A9")
         let scrumLabel = Label(id: 1, title: "scrum", backgroundColor: "#E7C6AA")
@@ -32,13 +31,13 @@ struct IssueListUseCase {
                                              contents: "좌우로 1초간 흔들리는 애니메이션 구현",
                                              isOpen: true,
                                              mileStone: nil,
-                                             labels: [iOSLabel, featureLabel]),
+                                             labelList: [iOSLabel, featureLabel]),
                                        Issue(id: 1,
                                              title: "2020.06.20",
                                              contents: "오늘 할 일\n카트하기\n잠 푹자기",
                                              isOpen: false,
                                              mileStone: mileStone,
-                                             labels: [iOSLabel, scrumLabel])])
+                                             labelList: [iOSLabel, scrumLabel])])
         }
         successHandler(issues)
     }

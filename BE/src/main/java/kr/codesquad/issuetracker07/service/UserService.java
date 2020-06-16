@@ -5,6 +5,9 @@ import kr.codesquad.issuetracker07.domain.User;
 import kr.codesquad.issuetracker07.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 @Service
 public class UserService {
 
@@ -36,5 +39,9 @@ public class UserService {
         return userRepository.findByNameAndAuthProvider(id, authProvider)
                              .filter(user -> password.equals(user.getPassword()))
                              .isPresent();
+    }
+
+    public Optional<User> findUserByName(String userName) {
+        return userRepository.findByName(userName);
     }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,7 +29,8 @@ public class User {
     private AuthProvider authProvider;
 
     @OneToMany(mappedBy = "user")
-    private List<Issue> issues;
+    @Builder.Default
+    private List<Issue> issues = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     private List<Comment> commentList;

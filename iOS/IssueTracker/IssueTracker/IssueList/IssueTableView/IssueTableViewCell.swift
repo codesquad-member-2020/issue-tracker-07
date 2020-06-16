@@ -18,19 +18,19 @@ class IssueTableViewCell: UITableViewCell {
     @IBOutlet weak var contentsLabel: UILabel!
     @IBOutlet weak var mileStoneLabel: BorderLabel!
     static let identifier: String = "IssueCell"
-    private var dataSource: LabelCollectionViewDataSource? {
-        didSet {
-            labelCollectionView.dataSource = dataSource
-        }
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configure()
     }
-
-    func configure(issue: Issue?) {
-        guard let issue = issue else { return }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        configure()
+    }
+    
+    private func configure() {
         selectedBackgroundView = UIView()
-        dataSource = LabelCollectionViewDataSource(handler: { [unowned self] in
-            self.labelCollectionView.reloadData()
-        })
-        dataSource?.labels = issue.labels
     }
 }
 

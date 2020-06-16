@@ -6,14 +6,15 @@
 //  Copyright © 2020 신한섭. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-final class IssueViewModel {
+final class IssueViewModel: NSObject {
     var isOpen: Dynamic<Bool>
     var title: Dynamic<String>
     var number: Dynamic<Int>
     var contents: Dynamic<String?>
     var mileStone: Dynamic<String?>
+    var labels: Dynamic<[Label]?>
     
     init(issue: Issue) {
         isOpen = .init(issue.isOpen)
@@ -21,5 +22,18 @@ final class IssueViewModel {
         number = .init(issue.id)
         contents = .init(issue.contents)
         mileStone = .init(issue.mileStone?.title)
+        labels = .init(issue.labels)
+    }
+}
+
+extension IssueViewModel: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return labels.value?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LabelCollectionViewCell.identifier, for: indexPath) as? LabelCollectionViewCell else {return UICollectionViewCell()}
+        cell.configure(label: labels.value?[indexPath.item])
+        return cell
     }
 }

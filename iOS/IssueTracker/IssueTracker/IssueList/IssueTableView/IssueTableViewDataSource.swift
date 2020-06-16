@@ -33,10 +33,8 @@ class IssueTableViewDataSource: NSObject, UITableViewDataSource {
         }
         guard let viewModel = viewModels?[indexPath.row] else { return cell }
         setUpViewModel(cell: cell, viewModel: viewModel)
-        cell.configure(issue: issues?[indexPath.row])
         cell.layoutIfNeeded()
         cell.collectionViewHeight.constant = cell.labelCollectionView.collectionViewLayout.collectionViewContentSize.height
-        
         return cell
     }
     
@@ -51,6 +49,7 @@ class IssueTableViewDataSource: NSObject, UITableViewDataSource {
         setUpIssueNumberBinding(cell: cell, viewModel: viewModel)
         setUpIssueDescriptionBinding(cell: cell, viewModel: viewModel)
         setUpMileStoneBinding(cell: cell, viewModel: viewModel)
+        setUpLabelBinding(cell: cell, viewModel: viewModel)
     }
     
     private func setUpIsOpenBinding(cell: IssueTableViewCell, viewModel: IssueViewModel) {
@@ -87,5 +86,13 @@ class IssueTableViewDataSource: NSObject, UITableViewDataSource {
             cell.mileStoneLabel.text = mileStone
         }
         viewModel.mileStone.fire()
+    }
+    
+    private func setUpLabelBinding(cell: IssueTableViewCell, viewModel: IssueViewModel) {
+        cell.labelCollectionView.dataSource = viewModel
+        viewModel.labels.bind { _ in
+            cell.labelCollectionView.reloadData()
+        }
+        viewModel.labels.fire()
     }
 }

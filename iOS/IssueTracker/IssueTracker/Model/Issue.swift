@@ -11,7 +11,7 @@ import Foundation
 struct Issue: Codable {
     var id: Int
     var title: String
-    var description: String?
+    var contents: String?
     var isOpen: Bool
     var mileStone: MileStone?
     var labels: [Label]?

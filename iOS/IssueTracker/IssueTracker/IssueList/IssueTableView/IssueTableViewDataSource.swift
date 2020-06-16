@@ -62,23 +62,23 @@ class IssueTableViewDataSource: NSObject, UITableViewDataSource {
     
     private func setUpIssueTitleBinding(cell: IssueTableViewCell, viewModel: IssueViewModel) {
         viewModel.title.bind { title in
-            cell.issueTitleLabel.text = title
+            cell.titleLabel.text = title
         }
         viewModel.title.fire()
     }
     
     private func setUpIssueNumberBinding(cell: IssueTableViewCell, viewModel: IssueViewModel) {
         viewModel.number.bind { number in
-            cell.issueNumerLabel.text = "#\(number)"
+            cell.numberLabel.text = "#\(number)"
         }
         viewModel.number.fire()
     }
     
     private func setUpIssueDescriptionBinding(cell: IssueTableViewCell, viewModel: IssueViewModel) {
-        viewModel.description.bind { description in
-            cell.issueDescriptionLabel.text = description ?? "내용 없음"
+        viewModel.contents.bind { description in
+            cell.contentsLabel.text = description ?? "내용 없음"
         }
-        viewModel.description.fire()
+        viewModel.contents.fire()
     }
     
     private func setUpMileStoneBinding(cell: IssueTableViewCell, viewModel: IssueViewModel) {

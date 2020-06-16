@@ -13,9 +13,9 @@ class IssueTableViewCell: UITableViewCell {
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var labelCollectionView: UICollectionView!
     @IBOutlet weak var statusImageView: UIImageView!
-    @IBOutlet weak var issueTitleLabel: UILabel!
-    @IBOutlet weak var issueNumerLabel: UILabel!
-    @IBOutlet weak var issueDescriptionLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var numberLabel: UILabel!
+    @IBOutlet weak var contentsLabel: UILabel!
     @IBOutlet weak var mileStoneLabel: BorderLabel!
     static let identifier: String = "IssueCell"
     private var dataSource: LabelCollectionViewDataSource? {

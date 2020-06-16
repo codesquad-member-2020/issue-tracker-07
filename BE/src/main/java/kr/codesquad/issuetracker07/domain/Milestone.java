@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,5 +28,6 @@ public class Milestone {
 
     @OneToMany(mappedBy = "milestone")
     @JsonIgnore
-    private List<Issue> issue;
+    @Builder.Default
+    private List<Issue> issue = new ArrayList<>();
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -23,6 +24,10 @@ public class Issue {
     private String description;
 
     private boolean isOpen;
+
+    private LocalDate createdAt;
+
+    private LocalDate modifiedAt;
 
     @ManyToOne
     private Milestone milestone;

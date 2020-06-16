@@ -16,6 +16,8 @@ public class Attachment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private boolean isAttached;
+
     @ManyToOne
     @JoinColumn(name = "issue_id")
     private Issue issue;

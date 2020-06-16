@@ -23,18 +23,14 @@ class IssueTableViewCell: UITableViewCell {
             labelCollectionView.dataSource = dataSource
         }
     }
-    
+
     func configure(issue: Issue?) {
+        guard let issue = issue else { return }
         selectedBackgroundView = UIView()
-        statusImageView.tintColor = (issue?.isOpen ?? false) ? .systemGreen : .systemRed
-        issueTitleLabel.text = issue?.title
-        issueDescriptionLabel.text = issue?.description
-        issueNumerLabel.text = "#\(issue?.id ?? 0)"
-        mileStoneLabel.text = issue?.mileStone?.title
-        mileStoneLabel.isHidden = issue?.mileStone == nil
         dataSource = LabelCollectionViewDataSource(handler: { [unowned self] in
             self.labelCollectionView.reloadData()
         })
-        dataSource?.labels = issue?.labels
+        dataSource?.labels = issue.labels
     }
 }
+

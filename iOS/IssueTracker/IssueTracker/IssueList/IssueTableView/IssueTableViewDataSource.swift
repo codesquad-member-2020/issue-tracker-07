@@ -13,8 +13,10 @@ class IssueTableViewDataSource: NSObject, UITableViewDataSource {
     var issues: [Issue]? {
         didSet {
             handler()
+            setUpViewModels()
         }
     }
+    private var viewModels: [IssueViewModel]?
     private var handler: () -> ()
     
     init(handler: @escaping () -> () = {}) {
@@ -29,11 +31,61 @@ class IssueTableViewDataSource: NSObject, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: IssueTableViewCell.identifier) as? IssueTableViewCell else {
             return UITableViewCell()
         }
-        
+        guard let viewModel = viewModels?[indexPath.row] else { return cell }
+        setUpViewModel(cell: cell, viewModel: viewModel)
         cell.configure(issue: issues?[indexPath.row])
         cell.layoutIfNeeded()
         cell.collectionViewHeight.constant = cell.labelCollectionView.collectionViewLayout.collectionViewContentSize.height
         
         return cell
+    }
+    
+    private func setUpViewModels() {
+        guard let issues = issues else { return }
+        viewModels = issues.map { IssueViewModel(issue: $0) }
+    }
+    
+    private func setUpViewModel(cell: IssueTableViewCell, viewModel: IssueViewModel) {
+        setUpIsOpenBinding(cell: cell, viewModel: viewModel)
+        setUpIssueTitleBinding(cell: cell, viewModel: viewModel)
+        setUpIssueNumberBinding(cell: cell, viewModel: viewModel)
+        setUpIssueDescriptionBinding(cell: cell, viewModel: viewModel)
+        setUpMileStoneBinding(cell: cell, viewModel: viewModel)
+    }
+    
+    private func setUpIsOpenBinding(cell: IssueTableViewCell, viewModel: IssueViewModel) {
+        viewModel.isOpen.bind { isOpen in
+            cell.statusImageView.tintColor = isOpen ? .systemGreen : .systemRed
+        }
+        viewModel.isOpen.fire()
+    }
+    
+    private func setUpIssueTitleBinding(cell: IssueTableViewCell, viewModel: IssueViewModel) {
+        viewModel.title.bind { title in
+            cell.issueTitleLabel.text = title
+        }
+        viewModel.title.fire()
+    }
+    
+    private func setUpIssueNumberBinding(cell: IssueTableViewCell, viewModel: IssueViewModel) {
+        viewModel.number.bind { number in
+            cell.issueNumerLabel.text = "#\(number)"
+        }
+        viewModel.number.fire()
+    }
+    
+    private func setUpIssueDescriptionBinding(cell: IssueTableViewCell, viewModel: IssueViewModel) {
+        viewModel.description.bind { description in
+            cell.issueDescriptionLabel.text = description ?? "내용 없음"
+        }
+        viewModel.description.fire()
+    }
+    
+    private func setUpMileStoneBinding(cell: IssueTableViewCell, viewModel: IssueViewModel) {
+        viewModel.mileStone.bind { mileStone in
+            cell.mileStoneLabel.isHidden = (mileStone == nil)
+            cell.mileStoneLabel.text = mileStone
+        }
+        viewModel.mileStone.fire()
     }
 }

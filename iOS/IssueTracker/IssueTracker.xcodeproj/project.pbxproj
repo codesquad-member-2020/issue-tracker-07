@@ -13,6 +13,7 @@
 		443DE7F024939B1200308A7B /* RequestComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DE7EF24939B1200308A7B /* RequestComponents.swift */; };
 		443DE7F224939B9C00308A7B /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DE7F124939B9C00308A7B /* SignUpUseCase.swift */; };
 		443DE7F42493A70800308A7B /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DE7F32493A70800308A7B /* SignInUseCase.swift */; };
+		445BD2472498A3B300DBC485 /* IssueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445BD2462498A3B300DBC485 /* IssueViewModel.swift */; };
 		4484801524920527007AEFEC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4484801424920527007AEFEC /* SignUpViewController.swift */; };
 		44848018249243C6007AEFEC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 44848017249243C6007AEFEC /* Alamofire */; };
 		4484801A24925D88007AEFEC /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4484801924925D88007AEFEC /* SignUpResponse.swift */; };
@@ -64,6 +65,7 @@
 		443DE7EF24939B1200308A7B /* RequestComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestComponents.swift; sourceTree = "<group>"; };
 		443DE7F124939B9C00308A7B /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
 		443DE7F32493A70800308A7B /* SignInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCase.swift; sourceTree = "<group>"; };
+		445BD2462498A3B300DBC485 /* IssueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueViewModel.swift; sourceTree = "<group>"; };
 		4484801424920527007AEFEC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4484801924925D88007AEFEC /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		44E5CEA7248F56E9001A46AE /* InputStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStackView.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			children = (
 				A516C5E2249529A4008D3DF2 /* LabelCollectionView */,
 				A516C5D724952285008D3DF2 /* IssueTableViewCell.swift */,
+				445BD2462498A3B300DBC485 /* IssueViewModel.swift */,
 				A516C5DD2495277D008D3DF2 /* IssueTableViewDataSource.swift */,
 			);
 			path = IssueTableView;
@@ -374,6 +377,7 @@
 				A513C51124979B8A00818C04 /* Issue.swift in Sources */,
 				443DE7F224939B9C00308A7B /* SignUpUseCase.swift in Sources */,
 				A516C5E02495287B008D3DF2 /* LabelLayout.swift in Sources */,
+				445BD2472498A3B300DBC485 /* IssueViewModel.swift in Sources */,
 				A51A1D6F248F3004005262DF /* BorderView.swift in Sources */,
 				A516C5D824952285008D3DF2 /* IssueTableViewCell.swift in Sources */,
 				A5BC41DC2491F48600F094CF /* UIViewControllerExtension.swift in Sources */,

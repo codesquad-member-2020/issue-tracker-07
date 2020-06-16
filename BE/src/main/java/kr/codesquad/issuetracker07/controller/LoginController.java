@@ -33,10 +33,10 @@ public class LoginController {
     @PostMapping("/signup")
     public ResponseEntity<SignUpResponse> signInNewUser(@RequestBody LoginVO loginVO) {
         if (userService.isExistedUser(loginVO.getId())) {
-            return new ResponseEntity<>(new SignUpResponse(false), HttpStatus.CONFLICT);
+            return new ResponseEntity<>(new SignUpResponse(false), HttpStatus.OK);
         }
         userService.saveUser(userService.makeUser(loginVO.getId(), loginVO.getPassword()), AuthProvider.local);
-        return new ResponseEntity<>(new SignUpResponse(true), HttpStatus.CREATED);
+        return new ResponseEntity<>(new SignUpResponse(true), HttpStatus.OK);
     }
 
     @PostMapping("/login")
@@ -44,7 +44,7 @@ public class LoginController {
         if (userService.isValidIdAndPassword(loginVO.getId(), loginVO.getPassword(), AuthProvider.local)) {
             return new ResponseEntity<>(new LoginResponse(true, jwtService.makeJwtToken(loginVO.getId())), HttpStatus.OK);
         }
-        return new ResponseEntity<>(new LoginResponse(false, ""), HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(new LoginResponse(false, ""), HttpStatus.OK);
     }
 
     @GetMapping("/login/github")

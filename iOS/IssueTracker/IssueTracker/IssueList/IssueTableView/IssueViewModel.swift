@@ -12,6 +12,7 @@ final class IssueViewModel: NSObject {
     var isOpen: Dynamic<Bool>
     var title: Dynamic<String>
     var number: Dynamic<Int>
+    var reportingDate: Dynamic<String>
     var contents: Dynamic<String?>
     var mileStone: Dynamic<String?>
     var labels: Dynamic<[Label]?>
@@ -20,6 +21,7 @@ final class IssueViewModel: NSObject {
         isOpen = .init(issue.isOpen)
         title = .init(issue.title)
         number = .init(issue.id)
+        reportingDate = .init(issue.reportingDate)
         contents = .init(issue.contents)
         mileStone = .init(issue.mileStone?.title)
         labels = .init(issue.labelList)

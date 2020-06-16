@@ -13,6 +13,7 @@ struct Issue: Codable {
     var title: String
     var contents: String?
     var isOpen: Bool
+    var reportingDate: String
     var mileStone: MileStone?
     var labelList: [Label]?
     
@@ -21,6 +22,7 @@ struct Issue: Codable {
         case title
         case contents = "description"
         case isOpen
+        case reportingDate = "createdAt"
         case mileStone
         case labelList = "label"
     }

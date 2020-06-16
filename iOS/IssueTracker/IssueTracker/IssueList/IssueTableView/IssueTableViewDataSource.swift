@@ -47,6 +47,7 @@ class IssueTableViewDataSource: NSObject, UITableViewDataSource {
         setUpIsOpenBinding(cell: cell, viewModel: viewModel)
         setUpIssueTitleBinding(cell: cell, viewModel: viewModel)
         setUpIssueNumberBinding(cell: cell, viewModel: viewModel)
+        setUpReportingDateBinding(cell: cell, viewModel: viewModel)
         setUpIssueDescriptionBinding(cell: cell, viewModel: viewModel)
         setUpMileStoneBinding(cell: cell, viewModel: viewModel)
         setUpLabelBinding(cell: cell, viewModel: viewModel)
@@ -71,6 +72,14 @@ class IssueTableViewDataSource: NSObject, UITableViewDataSource {
             cell.numberLabel.text = "#\(number)"
         }
         viewModel.number.fire()
+    }
+    
+    private func setUpReportingDateBinding(cell: IssueTableViewCell, viewModel: IssueViewModel) {
+        viewModel.reportingDate.bind { reportingDate in
+            guard let reportingDate = DateFormatter().dateConverter.date(from: reportingDate) else { return }
+            cell.reportingDateLabel.text = Calendar.current.leftTime(date: reportingDate)
+        }
+        viewModel.reportingDate.fire()
     }
     
     private func setUpIssueDescriptionBinding(cell: IssueTableViewCell, viewModel: IssueViewModel) {

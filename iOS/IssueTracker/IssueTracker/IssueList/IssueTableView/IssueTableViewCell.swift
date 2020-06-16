@@ -15,6 +15,7 @@ class IssueTableViewCell: UITableViewCell {
     @IBOutlet weak var statusImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
+    @IBOutlet weak var reportingDateLabel: UILabel!
     @IBOutlet weak var contentsLabel: UILabel!
     @IBOutlet weak var mileStoneLabel: BorderLabel!
     static let identifier: String = "IssueCell"

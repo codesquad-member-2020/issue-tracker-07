@@ -30,12 +30,14 @@ struct IssueListUseCase {
                                              title: "VibrationTextField 구현",
                                              contents: "좌우로 1초간 흔들리는 애니메이션 구현",
                                              isOpen: true,
+                                             reportingDate: "2020-06-18",
                                              mileStone: nil,
                                              labelList: [iOSLabel, featureLabel]),
                                        Issue(id: 1,
                                              title: "2020.06.20",
                                              contents: "오늘 할 일\n카트하기\n잠 푹자기",
                                              isOpen: false,
+                                             reportingDate: "2020-06-18",
                                              mileStone: mileStone,
                                              labelList: [iOSLabel, scrumLabel])])
         }

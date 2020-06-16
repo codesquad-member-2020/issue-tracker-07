@@ -10,6 +10,17 @@ import Foundation
 
 struct IssueListUseCase {
     
+    func loadIssueList(networkManager: NetworkManageable, successHandler: @escaping ([Issue]) -> (), failHandler: @escaping (Error) -> ()) {
+        let requestComponents = RequestComponents(url: EndPoint(path: .issueList).url, method: .get, body: EmptyBody())
+        let responseComponents = ResponseComponents(statusCodeRange: 200...299, decodableType: IssueListResponse.self)
+        networkManager.request(requestComponents: requestComponents,
+                               responseComponents: responseComponents,
+                               successHandler: {
+                                print($0)},
+                               failHandler: {
+                                print($0.localizedDescription)})
+    }
+    
     func mockLoadIssueListSueccess(successHandler: @escaping ([Issue]) -> ()) {
         let iOSLabel = Label(id: 0, title: "iOS", backgroundColor: "#5a8da2")
         let featureLabel = Label(id: 1, title: "feature", backgroundColor: "#F800A9")
@@ -32,3 +43,4 @@ struct IssueListUseCase {
         successHandler(issues)
     }
 }
+

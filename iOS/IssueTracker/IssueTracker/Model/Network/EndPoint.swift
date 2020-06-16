@@ -14,6 +14,7 @@ struct EndPoint {
         case githubLogin
         case signUp
         case localLogin
+        case issueList
         
         var description: String {
             switch self {
@@ -23,6 +24,8 @@ struct EndPoint {
                 return "/api/signup"
             case .localLogin:
                 return "/api/login"
+            case .issueList:
+                return "/api/issues"
             }
         }
     }

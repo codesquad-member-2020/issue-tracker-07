@@ -6,6 +6,10 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
 
 @Entity
 @Getter
@@ -31,9 +35,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     @Builder.Default
     private List<Issue> issues = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user")
-    private List<Comment> commentList;
 
     public void addIssue(Issue issue) {
         issue.setUser(this);

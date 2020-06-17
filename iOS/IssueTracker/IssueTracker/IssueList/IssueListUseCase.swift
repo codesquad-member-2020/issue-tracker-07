@@ -31,6 +31,16 @@ struct IssueListUseCase {
                                failHandler: failHandler)
     }
     
+    func requestDeleteIssue(networkManager: NetworkManageable, issueId: Int, successHandler: @escaping (Bool) -> (), failHandler: @escaping (Error) -> ()) {
+        let requestComponents = RequestComponents(url: EndPoint(path: .deleteIssue(issueId)).url, method: .delete, body: EmptyBody())
+        let responseComponents = ResponseComponents(statusCodeRange: 200...299, decodableType: IssueStatusResponse.self)
+        networkManager.request(requestComponents: requestComponents,
+                               responseComponents: responseComponents,
+                               successHandler: { response in
+                                successHandler(response.status)},
+                               failHandler: failHandler)
+    }
+    
     func mockRequestDeleteSuccess(successHandler: @escaping(Bool) -> ()) {
         successHandler(true)
     }

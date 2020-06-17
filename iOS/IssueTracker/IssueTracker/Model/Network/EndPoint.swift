@@ -15,6 +15,7 @@ struct EndPoint {
         case signUp
         case localLogin
         case issueList
+        case deleteIssue(Int)
         
         var description: String {
             switch self {
@@ -26,6 +27,8 @@ struct EndPoint {
                 return "/api/login"
             case .issueList:
                 return "/api/issues"
+            case .deleteIssue(let id):
+                return "/api/issues/\(id)"
             }
         }
     }

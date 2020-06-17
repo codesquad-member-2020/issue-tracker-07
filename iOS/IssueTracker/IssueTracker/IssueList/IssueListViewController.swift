@@ -197,12 +197,18 @@ extension IssueListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: { [unowned self] (_, _, complete) in
-            IssueListUseCase().mockRequestDeleteSuccess(successHandler: { _ in
-                self.dataSource.remove(at: [indexPath], handler: {
-                    self.issueListTableView.deleteRows(at: $0, with: .automatic)
-                })
+            guard let id = self.dataSource.viewModels?[indexPath.row].number.value else { return }
+            IssueListUseCase().requestDeleteIssue(networkManager: NetworkManager(),
+                                                  issueId: id,
+                                                  successHandler: { _ in
+                                                    self.dataSource.remove(at: [indexPath], handler: {
+                                                        self.issueListTableView.deleteRows(at: $0, with: .automatic)
+                                                    })
+                                                    complete(true)},
+                                                  failHandler: { [unowned self] error in
+                                                    let alert = UIAlertController.alert(title: "에러 발생", message: error.localizedDescription, actions: ["닫기": .none])
+                                                    self.present(alert, animated: true)
             })
-            complete(true)
         })
         
         return UISwipeActionsConfiguration(actions: [deleteAction])

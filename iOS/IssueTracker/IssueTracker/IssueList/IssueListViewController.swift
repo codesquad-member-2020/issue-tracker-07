@@ -130,14 +130,20 @@ class IssueListViewController: UIViewController, Editable {
     }
     
     @objc func closeIssues() {
-        IssueListUseCase().mockRequestCloseSuccess(successHandler: { [unowned self] _ in
-            guard let selectedIndexPath = self.issueListTableView.indexPathsForSelectedRows else { return }
-            guard let editModeViewModels = self.dataSource.editModeViewModels else { return }
-            let ids = selectedIndexPath.map { editModeViewModels[$0.row].number.value }
-            editModeViewModels
-                .filter { ids.contains($0.number.value) }
-                .forEach { $0.isOpen.value = false }
-            self.rightNavigationButtonTapped()
+        guard let selectedIndexPath = self.issueListTableView.indexPathsForSelectedRows else { return }
+        guard let editModeViewModels = self.dataSource.editModeViewModels else { return }
+        let ids = selectedIndexPath.map { editModeViewModels[$0.row].number.value }
+        IssueListUseCase().requestChangeIssuesState(networkManager: NetworkManager(),
+                                                    issueIds: ids,
+                                                    state: .close,
+                                                    successHandler: { [unowned self] _ in
+                                                        editModeViewModels
+                                                            .filter { ids.contains($0.number.value) }
+                                                            .forEach { $0.isOpen.value = false }
+                                                        self.rightNavigationButtonTapped()},
+                                                    failHandler: { [unowned self] error in
+                                                        let alert = UIAlertController.alert(title: "에러 발생", message: error.localizedDescription, actions: ["닫기": .none])
+                                                        self.present(alert, animated: true)
         })
     }
 }

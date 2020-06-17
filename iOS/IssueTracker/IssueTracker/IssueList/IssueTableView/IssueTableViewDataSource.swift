@@ -9,18 +9,21 @@
 import UIKit
 
 class IssueTableViewDataSource: NSObject, UITableViewDataSource {
-
+    
     var viewModels: [IssueViewModel]?
+    var editModeViewModels: [IssueViewModel]? {
+        return viewModels?.filter {$0.isOpen.value}
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModels?.count ?? 0
+        return tableView.isEditing ? (editModeViewModels?.count ?? 0) : (viewModels?.count ?? 0)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: IssueTableViewCell.identifier) as? IssueTableViewCell else {
             return UITableViewCell()
         }
-        guard let viewModel = viewModels?[indexPath.row] else { return cell }
+        guard let viewModel = tableView.isEditing ? editModeViewModels?[indexPath.row] : viewModels?[indexPath.row] else { return cell }
         setUpViewModel(cell: cell, viewModel: viewModel)
         cell.layoutIfNeeded()
         cell.collectionViewHeight.constant = cell.labelCollectionView.collectionViewLayout.collectionViewContentSize.height
@@ -51,9 +54,7 @@ class IssueTableViewDataSource: NSObject, UITableViewDataSource {
     
     private func setUpIsOpenBinding(cell: IssueTableViewCell, viewModel: IssueViewModel) {
         viewModel.isOpen.bind { isOpen in
-            UIView.animate(withDuration: 0.75, animations: {
-                cell.statusImageView.tintColor = isOpen ? .systemGreen : .systemOrange
-            })
+            cell.statusImageView.tintColor = isOpen ? .systemGreen : .systemOrange
         }
         viewModel.isOpen.fire()
     }

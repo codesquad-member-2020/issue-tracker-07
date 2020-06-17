@@ -124,13 +124,14 @@ class IssueListViewController: UIViewController {
         updateNavigationBar()
         updateTabbar()
         issueListTableView.setEditing(issueListTableView.isEditing, animated: true)
+        issueListTableView.reloadData()
     }
 }
 
 extension IssueListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard let isOpen = self.dataSource.viewModels?[indexPath.row].isOpen.value else {return nil}
+        guard let isOpen = self.dataSource.viewModels?[indexPath.row].isOpen.value else { return nil }
         let action = isOpen ? closeAction(at: indexPath) : openAction(at: indexPath)
         
         return UISwipeActionsConfiguration(actions: [action])

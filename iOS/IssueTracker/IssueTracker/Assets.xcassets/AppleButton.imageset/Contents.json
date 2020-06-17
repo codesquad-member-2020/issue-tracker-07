@@ -49,7 +49,7 @@
       "scale" : "2x"
     },
     {
-      "filename" : "apple_light-1.png",
+      "filename" : "Left White Logo Large@3x-1.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -60,7 +60,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "apple_light.png",
+      "filename" : "Left White Logo Large@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -71,7 +71,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "apple_dark.png",
+      "filename" : "Left Black Logo Large@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

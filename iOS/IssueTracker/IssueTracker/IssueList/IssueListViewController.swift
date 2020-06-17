@@ -16,7 +16,6 @@ class IssueListViewController: UIViewController {
     
     private var searchController: UISearchController = UISearchController()
     private var dataSource: IssueTableViewDataSource!
-    private var isEditingMode: Bool = false
     private var isSelectedAll: Bool = false {
         didSet {
             leftNavigationButton.title = isSelectedAll ? "Deselect All" : "Select All"
@@ -77,14 +76,14 @@ class IssueListViewController: UIViewController {
     }
     
     private func updateNavigationBar() {
-        rightNavigationButton.title = isEditingMode ? "Cancel" : "Edit"
-        leftNavigationButton.title = isEditingMode ? "Select All" : "Filter"
-        navigationItem.title = isEditingMode ? "0개 선택" : "이슈"
-        navigationItem.searchController?.searchBar.isHidden = isEditingMode
+        rightNavigationButton.title = issueListTableView.isEditing ? "Cancel" : "Edit"
+        leftNavigationButton.title = issueListTableView.isEditing ? "Select All" : "Filter"
+        navigationItem.title = issueListTableView.isEditing ? "0개 선택" : "이슈"
+        navigationItem.searchController?.searchBar.isHidden = issueListTableView.isEditing
     }
     
     private func updateTabbar() {
-        if isEditingMode {
+        if issueListTableView.isEditing {
             tabbarItems = tabBarController?.tabBar.subviews
             tabBarController?.tabBar.subviews.forEach {
                 $0.removeFromSuperview()
@@ -112,7 +111,7 @@ class IssueListViewController: UIViewController {
     }
     
     @IBAction func leftNavigationButtonTapped(_ sender: UIBarButtonItem) {
-        if isEditingMode {
+        if issueListTableView.isEditing {
             isSelectedAll.toggle()
             isSelectedAll ? selectAllCells() : deselectAllCells()
             navigationItem.title = "\(issueListTableView.indexPathsForSelectedRows?.count ?? 0)개 선택"
@@ -120,11 +119,11 @@ class IssueListViewController: UIViewController {
     }
     
     @IBAction func rightNavigationButtonTapped(_ sender: UIBarButtonItem) {
-        isEditingMode.toggle()
+        issueListTableView.isEditing.toggle()
         isSelectedAll = false
         updateNavigationBar()
         updateTabbar()
-        issueListTableView.setEditing(isEditingMode, animated: true)
+        issueListTableView.setEditing(issueListTableView.isEditing, animated: true)
     }
 }
 
@@ -175,14 +174,14 @@ extension IssueListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard isEditingMode else { return }
+        guard issueListTableView.isEditing else { return }
         let selectRows = tableView.indexPathsForSelectedRows?.count ?? 0
         isSelectedAll = (tableView.numberOfRows(inSection: 0) == selectRows)
         navigationItem.title = "\(selectRows)개 선택"
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        guard isEditingMode else { return }
+        guard issueListTableView.isEditing else { return }
         let selectRows = tableView.indexPathsForSelectedRows?.count ?? 0
         isSelectedAll = (tableView.numberOfRows(inSection: 0) == selectRows)
         navigationItem.title = "\(selectRows)개 선택"

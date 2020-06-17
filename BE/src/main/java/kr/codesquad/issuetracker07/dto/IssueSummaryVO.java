@@ -23,7 +23,7 @@ public class IssueSummaryVO {
 
     private String createdAt;
 
-    private MilestoneSummaryVO milestone;
+    private List<MilestoneSummaryVO> milestone;
 
     private List<LabelSummaryVO> label;
 
@@ -47,7 +47,7 @@ public class IssueSummaryVO {
         return createdAt;
     }
 
-    public MilestoneSummaryVO getMilestone() {
+    public List<MilestoneSummaryVO> getMilestone() {
         return milestone;
     }
 

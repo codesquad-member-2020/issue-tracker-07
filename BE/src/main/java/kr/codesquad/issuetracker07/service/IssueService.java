@@ -13,6 +13,8 @@ import kr.codesquad.issuetracker07.response.IssueListResponse;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -52,8 +54,8 @@ public class IssueService {
                                  .title(title)
                                  .description(description)
                                  .isOpen(true)
-                                 .createdAt(LocalDate.now())
-                                 .modifiedAt(LocalDate.now())
+                                 .createdAt(LocalDateTime.now())
+                                 .modifiedAt(LocalDateTime.now())
                                  .milestone(milestone)
                                  .commentList(new ArrayList<>())
                                  .assigneeList(new ArrayList<>())
@@ -68,28 +70,8 @@ public class IssueService {
     }
 
     public IssueListResponse makeIssueListSummary(List<Issue> issueList) {
-        List<IssueSummaryVO> issueSummaryVO =
-                issueList.stream()
-                         .map(issue -> new IssueSummaryVO().builder()
-                                                  .id(issue.getId())
-                                                  .title(issue.getTitle())
-                                                  .description(issue.getDescription())
-                                                  .isOpen(issue.isOpen())
-                                                  .createdAt(issue.getCreatedAt())
-                                                  .milestone(new MilestoneSummaryVO().builder()
-                                                                                     .id(issue.getMilestone().getId())
-                                                                                     .title(issue.getMilestone().getTitle())
-                                                                                     .build())
-                                                  .label(issue.getAttachmentList().stream()
-                                                            .filter(Attachment::isAttached)
-                                                            .map(attachment -> new LabelSummaryVO().builder()
-                                                                                                   .id(attachment.getLabel().getId())
-                                                                                                   .title(attachment.getLabel().getTitle())
-                                                                                                   .backgroundColor(attachment.getLabel().getBackgroundColor())
-                                                                                                   .build())
-                                                            .collect(Collectors.toList()))
-                                                  .build())
-                         .collect(Collectors.toList());
+        List<IssueSummaryVO> issueSummaryVO = issueList.stream().map(this::makeIssueSummaryVO)
+                                                                .collect(Collectors.toList());
         return new IssueListResponse().builder()
                                       .status(true)
                                       .issue(issueSummaryVO)
@@ -123,5 +105,56 @@ public class IssueService {
                                                     .orElseThrow(NoSuchElementException::new);
         attachment.setAttached(true);
         attachmentRepository.save(attachment);
+    }
+
+    public void closeOrOpenSelectedIssues(List<Long> issueIdList, String state) {
+        issueIdList.forEach(issueId -> {
+            Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
+            setIssueOpen(state, issue);
+            issue.setModifiedAt(LocalDateTime.now());
+            issueRepository.save(issue);
+        });
+    }
+
+    public void deleteIssue(Long issueId) {
+        Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
+        issueRepository.delete(issue);
+    }
+
+    private IssueSummaryVO makeIssueSummaryVO(Issue issue) {
+        return new IssueSummaryVO().builder()
+                                   .id(issue.getId())
+                                   .title(issue.getTitle())
+                                   .description(issue.getDescription())
+                                   .isOpen(issue.isOpen())
+                                   .createdAt(issue.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                                   .milestone(makeMilestoneSummaryVO(issue))
+                                   .label(issue.getAttachmentList().stream()
+                                                                   .filter(Attachment::isAttached)
+                                                                   .map(this::makeLabelSummaryVO)
+                                                                   .collect(Collectors.toList()))
+                                   .build();
+    }
+
+    private MilestoneSummaryVO makeMilestoneSummaryVO(Issue issue) {
+        return new MilestoneSummaryVO().builder()
+                                       .id(issue.getMilestone().getId())
+                                       .title(issue.getMilestone().getTitle())
+                                       .build();
+    }
+
+    private LabelSummaryVO makeLabelSummaryVO(Attachment attachment) {
+        return new LabelSummaryVO().builder()
+                                   .id(attachment.getLabel().getId())
+                                   .title(attachment.getLabel().getTitle())
+                                   .backgroundColor(attachment.getLabel().getBackgroundColor())
+                                   .build();
+    }
+
+    private void setIssueOpen(String state, Issue issue) {
+        issue.setOpen(true);
+        if (state.equals("close")) {
+            issue.setOpen(false);
+        }
     }
 }

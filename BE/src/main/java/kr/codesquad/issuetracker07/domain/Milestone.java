@@ -26,8 +26,20 @@ public class Milestone {
 
     private String description;
 
+    private boolean isAttached;
+
     @OneToMany(mappedBy = "milestone")
     @JsonIgnore
     @Builder.Default
     private List<Issue> issue = new ArrayList<>();
+
+    public void addIssue(Issue issue) {
+        issue.setMilestone(this);
+        getIssue().add(issue);
+    }
+
+    public void modifyIssue(Issue issue) {
+        issue.setMilestone(this);
+        getIssue().get(this.getIssue().indexOf(issue)).setMilestone(this);
+    }
 }

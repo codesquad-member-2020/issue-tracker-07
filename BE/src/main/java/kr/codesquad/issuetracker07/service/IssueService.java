@@ -15,9 +15,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,13 +40,6 @@ public class IssueService {
     }
 
     public void makeNewIssue(User user, String title, String description) {
-        Milestone milestone = new Milestone().builder()
-                                             .title("스프린트")
-                                             .description("마일스톤 내용")
-                                             .dueDate(LocalDate.of(2020, 6, 25))
-                                             .build();
-        milestoneRepository.save(milestone);
-
         Issue issue = new Issue().builder()
                                  .user(user)
                                  .title(title)
@@ -56,7 +47,7 @@ public class IssueService {
                                  .isOpen(true)
                                  .createdAt(LocalDateTime.now())
                                  .modifiedAt(LocalDateTime.now())
-                                 .milestone(milestone)
+                                 .milestone(null)
                                  .commentList(new ArrayList<>())
                                  .assigneeList(new ArrayList<>())
                                  .attachmentList(new ArrayList<>())
@@ -128,7 +119,7 @@ public class IssueService {
                                    .description(issue.getDescription())
                                    .isOpen(issue.isOpen())
                                    .createdAt(issue.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                                   .milestone(makeMilestoneSummaryVO(issue))
+                                   .milestone(makeMilestoneSummaryVOList(issue))
                                    .label(issue.getAttachmentList().stream()
                                                                    .filter(Attachment::isAttached)
                                                                    .map(this::makeLabelSummaryVO)
@@ -136,11 +127,17 @@ public class IssueService {
                                    .build();
     }
 
-    private MilestoneSummaryVO makeMilestoneSummaryVO(Issue issue) {
-        return new MilestoneSummaryVO().builder()
-                                       .id(issue.getMilestone().getId())
-                                       .title(issue.getMilestone().getTitle())
-                                       .build();
+    private List<MilestoneSummaryVO> makeMilestoneSummaryVOList(Issue issue) {
+        if (issue.getMilestone() == null) {
+            return Collections.emptyList();
+        }
+        if (!issue.getMilestone().isAttached()) {
+            return Collections.emptyList();
+        }
+        return Collections.singletonList(new MilestoneSummaryVO().builder()
+                                                                 .id(issue.getMilestone().getId())
+                                                                 .title(issue.getMilestone().getTitle())
+                                                                 .build());
     }
 
     private LabelSummaryVO makeLabelSummaryVO(Attachment attachment) {

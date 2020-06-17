@@ -4,7 +4,6 @@ import kr.codesquad.issuetracker07.domain.Issue;
 import kr.codesquad.issuetracker07.domain.User;
 import kr.codesquad.issuetracker07.dto.IssueForUpdatingVO;
 import kr.codesquad.issuetracker07.dto.IssueVO;
-import kr.codesquad.issuetracker07.dto.LabelVO;
 import kr.codesquad.issuetracker07.response.IssueListResponse;
 import kr.codesquad.issuetracker07.response.IssueResponse;
 import kr.codesquad.issuetracker07.service.IssueService;
@@ -50,24 +49,8 @@ public class IssueController {
     }
 
     @DeleteMapping("issues/{issueId}")
-    public ResponseEntity<IssueResponse> deleteIssue(@PathVariable("issueId") Long issueId) {
+    public ResponseEntity<IssueResponse> deleteIssue(@PathVariable Long issueId) {
         issueService.deleteIssue(issueId);
         return new ResponseEntity<>(new IssueResponse(true), HttpStatus.OK);
-    }
-
-    @PostMapping("/issues/{issueId}/labels")
-    public ResponseEntity<HttpStatus> makeLabel(@PathVariable("issueId") Long issueId, @RequestBody LabelVO labelVO) {
-        User user = userService.findUserByName("mocha").orElseThrow(NoSuchElementException::new);
-        Issue issue = issueService.findIssueByIssueId(issueId);
-
-        issueService.makeNewLabel(user, issue, labelVO);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @PutMapping("/issues/{issueId}/labels/{labelId}")
-    public ResponseEntity<HttpStatus> attachLabelToIssue(@PathVariable("issueId") Long issueId,
-                                                         @PathVariable("labelId") Long labelId) {
-        issueService.attachLabel(issueId, labelId);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

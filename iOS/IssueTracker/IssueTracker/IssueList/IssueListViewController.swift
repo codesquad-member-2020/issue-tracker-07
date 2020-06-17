@@ -172,9 +172,16 @@ extension IssueListViewController: UITableViewDelegate {
     
     func openAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Open", handler: { (_, _, complete) in
-            IssueListUseCase().mockRequestOpenSuccess(successHandler: { result in
-                self.dataSource.viewModels?[indexPath.row].isOpen.value = result
-                complete(true)
+            guard let selectedIssueNumber = self.dataSource.viewModels?[indexPath.row].number.value else { return }
+            IssueListUseCase().requestChangeIssuesState(networkManager: NetworkManager(),
+                                                        issueIds: [selectedIssueNumber],
+                                                        state: .open,
+                                                        successHandler: { [unowned self] _ in
+                                                            self.dataSource.viewModels?[indexPath.row].isOpen.value = true
+                                                            complete(true)},
+                                                        failHandler: { [unowned self] error in
+                                                            let alert = UIAlertController.alert(title: "에러 발생", message: error.localizedDescription, actions: ["닫기": .none])
+                                                            self.present(alert, animated: true)
             })
         })
         action.backgroundColor = .systemGreen

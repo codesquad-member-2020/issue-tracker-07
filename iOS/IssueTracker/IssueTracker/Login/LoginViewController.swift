@@ -125,6 +125,16 @@ final class LoginViewController: UIViewController {
         })
     }
     
+    @IBAction func appleLoginButtonTapped(_ sender: UIButton) {
+        let appleIdRequest = ASAuthorizationAppleIDProvider().createRequest()
+        appleIdRequest.requestedScopes = [.email, .fullName]
+        
+        let controller = ASAuthorizationController(authorizationRequests: [appleIdRequest])
+        controller.delegate = self
+        controller.presentationContextProvider = self
+        controller.performRequests()
+    }
+    
     @IBAction func signUpButtonTapped(_ sender: UIButton) {
         guard let signupViewController = storyboard?.instantiateViewController(identifier: SignUpViewController.identifier) as? SignUpViewController else { return }
         signupViewController.successHandler = { [unowned self] in
@@ -176,5 +186,35 @@ extension LoginViewController: UITextFieldDelegate {
 extension LoginViewController: ASWebAuthenticationPresentationContextProviding {
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         return ASPresentationAnchor()
+    }
+}
+
+extension LoginViewController: ASAuthorizationControllerPresentationContextProviding,  ASAuthorizationControllerDelegate {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window ?? ASPresentationAnchor()
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
+        let userEmail = credential.email ?? ""
+        
+        SignInUseCase().signInWithApple(networkManager: NetworkManager(),
+                                        email: userEmail,
+                                        successHandler: { response in
+                                            NetworkManager.token = response.jwtToken
+                                            self.presentIssueListViewController() },
+                                        failHandler: { [unowned self] error in
+                                            let alert = UIAlertController.alert(title: "에러 발생",
+                                                                                message: error.localizedDescription,
+                                                                                actions: ["닫기": .none])
+                                            self.present(alert, animated: true)
+        })
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        let alert = UIAlertController.alert(title: "에러 발생",
+                                            message: error.localizedDescription,
+                                            actions: ["닫기": .none])
+        present(alert, animated: true)
     }
 }

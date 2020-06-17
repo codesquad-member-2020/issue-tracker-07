@@ -10,7 +10,7 @@ import Foundation
 
 extension DateFormatter {
     var dateConverter: DateFormatter {
-        dateFormat = "yyyy-MM-dd"
+        dateFormat = "yyyy-MM-dd hh:mm:ss"
         calendar = .current
         return self
     }

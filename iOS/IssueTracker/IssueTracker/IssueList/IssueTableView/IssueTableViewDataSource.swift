@@ -8,22 +8,31 @@
 
 import UIKit
 
+protocol Editable {
+    var isEditingMode: Bool { get set }
+}
+
 class IssueTableViewDataSource: NSObject, UITableViewDataSource {
     
     var viewModels: [IssueViewModel]?
     var editModeViewModels: [IssueViewModel]? {
         return viewModels?.filter {$0.isOpen.value}
     }
+    var editable: Editable
+    
+    init(editable: Editable) {
+        self.editable = editable
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableView.isEditing ? (editModeViewModels?.count ?? 0) : (viewModels?.count ?? 0)
+        return editable.isEditingMode ? (editModeViewModels?.count ?? 0) : (viewModels?.count ?? 0)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: IssueTableViewCell.identifier) as? IssueTableViewCell else {
             return UITableViewCell()
         }
-        guard let viewModel = tableView.isEditing ? editModeViewModels?[indexPath.row] : viewModels?[indexPath.row] else { return cell }
+        guard let viewModel = editable.isEditingMode ? editModeViewModels?[indexPath.row] : viewModels?[indexPath.row] else { return cell }
         setUpViewModel(cell: cell, viewModel: viewModel)
         cell.layoutIfNeeded()
         cell.collectionViewHeight.constant = cell.labelCollectionView.collectionViewLayout.collectionViewContentSize.height

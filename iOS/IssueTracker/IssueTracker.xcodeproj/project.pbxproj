@@ -14,7 +14,7 @@
 		443DE7F224939B9C00308A7B /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DE7F124939B9C00308A7B /* SignUpUseCase.swift */; };
 		443DE7F42493A70800308A7B /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DE7F32493A70800308A7B /* SignInUseCase.swift */; };
 		445BD2472498A3B300DBC485 /* IssueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445BD2462498A3B300DBC485 /* IssueViewModel.swift */; };
-		445BD2492498E93100DBC485 /* IssueResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445BD2482498E93100DBC485 /* IssueResponse.swift */; };
+		445BD2492498E93100DBC485 /* IssueNetworkingComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445BD2482498E93100DBC485 /* IssueNetworkingComponents.swift */; };
 		445BD24B2498F3F000DBC485 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445BD24A2498F3F000DBC485 /* DateFormatterExtension.swift */; };
 		445BD24D2498F40400DBC485 /* CalendarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445BD24C2498F40400DBC485 /* CalendarExtension.swift */; };
 		4484801524920527007AEFEC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4484801424920527007AEFEC /* SignUpViewController.swift */; };
@@ -69,7 +69,7 @@
 		443DE7F124939B9C00308A7B /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
 		443DE7F32493A70800308A7B /* SignInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCase.swift; sourceTree = "<group>"; };
 		445BD2462498A3B300DBC485 /* IssueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueViewModel.swift; sourceTree = "<group>"; };
-		445BD2482498E93100DBC485 /* IssueResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueResponse.swift; sourceTree = "<group>"; };
+		445BD2482498E93100DBC485 /* IssueNetworkingComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueNetworkingComponents.swift; sourceTree = "<group>"; };
 		445BD24A2498F3F000DBC485 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
 		445BD24C2498F40400DBC485 /* CalendarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtension.swift; sourceTree = "<group>"; };
 		4484801424920527007AEFEC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 				A516C5E12495298F008D3DF2 /* IssueTableView */,
 				A57F636A249264670083051A /* IssueListViewController.swift */,
 				A513C51224979CBC00818C04 /* IssueListUseCase.swift */,
-				445BD2482498E93100DBC485 /* IssueResponse.swift */,
+				445BD2482498E93100DBC485 /* IssueNetworkingComponents.swift */,
 			);
 			path = IssueList;
 			sourceTree = "<group>";
@@ -392,7 +392,7 @@
 				A516C5D824952285008D3DF2 /* IssueTableViewCell.swift in Sources */,
 				A5BC41DC2491F48600F094CF /* UIViewControllerExtension.swift in Sources */,
 				A5BC41D724911A7100F094CF /* OAuthManager.swift in Sources */,
-				445BD2492498E93100DBC485 /* IssueResponse.swift in Sources */,
+				445BD2492498E93100DBC485 /* IssueNetworkingComponents.swift in Sources */,
 				A513C5152497B54400818C04 /* UIColorExtension.swift in Sources */,
 				443DE7EE24939AF900308A7B /* ResponseComponents.swift in Sources */,
 				443DE7F024939B1200308A7B /* RequestComponents.swift in Sources */,

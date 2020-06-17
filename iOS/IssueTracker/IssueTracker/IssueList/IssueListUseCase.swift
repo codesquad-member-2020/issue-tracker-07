@@ -20,6 +20,18 @@ struct IssueListUseCase {
                                failHandler: failHandler)
     }
     
+    func requestChangeIssuesState(networkManager: NetworkManageable, issueIds: [Int], state: IssueState, successHandler: @escaping (Bool) -> (), failHandler: @escaping (Error) -> ()) {
+        let issueStateRequest = IssueStateRequest(issueIdList: issueIds, state: state.description)
+        let requestComponents = RequestComponents(url: EndPoint(path: .issueList).url, method: .patch, body: issueStateRequest)
+        print(requestComponents)
+        let responseComponents = ResponseComponents(statusCodeRange: 200...299, decodableType: IssueStatusResponse.self)
+        networkManager.request(requestComponents: requestComponents,
+                               responseComponents: responseComponents,
+                               successHandler: { response in
+                                successHandler(response.status)},
+                               failHandler: failHandler)
+    }
+    
     func mockRequestDeleteSuccess(successHandler: @escaping(Bool) -> ()) {
         successHandler(true)
     }

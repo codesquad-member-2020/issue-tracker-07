@@ -38,6 +38,7 @@
 		A51A1D66248F26C3005262DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A51A1D64248F26C3005262DF /* LaunchScreen.storyboard */; };
 		A51A1D6F248F3004005262DF /* BorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51A1D6E248F3004005262DF /* BorderView.swift */; };
 		A51A1D71248F383D005262DF /* BorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51A1D70248F383D005262DF /* BorderButton.swift */; };
+		A51ACB10249A55CB004C0447 /* AppleLoginCertification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51ACB0F249A55CB004C0447 /* AppleLoginCertification.swift */; };
 		A54A873B248F7F3000A81604 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A873A248F7F3000A81604 /* SignInViewModel.swift */; };
 		A54A873E248FB98F00A81604 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A873D248FB98F00A81604 /* Dynamic.swift */; };
 		A57F63552492154A0083051A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F63542492154A0083051A /* SignUpViewModel.swift */; };
@@ -95,6 +96,7 @@
 		A51A1D6E248F3004005262DF /* BorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderView.swift; sourceTree = "<group>"; };
 		A51A1D70248F383D005262DF /* BorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderButton.swift; sourceTree = "<group>"; };
 		A51ACB0E249A4CDA004C0447 /* IssueTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IssueTracker.entitlements; sourceTree = "<group>"; };
+		A51ACB0F249A55CB004C0447 /* AppleLoginCertification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginCertification.swift; sourceTree = "<group>"; };
 		A54A873A248F7F3000A81604 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		A54A873D248FB98F00A81604 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		A57F63542492154A0083051A /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				A57F6367249262580083051A /* SignInResponse.swift */,
 				443DE7EC24939AC300308A7B /* Network */,
 				A513C51024979B8A00818C04 /* Issue.swift */,
+				A51ACB0F249A55CB004C0447 /* AppleLoginCertification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				44E5CEA8248F56E9001A46AE /* InputStackView.swift in Sources */,
 				A516C5DE2495277D008D3DF2 /* IssueTableViewDataSource.swift in Sources */,
 				A516C5DA249524EC008D3DF2 /* LabelCollectionViewCell.swift in Sources */,
+				A51ACB10249A55CB004C0447 /* AppleLoginCertification.swift in Sources */,
 				A54A873B248F7F3000A81604 /* SignInViewModel.swift in Sources */,
 				443DE7E924935E4E00308A7B /* SignUpInfo.swift in Sources */,
 				445BD24D2498F40400DBC485 /* CalendarExtension.swift in Sources */,

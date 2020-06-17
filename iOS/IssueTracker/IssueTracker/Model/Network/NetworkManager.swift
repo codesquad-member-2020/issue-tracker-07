@@ -23,7 +23,14 @@ final class NetworkManager: NetworkManageable {
     func request<D, E>(requestComponents: RequestComponents<E>, responseComponents: ResponseComponents<D>, successHandler: @escaping (D) -> (), failHandler: @escaping (AFError) -> ())
         where D: Decodable, E: Codable {
             guard let url = requestComponents.url else { return }
-            AF.request(url, method: requestComponents.method, parameters: requestComponents.body, encoder: JSONParameterEncoder.default)
+            var dataRequest: DataRequest
+            if (requestComponents.body as? EmptyBody) != nil {
+                dataRequest = AF.request(url, method: requestComponents.method)
+            } else {
+                dataRequest = AF.request(url, method: requestComponents.method, parameters: requestComponents.body, encoder: JSONParameterEncoder.default)
+            }
+            
+            dataRequest
                 .validate(statusCode: responseComponents.statusCodeRange)
                 .responseDecodable(of: responseComponents.decodableType, decoder: JSONDecoder()) { response in
                     switch response.result {

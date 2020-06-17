@@ -27,6 +27,9 @@ final class BorderButton: UIButton {
         set { layer.cornerRadius = newValue }
     }
     
+    // MARK: - Properties
+    private var isClicked: Bool = false
+    
     // MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,7 +46,7 @@ final class BorderButton: UIButton {
         self.addTarget(self, action: #selector(animate(_:)), for: .touchUpInside)
         self.addTarget(self, action: #selector(animate(_:)), for: .touchDown)
         self.addTarget(self, action: #selector(animate(_:)), for: .touchUpOutside)
-        tintColor = backgroundColor
+//        tintColor = backgroundColor
     }
     
     private func scaleUp(_ sender: UIButton) {
@@ -60,7 +63,7 @@ final class BorderButton: UIButton {
     
     // MARK: - Objc
     @objc private func animate(_ sender: UIButton) {
-        isSelected.toggle()
-        isSelected ? scaleDown(sender) : scaleUp(sender)
+        isClicked.toggle()
+        isClicked ? scaleDown(sender) : scaleUp(sender)
     }
 }

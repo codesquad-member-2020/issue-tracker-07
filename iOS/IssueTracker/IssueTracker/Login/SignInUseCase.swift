@@ -19,4 +19,14 @@ struct SignInUseCase {
                                successHandler: successHandler,
                                failHandler: failHandler)
     }
+    
+    func signInWithApple(networkManager: NetworkManageable, email: String, successHandler: @escaping (SignInResponse) -> (), failHandler: @escaping (Error) -> ()) {
+        let body = AppleLoginCertification(email: email)
+        let requestComponents = RequestComponents(url: EndPoint(path: .appleLogin).url, method: .post, body: body)
+        let responseComponets = ResponseComponents(statusCodeRange: 200...299, decodableType: SignInResponse.self)
+        networkManager.request(requestComponents: requestComponents,
+                               responseComponents: responseComponets,
+                               successHandler: successHandler,
+                               failHandler: failHandler)
+    }
 }

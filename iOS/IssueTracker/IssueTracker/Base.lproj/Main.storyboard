@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aFR-Pi-fOj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -31,7 +31,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="IWc-ZM-9AX">
-                                <rect key="frame" x="48" y="282" width="318" height="266"/>
+                                <rect key="frame" x="48" y="282" width="318" height="258"/>
                                 <subviews>
                                     <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Gy-Vs-cx1" customClass="BorderView" customModule="IssueTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="-48" width="318" height="48"/>
@@ -81,14 +81,14 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pzW-T4-VFv" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pzW-T4-VFv" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="318" height="62.5"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="Username"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gzO-z9-5q5" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gzO-z9-5q5" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="77.5" width="318" height="62.5"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="YES"/>
@@ -96,13 +96,13 @@
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QuY-l3-zOj">
-                                        <rect key="frame" x="0.0" y="155" width="318" height="48"/>
+                                        <rect key="frame" x="0.0" y="155" width="318" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="slb-08-Cka" customClass="BorderButton" customModule="IssueTracker" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="202" height="48"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="210" height="44"/>
                                                 <color key="backgroundColor" red="0.36470588235294116" green="0.72156862745098038" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="YQr-XQ-aZT"/>
+                                                    <constraint firstAttribute="height" constant="44" id="YQr-XQ-aZT"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" title="Sign in">
@@ -124,7 +124,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKW-4g-ygW" customClass="BorderButton" customModule="IssueTracker" customModuleProvider="target">
-                                                <rect key="frame" x="212" y="0.0" width="48" height="48"/>
+                                                <rect key="frame" x="220" y="0.0" width="44" height="44"/>
                                                 <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="MKW-4g-ygW" secondAttribute="height" id="aFr-2x-5QO"/>
@@ -148,8 +148,8 @@
                                                     <action selector="githubLoginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LkG-Up-FV1"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ho-aN-WPV" customClass="BorderButton" customModule="IssueTracker" customModuleProvider="target">
-                                                <rect key="frame" x="270" y="0.0" width="48" height="48"/>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ho-aN-WPV" customClass="BorderButton" customModule="IssueTracker" customModuleProvider="target">
+                                                <rect key="frame" x="274" y="0.0" width="44" height="44"/>
                                                 <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="1ho-aN-WPV" secondAttribute="height" id="3FE-eE-g9H"/>
@@ -173,10 +173,10 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZC7-5B-nPy" customClass="BorderButton" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="218" width="318" height="48"/>
+                                        <rect key="frame" x="0.0" y="214" width="318" height="44"/>
                                         <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="FYG-3a-tdg"/>
+                                            <constraint firstAttribute="height" constant="44" id="FYG-3a-tdg"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Sign up">
@@ -572,7 +572,7 @@
     <resources>
         <image name="1.circle" catalog="system" width="128" height="121"/>
         <image name="1.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="AppleButton" width="21.333333969116211" height="21.333333969116211"/>
+        <image name="AppleButton" width="39" height="44"/>
         <image name="exclamationmark.circle" catalog="system" width="128" height="121"/>
         <image name="githubButton" width="21.333333969116211" height="21.333333969116211"/>
         <image name="githubTitle" width="85.333335876464844" height="85.333335876464844"/>

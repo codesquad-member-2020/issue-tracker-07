@@ -73,6 +73,7 @@ class IssueListViewController: UIViewController {
         closeIssueButton.titleLabel?.textAlignment = .center
         closeIssueButton.setTitleColor(.link, for: .normal)
         closeIssueButton.frame = CGRect(x: tabBarController!.tabBar.frame.maxX - 125, y: 0, width: 125, height: 40)
+        closeIssueButton.addTarget(self, action: #selector(closeIssues), for: .touchUpInside)
     }
     
     private func updateNavigationBar() {
@@ -118,13 +119,25 @@ class IssueListViewController: UIViewController {
         }
     }
     
-    @IBAction func rightNavigationButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func rightNavigationButtonTapped() {
         issueListTableView.isEditing.toggle()
         isSelectedAll = false
         updateNavigationBar()
         updateTabbar()
         issueListTableView.setEditing(issueListTableView.isEditing, animated: true)
         issueListTableView.reloadData()
+    }
+    
+    @objc func closeIssues() {
+        IssueListUseCase().mockRequestCloseSuccess(successHandler: { [unowned self] _ in
+            guard let selectedIndexPath = self.issueListTableView.indexPathsForSelectedRows else { return }
+            guard let editModeViewModels = self.dataSource.editModeViewModels else { return }
+            let ids = selectedIndexPath.map { editModeViewModels[$0.row].number.value }
+            editModeViewModels
+                .filter { ids.contains($0.number.value) }
+                .forEach { $0.isOpen.value = false }
+            self.rightNavigationButtonTapped()
+        })
     }
 }
 

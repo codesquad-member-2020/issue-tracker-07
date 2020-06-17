@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -25,9 +26,9 @@ public class Issue {
 
     private boolean isOpen;
 
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
-    private LocalDate modifiedAt;
+    private LocalDateTime modifiedAt;
 
     @ManyToOne
     private Milestone milestone;

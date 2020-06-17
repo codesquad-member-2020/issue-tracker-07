@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @NoArgsConstructor
@@ -20,7 +21,7 @@ public class IssueSummaryVO {
 
     private boolean isOpen;
 
-    private LocalDate createdAt;
+    private String createdAt;
 
     private MilestoneSummaryVO milestone;
 
@@ -42,7 +43,7 @@ public class IssueSummaryVO {
         return isOpen;
     }
 
-    public LocalDate getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 

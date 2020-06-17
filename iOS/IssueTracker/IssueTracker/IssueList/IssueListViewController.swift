@@ -33,7 +33,10 @@ class IssueListViewController: UIViewController {
     private func loadIssues() {
         IssueListUseCase().loadIssueList(networkManager: NetworkManager(),
                                          successHandler: { [unowned self] issues in
-                                            self.dataSource.issues = issues },
+                                            self.dataSource.setUpViewModels(issues: issues,
+                                                                            handler: {
+                                                                                self.issueListTableView.reloadData()
+                                            })},
                                          failHandler: { [unowned self] error in
                                             let alert = UIAlertController.alert(title: "에러 발생",
                                                                                 message: error.localizedDescription,
@@ -50,9 +53,7 @@ class IssueListViewController: UIViewController {
     }
     
     private func setUpDataSourceBinding() {
-        dataSource = IssueTableViewDataSource(handler: { [unowned self] in
-            self.issueListTableView.reloadData()
-        })
+        dataSource = IssueTableViewDataSource()
     }
     
     private func setUpSearchBar() {
@@ -138,7 +139,7 @@ extension IssueListViewController: UITableViewDelegate {
     
     func closeAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Close", handler: { (_, _, complete) in
-            IssueListUseCase().mockRequestCloseSuccess(sucessHandler: { result in
+            IssueListUseCase().mockRequestCloseSuccess(successHandler: { result in
                 self.dataSource.viewModels?[indexPath.row].isOpen.value = !result
                 complete(true)
             })
@@ -150,7 +151,7 @@ extension IssueListViewController: UITableViewDelegate {
     
     func openAction(at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Open", handler: { (_, _, complete) in
-            IssueListUseCase().mockRequestOpenSuccess(sucessHandler: { result in
+            IssueListUseCase().mockRequestOpenSuccess(successHandler: { result in
                 self.dataSource.viewModels?[indexPath.row].isOpen.value = result
                 complete(true)
             })
@@ -161,8 +162,13 @@ extension IssueListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: { (_, _, _) in
-            
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: { [unowned self] (_, _, complete) in
+            IssueListUseCase().mockRequestDeleteSuccess(successHandler: { _ in
+                self.dataSource.remove(at: [indexPath], handler: {
+                    self.issueListTableView.deleteRows(at: $0, with: .automatic)
+                })
+            })
+            complete(true)
         })
         
         return UISwipeActionsConfiguration(actions: [deleteAction])

@@ -20,12 +20,16 @@ struct IssueListUseCase {
                                failHandler: failHandler)
     }
     
-    func mockRequestCloseSuccess(sucessHandler: @escaping(Bool) -> ()) {
-        sucessHandler(true)
+    func mockRequestDeleteSuccess(successHandler: @escaping(Bool) -> ()) {
+        successHandler(true)
     }
     
-    func mockRequestOpenSuccess(sucessHandler: @escaping(Bool) -> ()) {
-        sucessHandler(true)
+    func mockRequestCloseSuccess(successHandler: @escaping(Bool) -> ()) {
+        successHandler(true)
+    }
+    
+    func mockRequestOpenSuccess(successHandler: @escaping(Bool) -> ()) {
+        successHandler(true)
     }
     
     func mockLoadIssueListSuccess(successHandler: @escaping ([Issue]) -> ()) {

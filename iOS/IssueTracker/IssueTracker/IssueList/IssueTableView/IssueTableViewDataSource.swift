@@ -10,21 +10,10 @@ import UIKit
 
 class IssueTableViewDataSource: NSObject, UITableViewDataSource {
 
-    var issues: [Issue]? {
-        didSet {
-            handler()
-            setUpViewModels()
-        }
-    }
     var viewModels: [IssueViewModel]?
-    private var handler: () -> ()
-    
-    init(handler: @escaping () -> () = {}) {
-        self.handler = handler
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return issues?.count ?? 0
+        return viewModels?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -38,9 +27,16 @@ class IssueTableViewDataSource: NSObject, UITableViewDataSource {
         return cell
     }
     
-    private func setUpViewModels() {
-        guard let issues = issues else { return }
+    func setUpViewModels(issues: [Issue], handler: @escaping () -> ()) {
         viewModels = issues.map { IssueViewModel(issue: $0) }
+        handler()
+    }
+    
+    func remove(at indexPath: [IndexPath], handler: @escaping ([IndexPath]) -> ()) {
+        indexPath.forEach {
+            viewModels?.remove(at: $0.row)
+        }
+        handler(indexPath)
     }
     
     private func setUpViewModel(cell: IssueTableViewCell, viewModel: IssueViewModel) {

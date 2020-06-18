@@ -70,6 +70,7 @@ class IssueListViewController: UIViewController, Editable {
         issueListTableView.dataSource = dataSource
         issueListTableView.delegate = self
         issueListTableView.allowsMultipleSelectionDuringEditing = true
+        issueListTableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(issueCellTapped(_:))))
     }
     
     private func setUpCloseIssueButton() {
@@ -132,6 +133,11 @@ class IssueListViewController: UIViewController, Editable {
         updateTabbar()
         issueListTableView.setEditing(isEditingMode, animated: true)
         issueListTableView.reloadData()
+    }
+    
+    @objc func issueCellTapped(_ sender: UITapGestureRecognizer) {
+        guard let detailIssueViewController = storyboard?.instantiateViewController(withIdentifier: DetailIssueViewController.identifier) else { return }
+        navigationController?.pushViewController(detailIssueViewController, animated: true)
     }
     
     @objc func closeIssues() {
@@ -220,14 +226,10 @@ extension IssueListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if isEditingMode {
-            let selectRows = tableView.indexPathsForSelectedRows?.count ?? 0
-            isSelectedAll = (tableView.numberOfRows(inSection: 0) == selectRows)
-            navigationItem.title = "\(selectRows)개 선택"
-        } else {
-            guard let detailIssueViewController = storyboard?.instantiateViewController(withIdentifier: DetailIssueViewController.identifier) else { return }
-            navigationController?.pushViewController(detailIssueViewController, animated: true)
-        }
+        guard isEditingMode else { return }
+        let selectRows = tableView.indexPathsForSelectedRows?.count ?? 0
+        isSelectedAll = (tableView.numberOfRows(inSection: 0) == selectRows)
+        navigationItem.title = "\(selectRows)개 선택"
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

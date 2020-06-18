@@ -30,6 +30,11 @@ class IssueListViewController: UIViewController, Editable {
         loadIssues()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.title = "이슈"
+    }
+    
     private func loadIssues() {
         IssueListUseCase().loadIssueList(networkManager: NetworkManager(),
                                          successHandler: { [unowned self] issues in

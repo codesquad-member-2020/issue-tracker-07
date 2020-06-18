@@ -1,5 +1,6 @@
 package kr.codesquad.issuetracker07.response;
 
+import kr.codesquad.issuetracker07.dto.IssueVO;
 import lombok.*;
 
 @NoArgsConstructor
@@ -10,4 +11,6 @@ import lombok.*;
 public class IssueResponse {
 
     private boolean status;
+
+    private IssueVO issue;
 }

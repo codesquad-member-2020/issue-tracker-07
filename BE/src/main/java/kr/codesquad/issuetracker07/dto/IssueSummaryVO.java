@@ -1,8 +1,6 @@
 package kr.codesquad.issuetracker07.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -10,6 +8,7 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Builder
 public class IssueSummaryVO {
 
@@ -19,6 +18,7 @@ public class IssueSummaryVO {
 
     private String description;
 
+    @Getter(AccessLevel.NONE)
     private boolean isOpen;
 
     private String createdAt;
@@ -27,31 +27,7 @@ public class IssueSummaryVO {
 
     private List<LabelSummaryVO> label;
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
     public boolean getIsOpen() {
         return isOpen;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public List<MilestoneSummaryVO> getMilestone() {
-        return milestone;
-    }
-
-    public List<LabelSummaryVO> getLabel() {
-        return label;
     }
 }

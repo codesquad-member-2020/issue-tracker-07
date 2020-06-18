@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -18,9 +19,15 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate modifiedTime;
+    private String writer;
+
+    private String imageUrl;
 
     private String content;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime modifiedAt;
 
     @OneToMany(mappedBy = "comment")
     private List<Adding> addingList;

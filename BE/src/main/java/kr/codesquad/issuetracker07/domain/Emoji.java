@@ -17,6 +17,8 @@ public class Emoji {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String unicode;
+
     @OneToMany(mappedBy = "emoji")
     private List<Adding> addingList;
 

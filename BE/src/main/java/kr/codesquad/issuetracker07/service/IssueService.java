@@ -1,21 +1,23 @@
 package kr.codesquad.issuetracker07.service;
 
-import kr.codesquad.issuetracker07.domain.*;
-import kr.codesquad.issuetracker07.dto.IssueSummaryVO;
-import kr.codesquad.issuetracker07.dto.LabelSummaryVO;
-import kr.codesquad.issuetracker07.dto.LabelVO;
-import kr.codesquad.issuetracker07.dto.MilestoneSummaryVO;
+import kr.codesquad.issuetracker07.domain.Attachment;
+import kr.codesquad.issuetracker07.domain.Issue;
+import kr.codesquad.issuetracker07.domain.Label;
+import kr.codesquad.issuetracker07.domain.User;
+import kr.codesquad.issuetracker07.dto.*;
 import kr.codesquad.issuetracker07.repository.AttachmentRepository;
 import kr.codesquad.issuetracker07.repository.IssueRepository;
 import kr.codesquad.issuetracker07.repository.LabelRepository;
-import kr.codesquad.issuetracker07.repository.MilestoneRepository;
 import kr.codesquad.issuetracker07.response.IssueListResponse;
+import kr.codesquad.issuetracker07.response.IssueResponse;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,18 +25,15 @@ public class IssueService {
 
     private final IssueRepository issueRepository;
 
-    private final MilestoneRepository milestoneRepository;
 
     private final LabelRepository labelRepository;
 
     private final AttachmentRepository attachmentRepository;
 
     public IssueService(IssueRepository issueRepository,
-                        MilestoneRepository milestoneRepository,
                         LabelRepository labelRepository,
                         AttachmentRepository attachmentRepository) {
         this.issueRepository = issueRepository;
-        this.milestoneRepository = milestoneRepository;
         this.labelRepository = labelRepository;
         this.attachmentRepository = attachmentRepository;
     }
@@ -67,6 +66,50 @@ public class IssueService {
                                       .status(true)
                                       .issue(issueSummaryVO)
                                       .build();
+    }
+
+    public IssueResponse makeIssueResponse(Issue issue) {
+        IssueVO issueVO = IssueVO.builder()
+                                 .id(issue.getId())
+                                 .title(issue.getTitle())
+                                 .authorName(issue.getUser().getName())
+                                 .imageUrl(issue.getUser().getImageUrl())
+                                 .isOpen(issue.isOpen())
+                                 .createdAt(issue.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                                 .comment(issue.getCommentList().stream().map(comment -> {
+                                     return new CommentSummaryVO().builder()
+                                             .id(comment.getId())
+                                             .name(comment.getWriter())
+                                             .imageUrl(comment.getImageUrl())
+                                             .content(comment.getContent())
+                                             .createdAt(comment.getCreatedAt())
+                                             .modifiedAt(comment.getModifiedAt())
+                                             .emoji(comment.getAddingList().stream().map(adding -> {
+                                                 return new EmojiSummaryVO().builder()
+                                                                            .id(adding.getEmoji().getId())
+                                                                            .unicode(adding.getEmoji().getUnicode())
+                                                                            .build();
+                                             }).collect(Collectors.toList()))
+                                             .build();
+                                 }).collect(Collectors.toList()))
+                                 .milestone(makeMilestoneSummaryVOList(issue))
+                                 .label(issue.getAttachmentList().stream()
+                                                                 .filter(Attachment::isAttached)
+                                                                 .map(this::makeLabelSummaryVO)
+                                                                 .collect(Collectors.toList()))
+                                 .assignee(issue.getAssigneeList().stream().map(assignee -> {
+                                     return new AssigneeSummaryVO().builder()
+                                                                   .id(assignee.getId())
+                                                                   .name(assignee.getName())
+                                                                   .imageUrl(assignee.getImageUrl())
+                                                                   .build();
+                                 }).collect(Collectors.toList()))
+                                 .build();
+
+        return new IssueResponse().builder()
+                                  .status(true)
+                                  .issue(issueVO)
+                                  .build();
     }
 
     public Issue findIssueByIssueId(Long issueId) {
@@ -107,9 +150,13 @@ public class IssueService {
         });
     }
 
-    public void deleteIssue(Long issueId) {
+    public boolean deleteIssue(User user, Long issueId) {
         Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
-        issueRepository.delete(issue);
+        if (user.getName().equals(issue.getUser().getName())) {
+            issueRepository.delete(issue);
+            return true;
+        }
+        return false;
     }
 
     private IssueSummaryVO makeIssueSummaryVO(Issue issue) {

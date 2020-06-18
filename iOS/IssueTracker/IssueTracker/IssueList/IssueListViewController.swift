@@ -215,10 +215,14 @@ extension IssueListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard isEditingMode else { return }
-        let selectRows = tableView.indexPathsForSelectedRows?.count ?? 0
-        isSelectedAll = (tableView.numberOfRows(inSection: 0) == selectRows)
-        navigationItem.title = "\(selectRows)개 선택"
+        if isEditingMode {
+            let selectRows = tableView.indexPathsForSelectedRows?.count ?? 0
+            isSelectedAll = (tableView.numberOfRows(inSection: 0) == selectRows)
+            navigationItem.title = "\(selectRows)개 선택"
+        } else {
+            guard let detailIssueViewController = storyboard?.instantiateViewController(withIdentifier: DetailIssueViewController.identifier) else { return }
+            navigationController?.pushViewController(detailIssueViewController, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

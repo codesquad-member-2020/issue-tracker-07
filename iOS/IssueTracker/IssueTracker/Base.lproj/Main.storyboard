@@ -534,6 +534,21 @@
             </objects>
             <point key="canvasLocation" x="3244" y="138.91625615763547"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="1vi-kP-nRW">
+            <objects>
+                <viewController storyboardIdentifier="DetailIssue" hidesBottomBarWhenPushed="YES" id="iGc-Ba-8VJ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OtS-sQ-iwp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="OQE-lR-yzs"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OEA-3C-2Pl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3980" y="139"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="aGn-uI-cs8">
             <objects>
@@ -569,7 +584,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Izq-8f-31Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2301.5999999999999" y="138.91625615763547"/>
+            <point key="canvasLocation" x="2465" y="139"/>
         </scene>
     </scenes>
     <resources>

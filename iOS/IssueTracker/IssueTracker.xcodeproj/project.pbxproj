@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44238C75249B792F00DCE83A /* DetailIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44238C74249B792F00DCE83A /* DetailIssueViewController.swift */; };
 		443DE7E924935E4E00308A7B /* SignUpInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DE7E824935E4E00308A7B /* SignUpInfo.swift */; };
 		443DE7EB24935F6F00308A7B /* SignInInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DE7EA24935F6F00308A7B /* SignInInfo.swift */; };
 		443DE7EE24939AF900308A7B /* ResponseComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DE7ED24939AF900308A7B /* ResponseComponents.swift */; };
@@ -63,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		44238C74249B792F00DCE83A /* DetailIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIssueViewController.swift; sourceTree = "<group>"; };
 		443DE7E824935E4E00308A7B /* SignUpInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInfo.swift; sourceTree = "<group>"; };
 		443DE7EA24935F6F00308A7B /* SignInInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInInfo.swift; sourceTree = "<group>"; };
 		443DE7ED24939AF900308A7B /* ResponseComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseComponents.swift; sourceTree = "<group>"; };
@@ -131,6 +133,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44238C73249B791000DCE83A /* DetailIssue */ = {
+			isa = PBXGroup;
+			children = (
+				44238C74249B792F00DCE83A /* DetailIssueViewController.swift */,
+			);
+			path = DetailIssue;
+			sourceTree = "<group>";
+		};
 		443DE7EC24939AC300308A7B /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				A51ACB0E249A4CDA004C0447 /* IssueTracker.entitlements */,
+				44238C73249B791000DCE83A /* DetailIssue */,
 				A57F6369249264580083051A /* IssueList */,
 				A5BC41DA2491F46900F094CF /* Extension */,
 				A54A873C248FB97E00A81604 /* Model */,
@@ -393,6 +404,7 @@
 				443DE7F224939B9C00308A7B /* SignUpUseCase.swift in Sources */,
 				A516C5E02495287B008D3DF2 /* LabelLayout.swift in Sources */,
 				445BD2472498A3B300DBC485 /* IssueViewModel.swift in Sources */,
+				44238C75249B792F00DCE83A /* DetailIssueViewController.swift in Sources */,
 				A51A1D6F248F3004005262DF /* BorderView.swift in Sources */,
 				A516C5D824952285008D3DF2 /* IssueTableViewCell.swift in Sources */,
 				A5BC41DC2491F48600F094CF /* UIViewControllerExtension.swift in Sources */,

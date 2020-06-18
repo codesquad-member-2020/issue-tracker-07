@@ -6,8 +6,8 @@ import kr.codesquad.issuetracker07.dto.LoginVO;
 import kr.codesquad.issuetracker07.response.LoginResponse;
 import kr.codesquad.issuetracker07.response.SignUpResponse;
 import kr.codesquad.issuetracker07.service.AuthService;
-import kr.codesquad.issuetracker07.service.JwtService;
 import kr.codesquad.issuetracker07.service.UserService;
+import kr.codesquad.issuetracker07.service.JwtService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,14 +20,14 @@ public class LoginController {
 
     private final AuthService authService;
 
-    private final JwtService jwtService;
-
     private final UserService userService;
 
-    public LoginController(AuthService authService, JwtService jwtService, UserService userService) {
+    private final JwtService jwtService;
+
+    public LoginController(AuthService authService, UserService userService, JwtService jwtService) {
         this.authService = authService;
-        this.jwtService = jwtService;
         this.userService = userService;
+        this.jwtService = jwtService;
     }
 
     @PostMapping("/signup")

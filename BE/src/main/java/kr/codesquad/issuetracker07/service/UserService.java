@@ -5,7 +5,6 @@ import kr.codesquad.issuetracker07.domain.User;
 import kr.codesquad.issuetracker07.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 @Service

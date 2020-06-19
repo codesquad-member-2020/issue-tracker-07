@@ -879,6 +879,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="signOutButtonTapped:" destination="43H-Gh-jOy" eventType="touchUpInside" id="8y1-4z-CSI"/>
+                                                    <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="QCI-G4-uFm"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -916,7 +917,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J1U-iR-cp5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2484.057971014493" y="887.94642857142856"/>
+            <point key="canvasLocation" x="803" y="888"/>
         </scene>
         <!--설정-->
         <scene sceneID="Nnu-ft-Wuh">
@@ -935,7 +936,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dq7-J8-bmR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1573.913043478261" y="887.94642857142856"/>
+            <point key="canvasLocation" x="1575" y="888"/>
         </scene>
     </scenes>
     <resources>

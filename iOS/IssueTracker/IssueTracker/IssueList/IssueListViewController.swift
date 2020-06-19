@@ -140,6 +140,8 @@ class IssueListViewController: UIViewController, Editable {
     
     @objc func issueCellTapped(_ sender: UITapGestureRecognizer) {
         guard !isEditingMode else { return }
+        let location = sender.location(ofTouch: 0, in: issueListTableView)
+        guard issueListTableView.indexPathForRow(at: location) != nil else { return }
         guard let detailIssueViewController = storyboard?.instantiateViewController(withIdentifier: DetailIssueViewController.identifier) else { return }
         navigationController?.pushViewController(detailIssueViewController, animated: true)
     }

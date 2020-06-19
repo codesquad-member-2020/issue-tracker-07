@@ -23,7 +23,7 @@ final class IssueViewModel: NSObject {
         number = .init(issue.id)
         reportingDate = .init(issue.reportingDate)
         contents = .init(issue.contents)
-        mileStone = .init(issue.mileStone?.title)
+        mileStone = .init(issue.milestone.first?.title)
         labels = .init(issue.labelList)
     }
 }

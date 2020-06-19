@@ -14,7 +14,7 @@ final class LoginViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var warningView: BorderView!
     @IBOutlet weak var signInStackView: UIStackView!
-    @IBOutlet weak var userNameInputView: InputStackView!
+    @IBOutlet weak var IDInputView: InputStackView!
     @IBOutlet weak var passwordInputView: InputStackView!
     @IBOutlet weak var signInButton: BorderButton!
     @IBOutlet weak var signUpButton: BorderButton!
@@ -39,7 +39,7 @@ final class LoginViewController: UIViewController {
     
     private func setUpSignInViewModel() {
         signInViewModel = SignInViewModel()
-        userNameInputView.bind { [unowned self] userName in
+        IDInputView.bind { [unowned self] userName in
             self.signInViewModel?.signInInfo.userName = userName
         }
         passwordInputView.bind { [unowned self] password in
@@ -53,9 +53,9 @@ final class LoginViewController: UIViewController {
     }
     
     private func setUpInputViews() {
-        userNameInputView.inputTextField.returnKeyType = .next
+        IDInputView.inputTextField.returnKeyType = .next
         passwordInputView.inputTextField.returnKeyType = .done
-        userNameInputView.inputTextField.delegate = self
+        IDInputView.inputTextField.delegate = self
         passwordInputView.inputTextField.delegate = self
     }
     

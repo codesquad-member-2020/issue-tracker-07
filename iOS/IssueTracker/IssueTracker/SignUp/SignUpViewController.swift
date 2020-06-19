@@ -11,7 +11,8 @@ import UIKit
 final class SignUpViewController: UIViewController {
     
     // MARK: - IBOutlets
-    @IBOutlet weak var userNameInputView: InputStackView!
+    @IBOutlet weak var nameInputView: InputStackView!
+    @IBOutlet weak var IDInputView: InputStackView!
     @IBOutlet weak var passwordInputView: InputStackView!
     @IBOutlet weak var confirmPasswordInputView: InputStackView!
     @IBOutlet weak var createAccountButton: BorderButton!
@@ -31,7 +32,8 @@ final class SignUpViewController: UIViewController {
     // MARK: SetUp
     private func setUp() {
         setUpSignUpViewModel()
-        setUpUserNameInputView()
+        setUpNameInputView()
+        setUpIDInputView()
         setUpPasswordInputView()
         setUpConfirmPasswordInputView()
         setUpCreateButton()
@@ -39,8 +41,11 @@ final class SignUpViewController: UIViewController {
     
     private func setUpSignUpViewModel() {
         signUpViewModel = SignUpViewModel()
-        userNameInputView.bind { [unowned self] userName in
-            self.signUpViewModel?.signUpInfo.userName = userName
+        nameInputView.bind { [unowned self] name in
+            self.signUpViewModel?.signUpInfo.name = name
+        }
+        IDInputView.bind { [unowned self] ID in
+            self.signUpViewModel?.signUpInfo.ID = ID
         }
         passwordInputView.bind { [unowned self] password in
             self.signUpViewModel?.signUpInfo.password = password
@@ -50,10 +55,17 @@ final class SignUpViewController: UIViewController {
         }
     }
     
-    private func setUpUserNameInputView() {
-        signUpViewModel?.isUserNameValid.bind { [unowned self] isValid in
+    private func setUpNameInputView() {
+        signUpViewModel?.isNameValid.bind { [unowned self] isValid in
             guard let isValid = isValid else { return }
-            self.userNameInputView.textFieldBorderColor = isValid ? UIColor.systemGreen.cgColor : UIColor.systemRed.cgColor
+            self.nameInputView.textFieldBorderColor = isValid ? UIColor.systemGreen.cgColor : UIColor.systemRed.cgColor
+        }
+    }
+    
+    private func setUpIDInputView() {
+        signUpViewModel?.isIDValid.bind { [unowned self] isValid in
+            guard let isValid = isValid else { return }
+            self.IDInputView.textFieldBorderColor = isValid ? UIColor.systemGreen.cgColor : UIColor.systemRed.cgColor
         }
     }
     
@@ -93,7 +105,7 @@ final class SignUpViewController: UIViewController {
     // MARK: - IBActions
     @IBAction func createAccountButtonTapped(_ sender: UIButton) {
         SignUpUseCase().createAccount(networkManager: NetworkManager(),
-                                      userName: signUpViewModel?.signUpInfo.userName,
+                                      userName: signUpViewModel?.signUpInfo.ID,
                                       password: signUpViewModel?.signUpInfo.password,
                                       successHandler: { model in
                                         self.success(model.status) },

@@ -81,14 +81,14 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pzW-T4-VFv" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pzW-T4-VFv" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="318" height="62.5"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Username"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="ID"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gzO-z9-5q5" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gzO-z9-5q5" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="77.5" width="318" height="62.5"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="YES"/>
@@ -217,11 +217,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="IDInputView" destination="pzW-T4-VFv" id="sBn-7c-ul6"/>
                         <outlet property="passwordInputView" destination="gzO-z9-5q5" id="Jkq-9Y-fX9"/>
                         <outlet property="signInButton" destination="slb-08-Cka" id="FNN-Rx-GXe"/>
                         <outlet property="signInStackView" destination="IWc-ZM-9AX" id="Kdl-f3-c6L"/>
                         <outlet property="signUpButton" destination="ZC7-5B-nPy" id="Kuc-3d-nPz"/>
-                        <outlet property="userNameInputView" destination="pzW-T4-VFv" id="sBn-7c-ul6"/>
                         <outlet property="warningView" destination="8Gy-Vs-cx1" id="Bxv-pr-MZQ"/>
                     </connections>
                 </viewController>
@@ -244,31 +244,38 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="n3R-Vy-g7n">
-                                <rect key="frame" x="48" y="132.5" width="318" height="308"/>
+                                <rect key="frame" x="48" y="132.5" width="318" height="396"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kTz-Uv-pr7" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KTe-uB-psV" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="318" height="73"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Username"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Name"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="NO"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kTz-Uv-pr7" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="88" width="318" height="73"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="ID"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dkJ-Cu-cb0" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="88" width="318" height="70"/>
+                                        <rect key="frame" x="0.0" y="176" width="318" height="70"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="Password"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fN5-lk-Gnv" customClass="InputStackView" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="173" width="318" height="72"/>
+                                        <rect key="frame" x="0.0" y="261" width="318" height="72"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="title" value="Confirm password"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSecureTextEntry" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nc9-hA-CQ6" customClass="BorderButton" customModule="IssueTracker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="260" width="318" height="48"/>
+                                        <rect key="frame" x="0.0" y="348" width="318" height="48"/>
                                         <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="9Oj-0e-b8n"/>
@@ -307,10 +314,11 @@
                         <viewLayoutGuide key="safeArea" id="5u8-x3-vrs"/>
                     </view>
                     <connections>
+                        <outlet property="IDInputView" destination="kTz-Uv-pr7" id="qqP-He-TJG"/>
                         <outlet property="confirmPasswordInputView" destination="fN5-lk-Gnv" id="gVg-tL-f56"/>
                         <outlet property="createAccountButton" destination="nc9-hA-CQ6" id="ST6-db-jYB"/>
+                        <outlet property="nameInputView" destination="KTe-uB-psV" id="GPU-kD-exA"/>
                         <outlet property="passwordInputView" destination="dkJ-Cu-cb0" id="tQw-jr-AI2"/>
-                        <outlet property="userNameInputView" destination="kTz-Uv-pr7" id="qqP-He-TJG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qg3-kz-vEK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

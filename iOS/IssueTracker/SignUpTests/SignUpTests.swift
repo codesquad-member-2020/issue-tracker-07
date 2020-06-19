@@ -23,9 +23,9 @@ final class SignUpTests: XCTestCase {
     }
     
     func testUserNameValid() {
-        viewModel.signUpInfo.userName = generateString(length: 6...12)
+        viewModel.signUpInfo.ID = generateString(length: 6...12)
         do {
-            let userName = try XCTUnwrap(viewModel.isUserNameValid.value)
+            let userName = try XCTUnwrap(viewModel.isIDValid.value)
             XCTAssertTrue(userName)
         } catch {
             XCTFail()
@@ -33,9 +33,9 @@ final class SignUpTests: XCTestCase {
     }
     
     func testUserNameLengthUnder() {
-        viewModel.signUpInfo.userName = generateString(length: 0...5)
+        viewModel.signUpInfo.ID = generateString(length: 0...5)
         do {
-            let userName = try XCTUnwrap(viewModel.isUserNameValid.value)
+            let userName = try XCTUnwrap(viewModel.isIDValid.value)
             XCTAssertFalse(userName)
         } catch {
             XCTFail()
@@ -43,9 +43,9 @@ final class SignUpTests: XCTestCase {
     }
     
     func testUserNameLengthOver() {
-        viewModel.signUpInfo.userName = generateString(length: 13...100)
+        viewModel.signUpInfo.ID = generateString(length: 13...100)
         do {
-            let userName = try XCTUnwrap(viewModel.isUserNameValid.value)
+            let userName = try XCTUnwrap(viewModel.isIDValid.value)
             XCTAssertFalse(userName)
         } catch {
             XCTFail()

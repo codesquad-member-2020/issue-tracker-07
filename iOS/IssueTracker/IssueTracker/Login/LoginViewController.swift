@@ -99,7 +99,7 @@ final class LoginViewController: UIViewController {
     }
     
     @IBAction func signInButtonTapped(_ sender: UIButton) {
-        SignInUseCase().createAccount(networkManager: NetworkManager(),
+        SignInUseCase().signIn(networkManager: NetworkManager(),
                                       userName: signInViewModel?.signInInfo.userName,
                                       password: signInViewModel?.signInInfo.password,
                                       successHandler: { [unowned self] response in
@@ -197,8 +197,9 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
         let userEmail = credential.email ?? ""
-        
+        let fullName = ((credential.fullName?.familyName ?? "") + (credential.fullName?.givenName ?? ""))
         SignInUseCase().signInWithApple(networkManager: NetworkManager(),
+                                        name: fullName,
                                         email: userEmail,
                                         successHandler: { response in
                                             NetworkManager.token = response.jwtToken

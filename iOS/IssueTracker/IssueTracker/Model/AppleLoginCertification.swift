@@ -10,4 +10,5 @@ import Foundation
 
 struct AppleLoginCertification: Codable {
     var id: String
+    var name: String
 }

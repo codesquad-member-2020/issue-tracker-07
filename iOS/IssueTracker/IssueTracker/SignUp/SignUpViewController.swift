@@ -105,7 +105,8 @@ final class SignUpViewController: UIViewController {
     // MARK: - IBActions
     @IBAction func createAccountButtonTapped(_ sender: UIButton) {
         SignUpUseCase().createAccount(networkManager: NetworkManager(),
-                                      userName: signUpViewModel?.signUpInfo.ID,
+                                      name: signUpViewModel?.signUpInfo.name,
+                                      id: signUpViewModel?.signUpInfo.ID,
                                       password: signUpViewModel?.signUpInfo.password,
                                       successHandler: { model in
                                         self.success(model.status) },

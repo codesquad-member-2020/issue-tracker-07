@@ -24,6 +24,7 @@ class IssueListViewController: UIViewController, Editable {
     var isEditingMode: Bool = false
     private var tabbarItems: [UIView]? = .init()
     private let closeIssueButton: BorderButton = .init()
+    private var tapGesture: UITapGestureRecognizer!
     
     override func viewDidLoad() {
         setUp()
@@ -70,7 +71,8 @@ class IssueListViewController: UIViewController, Editable {
         issueListTableView.dataSource = dataSource
         issueListTableView.delegate = self
         issueListTableView.allowsMultipleSelectionDuringEditing = true
-        issueListTableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(issueCellTapped(_:))))
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(issueCellTapped(_:)))
+        issueListTableView.addGestureRecognizer(tapGesture)
     }
     
     private func setUpCloseIssueButton() {
@@ -128,6 +130,7 @@ class IssueListViewController: UIViewController, Editable {
     
     @IBAction func rightNavigationButtonTapped() {
         isEditingMode.toggle()
+        tapGesture.isEnabled = !isEditingMode
         isSelectedAll = false
         updateNavigationBar()
         updateTabbar()
@@ -136,6 +139,7 @@ class IssueListViewController: UIViewController, Editable {
     }
     
     @objc func issueCellTapped(_ sender: UITapGestureRecognizer) {
+        guard !isEditingMode else { return }
         guard let detailIssueViewController = storyboard?.instantiateViewController(withIdentifier: DetailIssueViewController.identifier) else { return }
         navigationController?.pushViewController(detailIssueViewController, animated: true)
     }

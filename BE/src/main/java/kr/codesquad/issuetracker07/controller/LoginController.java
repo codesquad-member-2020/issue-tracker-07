@@ -1,8 +1,8 @@
 package kr.codesquad.issuetracker07.controller;
 
 import kr.codesquad.issuetracker07.constant.UriConstants;
-import kr.codesquad.issuetracker07.domain.AuthProvider;
-import kr.codesquad.issuetracker07.domain.User;
+import kr.codesquad.issuetracker07.entity.AuthProvider;
+import kr.codesquad.issuetracker07.entity.User;
 import kr.codesquad.issuetracker07.dto.LoginVO;
 import kr.codesquad.issuetracker07.response.LoginResponse;
 import kr.codesquad.issuetracker07.response.SignUpResponse;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
 
 @RestController
 public class LoginController {
@@ -51,13 +50,13 @@ public class LoginController {
     }
 
     @PostMapping("/login/apple")
-    public ResponseEntity<LoginResponse> loginApple(@RequestBody Map<String, String> requestBody) {
-        if (!userService.isExistedUser(requestBody.get("id"))) {
-            User user = userService.makeUser(requestBody.get("id"), requestBody.get("name"), null, UriConstants.AppleImageUrl, AuthProvider.apple);
+    public ResponseEntity<LoginResponse> loginApple(@RequestBody LoginVO loginVO) {
+        if (!userService.isExistedUser(loginVO.getId())) {
+            User user = userService.makeUser(loginVO.getId(), loginVO.getName(), null, UriConstants.AppleImageUrl, AuthProvider.apple);
             userService.saveUser(user);
-            return new ResponseEntity<>(new LoginResponse(true, jwtService.makeJwtToken(requestBody.get("id"), requestBody.get("name"))), HttpStatus.OK);
+            return new ResponseEntity<>(new LoginResponse(true, jwtService.makeJwtToken(loginVO.getId(), loginVO.getName())), HttpStatus.OK);
         }
-        return new ResponseEntity<>(new LoginResponse(true, jwtService.makeJwtToken(requestBody.get("id"), requestBody.get("name"))), HttpStatus.OK);
+        return new ResponseEntity<>(new LoginResponse(true, jwtService.makeJwtToken(loginVO.getId(), loginVO.getName())), HttpStatus.OK);
     }
 
     @GetMapping("/login/github")

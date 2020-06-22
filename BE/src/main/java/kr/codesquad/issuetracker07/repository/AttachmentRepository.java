@@ -1,6 +1,6 @@
 package kr.codesquad.issuetracker07.repository;
 
-import kr.codesquad.issuetracker07.domain.Attachment;
+import kr.codesquad.issuetracker07.entity.Attachment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;

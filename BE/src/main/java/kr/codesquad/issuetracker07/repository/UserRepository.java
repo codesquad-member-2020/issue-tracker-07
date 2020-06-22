@@ -1,7 +1,7 @@
 package kr.codesquad.issuetracker07.repository;
 
-import kr.codesquad.issuetracker07.domain.AuthProvider;
-import kr.codesquad.issuetracker07.domain.User;
+import kr.codesquad.issuetracker07.entity.AuthProvider;
+import kr.codesquad.issuetracker07.entity.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

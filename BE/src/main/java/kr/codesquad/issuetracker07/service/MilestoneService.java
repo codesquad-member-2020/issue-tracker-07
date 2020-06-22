@@ -1,7 +1,7 @@
 package kr.codesquad.issuetracker07.service;
 
-import kr.codesquad.issuetracker07.domain.Issue;
-import kr.codesquad.issuetracker07.domain.Milestone;
+import kr.codesquad.issuetracker07.entity.Issue;
+import kr.codesquad.issuetracker07.entity.Milestone;
 import kr.codesquad.issuetracker07.dto.MilestoneVO;
 import kr.codesquad.issuetracker07.repository.MilestoneRepository;
 import org.springframework.stereotype.Service;

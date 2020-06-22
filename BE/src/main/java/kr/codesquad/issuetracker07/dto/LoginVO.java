@@ -12,4 +12,6 @@ public class LoginVO {
     private String name;
 
     private String password;
+
+    private String token;
 }

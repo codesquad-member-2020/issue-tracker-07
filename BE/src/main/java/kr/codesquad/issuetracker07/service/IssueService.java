@@ -25,7 +25,6 @@ public class IssueService {
 
     private final IssueRepository issueRepository;
 
-
     private final LabelRepository labelRepository;
 
     private final AttachmentRepository attachmentRepository;
@@ -212,5 +211,12 @@ public class IssueService {
 
         attachmentRepository.delete(attachment);
         labelRepository.delete(label);
+    }
+
+    public void modifyIssue(Long issueId, IssueRequestVO issueRequestVO) {
+        Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
+        issue.setTitle(issueRequestVO.getTitle());
+        issue.setDescription(issueRequestVO.getDescription());
+        issueRepository.save(issue);
     }
 }

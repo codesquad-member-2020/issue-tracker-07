@@ -35,14 +35,14 @@ public class LabelController {
                                                     @RequestBody LabelVO labelVO) {
         String jwtToken = request.getHeader("Authorization").replace("Bearer ", "");
         String userName = jwtService.getUserNameFromJwtToken(jwtToken);
-        User user = userService.findUserByName(userName).orElseThrow(NoSuchElementException::new);
+        User user = userService.findUserByName(userName);
         Issue issue = issueService.findIssueByIssueId(issueId);
 
         issueService.makeNewLabel(user, issue, labelVO);
         return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
     }
 
-    @PutMapping("/issues/{issueId}/labels/{labelId}")
+    @PatchMapping("/issues/{issueId}/labels/{labelId}")
     public ResponseEntity<CommonResponse> attachLabelToIssue(@PathVariable Long issueId,
                                                              @PathVariable Long labelId) {
         issueService.attachLabel(issueId, labelId);

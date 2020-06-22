@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Slf4j
 @RestController
@@ -52,18 +51,23 @@ public class IssueController {
     }
 
     @PostMapping("/issues")
-    public ResponseEntity<CommonResponse> makeIssue(HttpServletRequest request, @RequestBody IssueRequestVO issueRequestVO) {
+    public ResponseEntity<CommonResponse> makeIssue(HttpServletRequest request,
+                                                    @RequestBody IssueRequestVO issueRequestVO) {
         String jwtToken = JwtUtils.getJwtTokenFromHeader(request);
         String userName = jwtService.getUserNameFromJwtToken(jwtToken);
-        User user = userService.findUserByName(userName).orElseThrow(NoSuchElementException::new);
+        User user = userService.findUserByName(userName);
         issueService.makeNewIssue(user, issueRequestVO.getTitle(), issueRequestVO.getDescription());
         return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
     }
 
     @PutMapping("/issues/{issueId}")
-    public ResponseEntity<CommonResponse> modifyIssue(HttpServletRequest request, @PathVariable Long issueId, @RequestBody IssueRequestVO issueRequestVO) {
+    public ResponseEntity<CommonResponse> modifyIssue(HttpServletRequest request,
+                                                      @PathVariable Long issueId,
+                                                      @RequestBody IssueRequestVO issueRequestVO) {
         String jwtToken = JwtUtils.getJwtTokenFromHeader(request);
         String userName = jwtService.getUserNameFromJwtToken(jwtToken);
+        userService.findUserByName(userName);
+        issueService.modifyIssue(issueId, issueRequestVO);
         return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
     }
 
@@ -74,10 +78,11 @@ public class IssueController {
     }
 
     @DeleteMapping("issues/{issueId}")
-    public ResponseEntity<CommonResponse> deleteIssue(HttpServletRequest request, @PathVariable Long issueId) {
+    public ResponseEntity<CommonResponse> deleteIssue(HttpServletRequest request,
+                                                      @PathVariable Long issueId) {
         String jwtToken = JwtUtils.getJwtTokenFromHeader(request);
         String userName = jwtService.getUserNameFromJwtToken(jwtToken);
-        User user = userService.findUserByName(userName).orElseThrow(NoSuchElementException::new);
+        User user = userService.findUserByName(userName);
         log.info("{}", userName);
         if (issueService.deleteIssue(user, issueId)) {
             return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);

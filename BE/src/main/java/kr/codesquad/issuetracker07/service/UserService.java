@@ -6,7 +6,6 @@ import kr.codesquad.issuetracker07.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -23,16 +22,16 @@ public class UserService {
 
     public User makeUser(String id, String name, String password, String imageUrl, AuthProvider authProvider) {
         return User.builder()
-                .name(name)
-                .loginId(id)
-                .password(password)
-                .imageUrl(imageUrl)
-                .authProvider(authProvider)
-                .build();
+                   .name(name)
+                   .loginId(id)
+                   .password(password)
+                   .imageUrl(imageUrl)
+                   .authProvider(authProvider)
+                   .build();
     }
 
     public boolean isExistedUser(String id) {
-        return userRepository.findByName(id).isPresent();
+        return userRepository.findByLoginId(id).isPresent();
     }
 
     public boolean isValidIdAndPassword(String id, String password, AuthProvider authProvider) {
@@ -41,8 +40,8 @@ public class UserService {
                              .isPresent();
     }
 
-    public Optional<User> findUserByName(String userName) {
-        return userRepository.findByName(userName);
+    public User findUserByName(String userName) {
+        return userRepository.findByName(userName).orElseThrow(NoSuchElementException::new);
     }
 
     public User findUserByLoginId(String loginId) {

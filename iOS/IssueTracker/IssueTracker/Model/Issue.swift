@@ -12,17 +12,23 @@ struct Issue: Codable {
     var id: Int
     var title: String
     var contents: String?
+    var authorName: String?
+    var imageURL: String?
     var isOpen: Bool
     var reportingDate: String
+    var modifiedDate: String?
     var milestone: [MileStone]
-    var labelList: [Label]?
+    var labelList: [Label]
     
     enum CodingKeys: String, CodingKey {
         case id
         case title
         case contents = "description"
+        case authorName
+        case imageURL = "imageUrl"
         case isOpen
         case reportingDate = "createdAt"
+        case modifiedDate = "modifiedAt"
         case milestone
         case labelList = "label"
     }

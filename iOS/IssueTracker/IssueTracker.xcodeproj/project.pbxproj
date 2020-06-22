@@ -14,6 +14,8 @@
 		443DE7F024939B1200308A7B /* RequestComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DE7EF24939B1200308A7B /* RequestComponents.swift */; };
 		443DE7F224939B9C00308A7B /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DE7F124939B9C00308A7B /* SignUpUseCase.swift */; };
 		443DE7F42493A70800308A7B /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DE7F32493A70800308A7B /* SignInUseCase.swift */; };
+		444CD62824A0AC57003767FE /* DetailIssueCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444CD62724A0AC57003767FE /* DetailIssueCollectionViewCell.swift */; };
+		444CD62A24A0ADE4003767FE /* DetailIssueCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444CD62924A0ADE4003767FE /* DetailIssueCollectionViewDataSource.swift */; };
 		445BD2472498A3B300DBC485 /* IssueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445BD2462498A3B300DBC485 /* IssueViewModel.swift */; };
 		445BD2492498E93100DBC485 /* IssueNetworkingComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445BD2482498E93100DBC485 /* IssueNetworkingComponents.swift */; };
 		445BD24B2498F3F000DBC485 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445BD24A2498F3F000DBC485 /* DateFormatterExtension.swift */; };
@@ -73,6 +75,8 @@
 		443DE7EF24939B1200308A7B /* RequestComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestComponents.swift; sourceTree = "<group>"; };
 		443DE7F124939B9C00308A7B /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
 		443DE7F32493A70800308A7B /* SignInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCase.swift; sourceTree = "<group>"; };
+		444CD62724A0AC57003767FE /* DetailIssueCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIssueCollectionViewCell.swift; sourceTree = "<group>"; };
+		444CD62924A0ADE4003767FE /* DetailIssueCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIssueCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		445BD2462498A3B300DBC485 /* IssueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueViewModel.swift; sourceTree = "<group>"; };
 		445BD2482498E93100DBC485 /* IssueNetworkingComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueNetworkingComponents.swift; sourceTree = "<group>"; };
 		445BD24A2498F3F000DBC485 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				44238C74249B792F00DCE83A /* DetailIssueViewController.swift */,
+				444CD62924A0ADE4003767FE /* DetailIssueCollectionViewDataSource.swift */,
+				444CD62724A0AC57003767FE /* DetailIssueCollectionViewCell.swift */,
 			);
 			path = DetailIssue;
 			sourceTree = "<group>";
@@ -421,6 +427,7 @@
 				44238C75249B792F00DCE83A /* DetailIssueViewController.swift in Sources */,
 				A51A1D6F248F3004005262DF /* BorderView.swift in Sources */,
 				A516C5D824952285008D3DF2 /* IssueTableViewCell.swift in Sources */,
+				444CD62A24A0ADE4003767FE /* DetailIssueCollectionViewDataSource.swift in Sources */,
 				A5BC41DC2491F48600F094CF /* UIViewControllerExtension.swift in Sources */,
 				A5BC41D724911A7100F094CF /* OAuthManager.swift in Sources */,
 				445BD2492498E93100DBC485 /* IssueNetworkingComponents.swift in Sources */,
@@ -441,6 +448,7 @@
 				4484801524920527007AEFEC /* SignUpViewController.swift in Sources */,
 				44E5CEA8248F56E9001A46AE /* InputStackView.swift in Sources */,
 				A516C5DE2495277D008D3DF2 /* IssueTableViewDataSource.swift in Sources */,
+				444CD62824A0AC57003767FE /* DetailIssueCollectionViewCell.swift in Sources */,
 				A516C5DA249524EC008D3DF2 /* LabelCollectionViewCell.swift in Sources */,
 				A51ACB10249A55CB004C0447 /* AppleLoginCertification.swift in Sources */,
 				A54A873B248F7F3000A81604 /* SignInViewModel.swift in Sources */,

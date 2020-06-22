@@ -15,11 +15,15 @@ final class DetailIssueViewController: UIViewController {
     
     // MARK: - Properties
     static let identifier: String = "DetailIssue"
+    private var dataSource: DetailIssueCollectionViewDataSource!
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        issueDetailCollectionView.dataSource = self
+        dataSource = DetailIssueCollectionViewDataSource()
+        issueDetailCollectionView.dataSource = dataSource
+        guard let layout = issueDetailCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        layout.estimatedItemSize = CGSize(width: view.frame.width, height: .zero)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,21 +36,5 @@ final class DetailIssueViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationItem.largeTitleDisplayMode = .automatic
-    }
-}
-
-extension DetailIssueViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "contentCell", for: indexPath)
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "detailIssueHeader", for: indexPath)
-        return header
     }
 }

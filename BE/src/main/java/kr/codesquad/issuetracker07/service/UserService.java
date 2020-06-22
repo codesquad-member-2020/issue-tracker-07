@@ -5,6 +5,7 @@ import kr.codesquad.issuetracker07.domain.User;
 import kr.codesquad.issuetracker07.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -16,18 +17,18 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void saveUser(User user, AuthProvider authProvider) {
-        user.setAuthProvider(authProvider);
+    public void saveUser(User user) {
         userRepository.save(user);
     }
 
-    public User makeUser(String id, String password) {
+    public User makeUser(String id, String name, String password, String imageUrl, AuthProvider authProvider) {
         return User.builder()
-                   .name(id)
-                   .password(password)
-                   .imageUrl("https://codesquad-mocha.s3.ap-northeast-2.amazonaws.com/github.png")
-                   .authProvider(AuthProvider.local)
-                   .build();
+                .name(name)
+                .loginId(id)
+                .password(password)
+                .imageUrl(imageUrl)
+                .authProvider(authProvider)
+                .build();
     }
 
     public boolean isExistedUser(String id) {
@@ -35,12 +36,16 @@ public class UserService {
     }
 
     public boolean isValidIdAndPassword(String id, String password, AuthProvider authProvider) {
-        return userRepository.findByNameAndAuthProvider(id, authProvider)
+        return userRepository.findByLoginIdAndAndAuthProvider(id, authProvider)
                              .filter(user -> password.equals(user.getPassword()))
                              .isPresent();
     }
 
     public Optional<User> findUserByName(String userName) {
         return userRepository.findByName(userName);
+    }
+
+    public User findUserByLoginId(String loginId) {
+        return userRepository.findByLoginId(loginId).orElseThrow(NoSuchElementException::new);
     }
 }

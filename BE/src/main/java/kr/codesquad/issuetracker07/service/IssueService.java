@@ -201,4 +201,16 @@ public class IssueService {
             issue.setOpen(false);
         }
     }
+
+    public void deleteLabel(Long issueId, Long labelId) {
+        Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
+        Label label = labelRepository.findById(labelId).orElseThrow(NoSuchElementException::new);
+        Attachment attachment = attachmentRepository.findByIssue_IdAndLabel_Id(issueId, labelId).orElseThrow(NoSuchElementException::new);
+
+        issue.getAttachmentList().remove(attachment);
+        label.getAttachmentList().remove(attachment);
+
+        attachmentRepository.delete(attachment);
+        labelRepository.delete(label);
+    }
 }

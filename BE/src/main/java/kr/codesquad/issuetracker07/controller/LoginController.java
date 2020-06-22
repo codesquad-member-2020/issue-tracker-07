@@ -1,19 +1,21 @@
 package kr.codesquad.issuetracker07.controller;
 
+import kr.codesquad.issuetracker07.constant.UriConstants;
 import kr.codesquad.issuetracker07.domain.AuthProvider;
 import kr.codesquad.issuetracker07.domain.User;
 import kr.codesquad.issuetracker07.dto.LoginVO;
 import kr.codesquad.issuetracker07.response.LoginResponse;
 import kr.codesquad.issuetracker07.response.SignUpResponse;
 import kr.codesquad.issuetracker07.service.AuthService;
-import kr.codesquad.issuetracker07.service.UserService;
 import kr.codesquad.issuetracker07.service.JwtService;
+import kr.codesquad.issuetracker07.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 
 @RestController
 public class LoginController {
@@ -35,16 +37,27 @@ public class LoginController {
         if (userService.isExistedUser(loginVO.getId())) {
             return new ResponseEntity<>(new SignUpResponse(false), HttpStatus.OK);
         }
-        userService.saveUser(userService.makeUser(loginVO.getId(), loginVO.getPassword()), AuthProvider.local);
+        userService.saveUser(userService.makeUser(loginVO.getId(), loginVO.getName(), loginVO.getPassword(), UriConstants.GithubImageUrl, AuthProvider.local));
         return new ResponseEntity<>(new SignUpResponse(true), HttpStatus.OK);
     }
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> loginLocal(@RequestBody LoginVO loginVO) {
         if (userService.isValidIdAndPassword(loginVO.getId(), loginVO.getPassword(), AuthProvider.local)) {
-            return new ResponseEntity<>(new LoginResponse(true, jwtService.makeJwtToken(loginVO.getId())), HttpStatus.OK);
+            User user = userService.findUserByLoginId(loginVO.getId());
+            return new ResponseEntity<>(new LoginResponse(true, jwtService.makeJwtToken(loginVO.getId(), user.getName())), HttpStatus.OK);
         }
         return new ResponseEntity<>(new LoginResponse(false, ""), HttpStatus.OK);
+    }
+
+    @PostMapping("/login/apple")
+    public ResponseEntity<LoginResponse> loginApple(@RequestBody Map<String, String> requestBody) {
+        if (!userService.isExistedUser(requestBody.get("id"))) {
+            User user = userService.makeUser(requestBody.get("id"), requestBody.get("name"), null, UriConstants.AppleImageUrl, AuthProvider.apple);
+            userService.saveUser(user);
+            return new ResponseEntity<>(new LoginResponse(true, jwtService.makeJwtToken(requestBody.get("id"), requestBody.get("name"))), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(new LoginResponse(true, jwtService.makeJwtToken(requestBody.get("id"), requestBody.get("name"))), HttpStatus.OK);
     }
 
     @GetMapping("/login/github")
@@ -56,8 +69,8 @@ public class LoginController {
     public void githubCallback(@RequestParam("code") String code, HttpServletResponse response) throws IOException {
         String githubAccessToken = authService.getGithubAccessToken(code);
         User user = authService.getUserInformationFromToken(githubAccessToken);
-        userService.saveUser(user, AuthProvider.github);
-        String jwtToken = jwtService.makeJwtToken(user.getName());
-        response.sendRedirect("io.issuetracker.app://auth?token=" + jwtToken);
+        userService.saveUser(user);
+        String jwtToken = jwtService.makeJwtToken(user.getLoginId(), user.getName());
+        response.sendRedirect(UriConstants.AppleSchemeUrl + jwtToken);
     }
 }

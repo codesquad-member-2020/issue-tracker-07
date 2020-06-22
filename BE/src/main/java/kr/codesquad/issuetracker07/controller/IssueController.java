@@ -4,12 +4,13 @@ import kr.codesquad.issuetracker07.domain.Issue;
 import kr.codesquad.issuetracker07.domain.User;
 import kr.codesquad.issuetracker07.dto.IssueForUpdatingVO;
 import kr.codesquad.issuetracker07.dto.IssueRequestVO;
-import kr.codesquad.issuetracker07.response.IssueListResponse;
 import kr.codesquad.issuetracker07.response.CommonResponse;
+import kr.codesquad.issuetracker07.response.IssueListResponse;
 import kr.codesquad.issuetracker07.response.IssueResponse;
 import kr.codesquad.issuetracker07.service.IssueService;
 import kr.codesquad.issuetracker07.service.JwtService;
 import kr.codesquad.issuetracker07.service.UserService;
+import kr.codesquad.issuetracker07.util.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,10 +53,17 @@ public class IssueController {
 
     @PostMapping("/issues")
     public ResponseEntity<CommonResponse> makeIssue(HttpServletRequest request, @RequestBody IssueRequestVO issueRequestVO) {
-        String jwtToken = request.getHeader("Authorization").replace("Bearer ", "");
+        String jwtToken = JwtUtils.getJwtTokenFromHeader(request);
         String userName = jwtService.getUserNameFromJwtToken(jwtToken);
         User user = userService.findUserByName(userName).orElseThrow(NoSuchElementException::new);
         issueService.makeNewIssue(user, issueRequestVO.getTitle(), issueRequestVO.getDescription());
+        return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
+    }
+
+    @PutMapping("/issues/{issueId}")
+    public ResponseEntity<CommonResponse> modifyIssue(HttpServletRequest request, @PathVariable Long issueId, @RequestBody IssueRequestVO issueRequestVO) {
+        String jwtToken = JwtUtils.getJwtTokenFromHeader(request);
+        String userName = jwtService.getUserNameFromJwtToken(jwtToken);
         return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
     }
 
@@ -67,7 +75,7 @@ public class IssueController {
 
     @DeleteMapping("issues/{issueId}")
     public ResponseEntity<CommonResponse> deleteIssue(HttpServletRequest request, @PathVariable Long issueId) {
-        String jwtToken = request.getHeader("Authorization").replace("Bearer ", "");
+        String jwtToken = JwtUtils.getJwtTokenFromHeader(request);
         String userName = jwtService.getUserNameFromJwtToken(jwtToken);
         User user = userService.findUserByName(userName).orElseThrow(NoSuchElementException::new);
         log.info("{}", userName);

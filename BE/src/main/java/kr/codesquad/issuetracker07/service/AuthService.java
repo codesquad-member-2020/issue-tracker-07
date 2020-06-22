@@ -1,7 +1,8 @@
 package kr.codesquad.issuetracker07.service;
 
-import kr.codesquad.issuetracker07.dto.GithubAccessToken;
+import kr.codesquad.issuetracker07.domain.AuthProvider;
 import kr.codesquad.issuetracker07.domain.User;
+import kr.codesquad.issuetracker07.dto.GithubAccessToken;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -54,11 +55,10 @@ public class AuthService {
     public User getUserInformationFromToken(String githubAccessToken) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-
         headers.setBearerAuth(githubAccessToken);
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(headers);
         ResponseEntity<User> userInformation = restTemplate.exchange(REQUEST_USER_INFO_URL, HttpMethod.GET, request, User.class);
-
+        userInformation.getBody().setAuthProvider(AuthProvider.github);
         return userInformation.getBody();
     }
 }

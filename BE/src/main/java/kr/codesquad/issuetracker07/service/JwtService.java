@@ -1,7 +1,6 @@
 package kr.codesquad.issuetracker07.service;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,7 +15,7 @@ public class JwtService {
     @Value("${JWT_SECRET_KEY}")
     private String JWT_SECRET_KEY;
 
-    public String makeJwtToken(String userName) {
+    public String makeJwtToken(String loginId, String name) {
         final SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS256;
         final String TYP = "typ";
         final String ALG = "HS256";
@@ -24,7 +23,8 @@ public class JwtService {
         header.put(TYP, "JWT");
         header.put(ALG, "HS256");
         Map < String, Object > payload = new HashMap<>();
-        payload.put("USER_NAME", userName);
+        payload.put("LOGIN_ID", loginId);
+        payload.put("USER_NAME", name);
         return Jwts.builder()
                    .setHeader(header)
                    .setClaims(payload)

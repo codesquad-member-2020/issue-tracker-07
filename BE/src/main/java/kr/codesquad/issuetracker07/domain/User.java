@@ -19,9 +19,12 @@ import javax.persistence.Id;
 @Builder
 public class User {
 
-    @Id
     @JsonProperty("login")
     private String name;
+
+    @Id
+    @JsonProperty("name")
+    private String loginId;
 
     @JsonProperty("avatar_url")
     private String imageUrl;

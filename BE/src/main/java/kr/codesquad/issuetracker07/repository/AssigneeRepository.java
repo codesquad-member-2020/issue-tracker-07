@@ -1,6 +1,6 @@
 package kr.codesquad.issuetracker07.repository;
 
-import kr.codesquad.issuetracker07.domain.Assignee;
+import kr.codesquad.issuetracker07.entity.Assignee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

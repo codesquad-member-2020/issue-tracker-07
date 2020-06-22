@@ -1,6 +1,6 @@
 package kr.codesquad.issuetracker07.repository;
 
-import kr.codesquad.issuetracker07.domain.Issue;
+import kr.codesquad.issuetracker07.entity.Issue;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

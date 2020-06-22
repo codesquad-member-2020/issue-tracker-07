@@ -1,6 +1,6 @@
 package kr.codesquad.issuetracker07.repository;
 
-import kr.codesquad.issuetracker07.domain.Milestone;
+import kr.codesquad.issuetracker07.entity.Milestone;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

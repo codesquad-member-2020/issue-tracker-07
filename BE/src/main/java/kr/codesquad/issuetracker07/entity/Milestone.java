@@ -1,16 +1,19 @@
-package kr.codesquad.issuetracker07.domain;
+package kr.codesquad.issuetracker07.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -27,6 +30,14 @@ public class Milestone {
     private String description;
 
     private boolean isAttached;
+
+    private String createdBy;
+
+    private LocalDateTime createdAt;
+
+    private String modifiedBy;
+
+    private LocalDateTime modifiedAt;
 
     @OneToMany(mappedBy = "milestone")
     @JsonIgnore

@@ -1,7 +1,7 @@
 package kr.codesquad.issuetracker07.controller;
 
-import kr.codesquad.issuetracker07.domain.Issue;
-import kr.codesquad.issuetracker07.domain.User;
+import kr.codesquad.issuetracker07.entity.Issue;
+import kr.codesquad.issuetracker07.entity.User;
 import kr.codesquad.issuetracker07.dto.IssueForUpdatingVO;
 import kr.codesquad.issuetracker07.dto.IssueRequestVO;
 import kr.codesquad.issuetracker07.response.CommonResponse;
@@ -36,6 +36,16 @@ public class IssueController {
         this.jwtService = jwtService;
     }
 
+    @PostMapping("/issues")
+    public ResponseEntity<CommonResponse> makeIssue(HttpServletRequest request,
+                                                    @RequestBody IssueRequestVO issueRequestVO) {
+        String jwtToken = JwtUtils.getJwtTokenFromHeader(request);
+        String userName = jwtService.getUserNameFromJwtToken(jwtToken);
+        User user = userService.findUserByName(userName);
+        issueService.makeNewIssue(user, issueRequestVO.getTitle(), issueRequestVO.getDescription());
+        return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
+    }
+
     @GetMapping("/issues")
     public ResponseEntity<IssueListResponse> getAllIssueList() {
         List<Issue> issueList = issueService.findAllIssue();
@@ -50,24 +60,14 @@ public class IssueController {
         return new ResponseEntity<>(issueResponse, HttpStatus.OK);
     }
 
-    @PostMapping("/issues")
-    public ResponseEntity<CommonResponse> makeIssue(HttpServletRequest request,
-                                                    @RequestBody IssueRequestVO issueRequestVO) {
-        String jwtToken = JwtUtils.getJwtTokenFromHeader(request);
-        String userName = jwtService.getUserNameFromJwtToken(jwtToken);
-        User user = userService.findUserByName(userName);
-        issueService.makeNewIssue(user, issueRequestVO.getTitle(), issueRequestVO.getDescription());
-        return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
-    }
-
     @PutMapping("/issues/{issueId}")
     public ResponseEntity<CommonResponse> modifyIssue(HttpServletRequest request,
                                                       @PathVariable Long issueId,
                                                       @RequestBody IssueRequestVO issueRequestVO) {
         String jwtToken = JwtUtils.getJwtTokenFromHeader(request);
         String userName = jwtService.getUserNameFromJwtToken(jwtToken);
-        userService.findUserByName(userName);
-        issueService.modifyIssue(issueId, issueRequestVO);
+        User user = userService.findUserByName(userName);
+        issueService.modifyIssue(user, issueId, issueRequestVO);
         return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
     }
 

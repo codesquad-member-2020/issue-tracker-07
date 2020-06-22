@@ -1,9 +1,9 @@
 package kr.codesquad.issuetracker07.service;
 
-import kr.codesquad.issuetracker07.domain.Attachment;
-import kr.codesquad.issuetracker07.domain.Issue;
-import kr.codesquad.issuetracker07.domain.Label;
-import kr.codesquad.issuetracker07.domain.User;
+import kr.codesquad.issuetracker07.entity.Attachment;
+import kr.codesquad.issuetracker07.entity.Issue;
+import kr.codesquad.issuetracker07.entity.Label;
+import kr.codesquad.issuetracker07.entity.User;
 import kr.codesquad.issuetracker07.dto.*;
 import kr.codesquad.issuetracker07.repository.AttachmentRepository;
 import kr.codesquad.issuetracker07.repository.IssueRepository;
@@ -43,8 +43,10 @@ public class IssueService {
                                  .title(title)
                                  .description(description)
                                  .isOpen(true)
+                                 .createdBy(user.getName())
                                  .createdAt(LocalDateTime.now())
-                                 .modifiedAt(LocalDateTime.now())
+                                 .modifiedBy(null)
+                                 .modifiedAt(null)
                                  .milestone(null)
                                  .commentList(new ArrayList<>())
                                  .assigneeList(new ArrayList<>())
@@ -213,10 +215,12 @@ public class IssueService {
         labelRepository.delete(label);
     }
 
-    public void modifyIssue(Long issueId, IssueRequestVO issueRequestVO) {
+    public void modifyIssue(User user, Long issueId, IssueRequestVO issueRequestVO) {
         Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
         issue.setTitle(issueRequestVO.getTitle());
         issue.setDescription(issueRequestVO.getDescription());
+        issue.setModifiedBy(user.getName());
+        issue.setModifiedAt(LocalDateTime.now());
         issueRepository.save(issue);
     }
 }

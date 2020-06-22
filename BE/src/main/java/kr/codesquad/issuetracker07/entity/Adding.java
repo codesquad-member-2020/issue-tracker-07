@@ -1,12 +1,14 @@
-package kr.codesquad.issuetracker07.domain;
+package kr.codesquad.issuetracker07.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -16,6 +18,8 @@ public class Adding {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private int addingCount;
+
     @ManyToOne
     @JoinColumn(name = "commnet_id")
     private Comment comment;
@@ -23,6 +27,4 @@ public class Adding {
     @ManyToOne
     @JoinColumn(name = "emoji_id")
     private Emoji emoji;
-
-    private int addingCount;
 }

@@ -1,10 +1,7 @@
 package kr.codesquad.issuetracker07.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -35,14 +32,14 @@ public class Issue {
 
     private LocalDateTime modifiedAt;
 
-    @ManyToOne
-    private Milestone milestone;
-
     @OneToMany(mappedBy = "issue")
     private List<Comment> commentList;
 
     @OneToMany(mappedBy = "issue")
-    private List<Attachment> attachmentList;
+    private List<AttachmentLabel> attachmentLabelList;
+
+    @OneToMany(mappedBy = "issue")
+    private List<AttachmentMilestone> attachmentMilestoneList;
 
     @OneToMany(mappedBy = "issue")
     private List<Assignee> assigneeList;

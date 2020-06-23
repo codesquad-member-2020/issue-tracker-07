@@ -35,7 +35,7 @@ public class UserService {
     }
 
     public boolean isValidIdAndPassword(String id, String password, AuthProvider authProvider) {
-        return userRepository.findByLoginIdAndAndAuthProvider(id, authProvider)
+        return userRepository.findByLoginIdAndAuthProvider(id, authProvider)
                              .filter(user -> password.equals(user.getPassword()))
                              .isPresent();
     }

@@ -653,7 +653,7 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="detailIssueHeader" id="Xsf-bD-0Gf">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="detailIssueHeader" id="Xsf-bD-0Gf" customClass="DetailIssueCollectionReusableView" customModule="IssueTracker" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -677,7 +677,7 @@
                                                     <real key="value" value="0.0"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="5"/>
+                                                    <real key="value" value="12"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
@@ -752,6 +752,14 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="qUC-Ql-3d1" secondAttribute="trailing" constant="15" id="qaU-sQ-zlY"/>
                                         <constraint firstItem="PlK-bi-3cu" firstAttribute="top" secondItem="Xsf-bD-0Gf" secondAttribute="top" constant="20" id="y4V-xs-jRy"/>
                                     </constraints>
+                                    <connections>
+                                        <outlet property="authorLabel" destination="HAd-v3-j9k" id="Nx8-Xt-y8c"/>
+                                        <outlet property="issueNumberLabel" destination="qUC-Ql-3d1" id="alg-Z5-fBD"/>
+                                        <outlet property="issueStateLabel" destination="kpl-RQ-yf8" id="4h6-Os-H07"/>
+                                        <outlet property="issueStateView" destination="hlN-1w-1oH" id="DN3-eV-hhi"/>
+                                        <outlet property="profileImageView" destination="PtR-GA-ADP" id="clU-WE-n6O"/>
+                                        <outlet property="titleLabel" destination="4rg-NX-ll4" id="eyG-9u-miq"/>
+                                    </connections>
                                 </collectionReusableView>
                             </collectionView>
                         </subviews>

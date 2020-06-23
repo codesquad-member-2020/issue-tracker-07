@@ -16,6 +16,15 @@ final class DetailIssueViewController: UIViewController {
     // MARK: - Properties
     static let identifier: String = "DetailIssue"
     private var dataSource: DetailIssueCollectionViewDataSource!
+    private var issueInfo: IssueInfo? {
+        didSet {
+            guard oldValue != nil else {
+                dataSource.insertViewModel(title: .init(issue: issueInfo?.contents.first))
+                return
+            }
+        }
+    }
+    
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -24,6 +33,7 @@ final class DetailIssueViewController: UIViewController {
         issueDetailCollectionView.dataSource = dataSource
         guard let layout = issueDetailCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         layout.estimatedItemSize = CGSize(width: view.frame.width, height: .zero)
+        requestIssueInfo()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,5 +46,11 @@ final class DetailIssueViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationItem.largeTitleDisplayMode = .automatic
+    }
+    
+    private func requestIssueInfo() {
+        DetailIssueUseCase().mockRequestIssueInfoSuccess(successHandler: { [unowned self] issueInfo in
+            self.issueInfo = issueInfo
+        })
     }
 }

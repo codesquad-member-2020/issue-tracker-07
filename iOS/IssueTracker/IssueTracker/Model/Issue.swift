@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct Issue: Codable {
+struct Issue: Codable, Contentable {
     var id: Int
     var title: String
-    var contents: String?
+    var content: String?
     var authorName: String?
     var imageURL: String?
     var isOpen: Bool
@@ -23,7 +23,7 @@ struct Issue: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case title
-        case contents = "description"
+        case content = "description"
         case authorName
         case imageURL = "imageUrl"
         case isOpen

@@ -21,18 +21,18 @@ struct Emoji: Codable {
     var clickCount: Int
 }
 
-struct Comment: Codable {
+struct Comment: Codable, Contentable {
     var id: Int
-    var writer: String
-    var imageURL: String
-    var content: String
+    var authorName: String?
+    var imageURL: String?
+    var content: String?
     var reportingDate: String
     var modifiedDate: String
     var emoji: [Emoji]
     
     enum CodingKeys: String, CodingKey {
         case id
-        case writer
+        case authorName = "writer"
         case imageURL = "imageUrl"
         case content
         case reportingDate = "createdAt"

@@ -567,10 +567,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="148"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4eC-0Y-6i0" customClass="BorderView" customModule="IssueTracker" customModuleProvider="target">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4eC-0Y-6i0" customClass="BorderView" customModule="IssueTracker" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="20" width="48" height="48"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="githubTitle" translatesAutoresizingMaskIntoConstraints="NO" id="8Gj-cn-lSK">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="githubTitle" translatesAutoresizingMaskIntoConstraints="NO" id="8Gj-cn-lSK">
                                                             <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                                         </imageView>
                                                     </subviews>
@@ -582,6 +582,11 @@
                                                         <constraint firstAttribute="trailing" secondItem="8Gj-cn-lSK" secondAttribute="trailing" id="e4y-6c-59N"/>
                                                         <constraint firstItem="8Gj-cn-lSK" firstAttribute="leading" secondItem="4eC-0Y-6i0" secondAttribute="leading" id="jh9-AO-WZ7"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="24"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="pK0-B3-MHT">
                                                     <rect key="frame" x="73" y="20" width="307" height="48"/>
@@ -663,7 +668,7 @@
                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PlK-bi-3cu" customClass="BorderView" customModule="IssueTracker" customModuleProvider="target">
                                             <rect key="frame" x="15" y="20" width="24" height="24"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="githubTitle" translatesAutoresizingMaskIntoConstraints="NO" id="PtR-GA-ADP">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="githubTitle" translatesAutoresizingMaskIntoConstraints="NO" id="PtR-GA-ADP">
                                                     <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                                 </imageView>
                                             </subviews>

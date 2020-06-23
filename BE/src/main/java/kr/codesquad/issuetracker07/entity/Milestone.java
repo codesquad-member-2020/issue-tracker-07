@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,28 +28,19 @@ public class Milestone {
 
     private String description;
 
-    private boolean isAttached;
-
+    @JsonIgnore
     private String createdBy;
 
+    @JsonIgnore
     private LocalDateTime createdAt;
 
+    @JsonIgnore
     private String modifiedBy;
 
+    @JsonIgnore
     private LocalDateTime modifiedAt;
 
-    @OneToMany(mappedBy = "milestone")
     @JsonIgnore
-    @Builder.Default
-    private List<Issue> issue = new ArrayList<>();
-
-    public void addIssue(Issue issue) {
-        issue.setMilestone(this);
-        getIssue().add(issue);
-    }
-
-    public void modifyIssue(Issue issue) {
-        issue.setMilestone(this);
-        getIssue().get(this.getIssue().indexOf(issue)).setMilestone(this);
-    }
+    @OneToMany(mappedBy = "milestone")
+    List<AttachmentMilestone> attachmentMilestoneList;
 }

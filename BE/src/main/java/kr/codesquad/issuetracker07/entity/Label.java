@@ -41,5 +41,5 @@ public class Label {
 
     @JsonIgnore
     @OneToMany(mappedBy = "label")
-    List<Attachment> attachmentList;
+    List<AttachmentLabel> attachmentLabelList;
 }

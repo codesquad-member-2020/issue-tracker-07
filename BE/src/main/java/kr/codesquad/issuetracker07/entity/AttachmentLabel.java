@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Attachment {
+public class AttachmentLabel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

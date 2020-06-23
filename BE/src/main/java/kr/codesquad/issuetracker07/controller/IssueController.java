@@ -38,7 +38,7 @@ public class IssueController {
     }
 
     @PostMapping("")
-    public ResponseEntity<CommonResponse> makeIssue(HttpServletRequest request,
+    public ResponseEntity<CommonResponse> makeNewIssue(HttpServletRequest request,
                                                     @RequestBody IssueRequestVO issueRequestVO) {
         String jwtToken = JwtUtils.getJwtTokenFromHeader(request);
         String userName = jwtService.getUserNameFromJwtToken(jwtToken);
@@ -50,14 +50,14 @@ public class IssueController {
     @GetMapping("")
     public ResponseEntity<IssueListResponse> getAllIssueList() {
         List<Issue> issueList = issueService.findAllIssue();
-        IssueListResponse issueListResponse = issueService.makeIssueListSummary(issueList);
+        IssueListResponse issueListResponse = issueService.makeIssueList(issueList);
         return new ResponseEntity<>(issueListResponse, HttpStatus.OK);
     }
 
     @GetMapping("/{issueId}")
     public ResponseEntity<IssueDetailResponse> getIssueDetail(@PathVariable Long issueId) {
         Issue issue = issueService.findIssueByIssueId(issueId);
-        IssueDetailResponse issueDetailResponse = issueService.makeIssueResponse(issue);
+        IssueDetailResponse issueDetailResponse = issueService.makeIssueDetail(issue);
         return new ResponseEntity<>(issueDetailResponse, HttpStatus.OK);
     }
 

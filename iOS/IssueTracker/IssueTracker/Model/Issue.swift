@@ -8,22 +8,28 @@
 
 import Foundation
 
-struct Issue: Codable {
+struct Issue: Codable, Contentable {
     var id: Int
     var title: String
-    var contents: String?
+    var content: String?
+    var authorName: String?
+    var imageURL: String?
     var isOpen: Bool
     var reportingDate: String
-    var mileStone: MileStone?
-    var labelList: [Label]?
+    var modifiedDate: String?
+    var milestone: [MileStone]
+    var labelList: [Label]
     
     enum CodingKeys: String, CodingKey {
         case id
         case title
-        case contents = "description"
+        case content = "description"
+        case authorName
+        case imageURL = "imageUrl"
         case isOpen
         case reportingDate = "createdAt"
-        case mileStone
+        case modifiedDate = "modifiedAt"
+        case milestone
         case labelList = "label"
     }
 }

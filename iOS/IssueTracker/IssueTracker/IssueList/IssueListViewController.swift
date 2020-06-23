@@ -24,10 +24,16 @@ class IssueListViewController: UIViewController, Editable {
     var isEditingMode: Bool = false
     private var tabbarItems: [UIView]? = .init()
     private let closeIssueButton: BorderButton = .init()
+    private var tapGesture: UITapGestureRecognizer!
     
     override func viewDidLoad() {
         setUp()
         loadIssues()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.title = "이슈"
     }
     
     private func loadIssues() {
@@ -65,6 +71,8 @@ class IssueListViewController: UIViewController, Editable {
         issueListTableView.dataSource = dataSource
         issueListTableView.delegate = self
         issueListTableView.allowsMultipleSelectionDuringEditing = true
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(issueCellTapped(_:)))
+        issueListTableView.addGestureRecognizer(tapGesture)
     }
     
     private func setUpCloseIssueButton() {
@@ -122,11 +130,20 @@ class IssueListViewController: UIViewController, Editable {
     
     @IBAction func rightNavigationButtonTapped() {
         isEditingMode.toggle()
+        tapGesture.isEnabled = !isEditingMode
         isSelectedAll = false
         updateNavigationBar()
         updateTabbar()
         issueListTableView.setEditing(isEditingMode, animated: true)
         issueListTableView.reloadData()
+    }
+    
+    @objc func issueCellTapped(_ sender: UITapGestureRecognizer) {
+        guard !isEditingMode else { return }
+        let location = sender.location(ofTouch: 0, in: issueListTableView)
+        guard issueListTableView.indexPathForRow(at: location) != nil else { return }
+        guard let detailIssueViewController = storyboard?.instantiateViewController(withIdentifier: DetailIssueViewController.identifier) else { return }
+        navigationController?.pushViewController(detailIssueViewController, animated: true)
     }
     
     @objc func closeIssues() {

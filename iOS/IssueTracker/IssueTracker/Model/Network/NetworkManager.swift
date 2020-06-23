@@ -25,9 +25,9 @@ final class NetworkManager: NetworkManageable {
             guard let url = requestComponents.url else { return }
             var dataRequest: DataRequest
             if (requestComponents.body as? EmptyBody) != nil {
-                dataRequest = AF.request(url, method: requestComponents.method)
+                dataRequest = AF.request(url, method: requestComponents.method, headers: .init(["Authorization" : NetworkManager.token ?? ""]))
             } else {
-                dataRequest = AF.request(url, method: requestComponents.method, parameters: requestComponents.body, encoder: JSONParameterEncoder.default)
+                dataRequest = AF.request(url, method: requestComponents.method, parameters: requestComponents.body, encoder: JSONParameterEncoder.default, headers: .init(["Authorization" : NetworkManager.token ?? ""]))
             }
             
             dataRequest

@@ -9,11 +9,13 @@
 import Foundation
 
 struct UserCertification: Codable {
-    let userName: String?
+    let name: String?
+    let id: String?
     let password: String?
     
-    enum CodingKeys: String, CodingKey {
-        case userName = "id"
-        case password
+    init(name: String? = nil, id: String?, password: String?) {
+        self.name = name
+        self.id = id
+        self.password = password
     }
 }

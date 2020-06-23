@@ -11,13 +11,19 @@ import Foundation
 struct SignUpInfo {
     
     // MARK: - Properties
-    var userName: String?
+    var name: String?
+    var ID: String?
     var password: String?
     var confirmPassword: String?
     
     // MARK: - Methods
-    func userNameIsValid() -> Bool? {
-        guard let userName = userName else { return nil }
+    func nameIsValid() -> Bool? {
+        guard let name = name else { return nil }
+        return !name.isEmpty
+    }
+    
+    func IDIsValid() -> Bool? {
+        guard let userName = ID else { return nil }
         return (6...12) ~= userName.count
     }
     
@@ -32,7 +38,7 @@ struct SignUpInfo {
     }
     
     func signUpInfoIsValid() -> Bool {
-        let userNameValidation = userNameIsValid() ?? false
+        let userNameValidation = IDIsValid() ?? false
         let passwordValidation = passwordIsValid() ?? false
         let confirmPasswordValidation = confirmPasswordIsValid() ?? false
         return userNameValidation && passwordValidation && confirmPasswordValidation

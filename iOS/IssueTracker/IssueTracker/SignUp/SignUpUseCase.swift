@@ -10,8 +10,8 @@ import Foundation
 
 struct SignUpUseCase {
     
-    func createAccount(networkManager: NetworkManageable,userName: String?, password: String?, successHandler: @escaping (SignUpResponse) -> (), failHandler: @escaping (Error) -> ()) {
-        let body = UserCertification(userName: userName, password: password)
+    func createAccount(networkManager: NetworkManageable, name: String?, id: String?, password: String?, successHandler: @escaping (SignUpResponse) -> (), failHandler: @escaping (Error) -> ()) {
+        let body = UserCertification(name: name, id: id, password: password)
         let requestComponents = RequestComponents(url: EndPoint(path: .signUp).url, method: .post, body: body)
         let responseComponets = ResponseComponents(statusCodeRange: 200...299, decodableType: SignUpResponse.self)
         networkManager.request(requestComponents: requestComponents,

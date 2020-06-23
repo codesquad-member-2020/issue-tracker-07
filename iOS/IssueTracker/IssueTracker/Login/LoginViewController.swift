@@ -14,7 +14,7 @@ final class LoginViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var warningView: BorderView!
     @IBOutlet weak var signInStackView: UIStackView!
-    @IBOutlet weak var userNameInputView: InputStackView!
+    @IBOutlet weak var IDInputView: InputStackView!
     @IBOutlet weak var passwordInputView: InputStackView!
     @IBOutlet weak var signInButton: BorderButton!
     @IBOutlet weak var signUpButton: BorderButton!
@@ -39,7 +39,7 @@ final class LoginViewController: UIViewController {
     
     private func setUpSignInViewModel() {
         signInViewModel = SignInViewModel()
-        userNameInputView.bind { [unowned self] userName in
+        IDInputView.bind { [unowned self] userName in
             self.signInViewModel?.signInInfo.userName = userName
         }
         passwordInputView.bind { [unowned self] password in
@@ -53,9 +53,9 @@ final class LoginViewController: UIViewController {
     }
     
     private func setUpInputViews() {
-        userNameInputView.inputTextField.returnKeyType = .next
+        IDInputView.inputTextField.returnKeyType = .next
         passwordInputView.inputTextField.returnKeyType = .done
-        userNameInputView.inputTextField.delegate = self
+        IDInputView.inputTextField.delegate = self
         passwordInputView.inputTextField.delegate = self
     }
     
@@ -99,7 +99,7 @@ final class LoginViewController: UIViewController {
     }
     
     @IBAction func signInButtonTapped(_ sender: UIButton) {
-        SignInUseCase().createAccount(networkManager: NetworkManager(),
+        SignInUseCase().signIn(networkManager: NetworkManager(),
                                       userName: signInViewModel?.signInInfo.userName,
                                       password: signInViewModel?.signInInfo.password,
                                       successHandler: { [unowned self] response in
@@ -197,8 +197,9 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
         let userEmail = credential.email ?? ""
-        
+        let fullName = ((credential.fullName?.familyName ?? "") + (credential.fullName?.givenName ?? ""))
         SignInUseCase().signInWithApple(networkManager: NetworkManager(),
+                                        name: fullName,
                                         email: userEmail,
                                         successHandler: { response in
                                             NetworkManager.token = response.jwtToken

@@ -61,17 +61,17 @@ struct IssueListUseCase {
         let issues = (0...5).reduce(into: [Issue]()) { issues, _ in
             issues.append(contentsOf: [Issue(id: 0,
                                              title: "VibrationTextField 구현",
-                                             contents: "좌우로 1초간 흔들리는 애니메이션 구현",
+                                             content: "좌우로 1초간 흔들리는 애니메이션 구현",
                                              isOpen: true,
                                              reportingDate: "2020-06-18",
-                                             mileStone: nil,
+                                             milestone: [],
                                              labelList: [iOSLabel, featureLabel]),
                                        Issue(id: 1,
                                              title: "2020.06.20",
-                                             contents: "오늘 할 일\n카트하기\n잠 푹자기",
+                                             content: "오늘 할 일\n카트하기\n잠 푹자기",
                                              isOpen: false,
                                              reportingDate: "2020-06-18",
-                                             mileStone: mileStone,
+                                             milestone: [mileStone],
                                              labelList: [iOSLabel, scrumLabel])])
         }
         successHandler(issues)

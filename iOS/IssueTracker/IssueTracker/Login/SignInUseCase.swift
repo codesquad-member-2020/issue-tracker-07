@@ -10,8 +10,8 @@ import Foundation
 
 struct SignInUseCase {
     
-    func createAccount(networkManager: NetworkManageable, userName: String?, password: String?, successHandler: @escaping (SignInResponse) -> (), failHandler: @escaping (Error) -> ()) {
-        let body = UserCertification(userName: userName, password: password)
+    func signIn(networkManager: NetworkManageable, userName: String?, password: String?, successHandler: @escaping (SignInResponse) -> (), failHandler: @escaping (Error) -> ()) {
+        let body = UserCertification(id: userName, password: password)
         let requestComponents = RequestComponents(url: EndPoint(path: .localLogin).url, method: .post, body: body)
         let responseComponets = ResponseComponents(statusCodeRange: 200...299, decodableType: SignInResponse.self)
         networkManager.request(requestComponents: requestComponents,
@@ -20,8 +20,8 @@ struct SignInUseCase {
                                failHandler: failHandler)
     }
     
-    func signInWithApple(networkManager: NetworkManageable, email: String, successHandler: @escaping (SignInResponse) -> (), failHandler: @escaping (Error) -> ()) {
-        let body = AppleLoginCertification(email: email)
+    func signInWithApple(networkManager: NetworkManageable, name: String, email: String, successHandler: @escaping (SignInResponse) -> (), failHandler: @escaping (Error) -> ()) {
+        let body = AppleLoginCertification(id: email, name: name)
         let requestComponents = RequestComponents(url: EndPoint(path: .appleLogin).url, method: .post, body: body)
         let responseComponets = ResponseComponents(statusCodeRange: 200...299, decodableType: SignInResponse.self)
         networkManager.request(requestComponents: requestComponents,

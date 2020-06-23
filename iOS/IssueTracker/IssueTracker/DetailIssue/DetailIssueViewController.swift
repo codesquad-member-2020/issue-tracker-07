@@ -19,7 +19,8 @@ final class DetailIssueViewController: UIViewController {
     private var issueInfo: IssueInfo? {
         didSet {
             guard oldValue != nil else {
-                dataSource.insertViewModel(title: .init(issue: issueInfo?.contents.first))
+                insertTitleViewModel()
+                insertContentViewModels()
                 return
             }
         }
@@ -52,5 +53,17 @@ final class DetailIssueViewController: UIViewController {
         DetailIssueUseCase().mockRequestIssueInfoSuccess(successHandler: { [unowned self] issueInfo in
             self.issueInfo = issueInfo
         })
+    }
+    
+    private func insertTitleViewModel() {
+        let titleViewModel = IssueTitleViewModel(issue: issueInfo?.contents.first)
+        dataSource.insertViewModel(title: titleViewModel)
+    }
+    
+    private func insertContentViewModels() {
+        var viewmodels = [IssueContentViewModel]()
+        viewmodels.append(IssueContentViewModel(content: issueInfo?.contents.first))
+        viewmodels.append(contentsOf: issueInfo?.comment.map { IssueContentViewModel(content: $0) } ?? [])
+        dataSource.insertViewModel(content: viewmodels)
     }
 }

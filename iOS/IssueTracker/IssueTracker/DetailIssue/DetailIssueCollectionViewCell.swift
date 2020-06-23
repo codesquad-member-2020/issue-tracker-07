@@ -10,6 +10,10 @@ import UIKit
 
 class DetailIssueCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var profileImageView: UIImageView!
+    
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var reportingDateLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     
     static let identifier: String = "contentCell"

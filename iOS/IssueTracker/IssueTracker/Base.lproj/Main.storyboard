@@ -649,7 +649,10 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="414" height="148"/>
                                         <connections>
+                                            <outlet property="authorLabel" destination="Fg0-oO-Igm" id="Sua-D2-cpO"/>
                                             <outlet property="contentLabel" destination="lJE-Nm-kdD" id="4Si-af-drr"/>
+                                            <outlet property="profileImageView" destination="8Gj-cn-lSK" id="efP-g8-Q43"/>
+                                            <outlet property="reportingDateLabel" destination="Zmz-Sc-Vph" id="0So-ie-uuo"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

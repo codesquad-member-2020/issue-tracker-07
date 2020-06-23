@@ -11,9 +11,11 @@ import UIKit
 final class DetailIssueCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     private var titleViewModel: IssueTitleViewModel?
+    private var contentViewModels: [IssueContentViewModel]?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return contentViewModels?.count ?? 0
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -21,7 +23,10 @@ final class DetailIssueCollectionViewDataSource: NSObject, UICollectionViewDataS
         if indexPath.item == 0 {
             cell.contentLabel.numberOfLines = 0
         }
-        cell.contentLabel.text = "내용이 들어갈 자리\n내용이 들어갈 자리\n내용이 들어갈 자리\n내용이 들어갈 자리"
+        
+        guard let viewModel = contentViewModels?[indexPath.item] else { return cell }
+        
+        setUpContentViewModel(cell: cell, viewModel: viewModel)
         
         return cell
     }
@@ -34,8 +39,12 @@ final class DetailIssueCollectionViewDataSource: NSObject, UICollectionViewDataS
         return header
     }
     
-    func insertViewModel(title viweModel: IssueTitleViewModel) {
-        self.titleViewModel = viweModel
+    func insertViewModel(title viewModel: IssueTitleViewModel) {
+        self.titleViewModel = viewModel
+    }
+    
+    func insertViewModel(content viewModel: [IssueContentViewModel]) {
+        self.contentViewModels = viewModel
     }
     
     func setUpTitleViewModel(header: DetailIssueCollectionReusableView) {
@@ -84,5 +93,45 @@ final class DetailIssueCollectionViewDataSource: NSObject, UICollectionViewDataS
             header.issueStateLabel.text = isOpen ? "Open" : "Close"
         }
         titleViewModel?.isOpen.fire()
+    }
+    
+    func setUpContentViewModel(cell: DetailIssueCollectionViewCell, viewModel: IssueContentViewModel) {
+        setUpContentImageViewBinding(cell: cell, viewModel: viewModel)
+        setUpContentAuthorLabelBinding(cell: cell, viewModel: viewModel)
+        setUpReportingLabelBinding(cell: cell, viewModel: viewModel)
+        setUpContentLabelBinding(cell: cell, viewModel: viewModel)
+    }
+    
+    func setUpContentImageViewBinding(cell: DetailIssueCollectionViewCell, viewModel: IssueContentViewModel) {
+        viewModel.imageURL.bind { url in
+            guard let urlString = url,
+                let url = URL(string: urlString),
+                let data = try? Data(contentsOf: url) else { return }
+            cell.profileImageView.image = UIImage(data: data)
+        }
+        viewModel.imageURL.fire()
+    }
+    
+    func setUpContentAuthorLabelBinding(cell: DetailIssueCollectionViewCell, viewModel: IssueContentViewModel) {
+        viewModel.authorName.bind { authorName in
+            cell.authorLabel.text = authorName
+        }
+        viewModel.authorName.fire()
+    }
+    
+    func setUpReportingLabelBinding(cell: DetailIssueCollectionViewCell, viewModel: IssueContentViewModel) {
+        viewModel.reportingDate.bind { reportingDate in
+            guard let reportingDate = reportingDate,
+                let date = DateFormatter().dateConverter.date(from: reportingDate) else { return }
+            cell.reportingDateLabel.text = Calendar.current.leftTime(date: date)
+        }
+        viewModel.reportingDate.fire()
+    }
+    
+    func setUpContentLabelBinding(cell: DetailIssueCollectionViewCell, viewModel: IssueContentViewModel) {
+        viewModel.content.bind { content in
+            cell.contentLabel.text = content
+        }
+        viewModel.content.fire()
     }
 }

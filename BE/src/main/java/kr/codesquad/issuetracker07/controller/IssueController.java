@@ -6,7 +6,7 @@ import kr.codesquad.issuetracker07.dto.IssueForUpdatingVO;
 import kr.codesquad.issuetracker07.dto.IssueRequestVO;
 import kr.codesquad.issuetracker07.response.CommonResponse;
 import kr.codesquad.issuetracker07.response.IssueListResponse;
-import kr.codesquad.issuetracker07.response.IssueResponse;
+import kr.codesquad.issuetracker07.response.IssueDetailResponse;
 import kr.codesquad.issuetracker07.service.IssueService;
 import kr.codesquad.issuetracker07.service.JwtService;
 import kr.codesquad.issuetracker07.service.UserService;
@@ -22,6 +22,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
+@RequestMapping("/issues")
 public class IssueController {
 
     private final IssueService issueService;
@@ -36,7 +37,7 @@ public class IssueController {
         this.jwtService = jwtService;
     }
 
-    @PostMapping("/issues")
+    @PostMapping("")
     public ResponseEntity<CommonResponse> makeIssue(HttpServletRequest request,
                                                     @RequestBody IssueRequestVO issueRequestVO) {
         String jwtToken = JwtUtils.getJwtTokenFromHeader(request);
@@ -46,21 +47,21 @@ public class IssueController {
         return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
     }
 
-    @GetMapping("/issues")
+    @GetMapping("")
     public ResponseEntity<IssueListResponse> getAllIssueList() {
         List<Issue> issueList = issueService.findAllIssue();
         IssueListResponse issueListResponse = issueService.makeIssueListSummary(issueList);
         return new ResponseEntity<>(issueListResponse, HttpStatus.OK);
     }
 
-    @GetMapping("/issues/{issueId}")
-    public ResponseEntity<IssueResponse> getAllIssueList(@PathVariable Long issueId) {
+    @GetMapping("/{issueId}")
+    public ResponseEntity<IssueDetailResponse> getIssueDetail(@PathVariable Long issueId) {
         Issue issue = issueService.findIssueByIssueId(issueId);
-        IssueResponse issueResponse = issueService.makeIssueResponse(issue);
-        return new ResponseEntity<>(issueResponse, HttpStatus.OK);
+        IssueDetailResponse issueDetailResponse = issueService.makeIssueResponse(issue);
+        return new ResponseEntity<>(issueDetailResponse, HttpStatus.OK);
     }
 
-    @PutMapping("/issues/{issueId}")
+    @PutMapping("/{issueId}")
     public ResponseEntity<CommonResponse> modifyIssue(HttpServletRequest request,
                                                       @PathVariable Long issueId,
                                                       @RequestBody IssueRequestVO issueRequestVO) {
@@ -71,13 +72,13 @@ public class IssueController {
         return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
     }
 
-    @PatchMapping("/issues")
+    @PatchMapping("")
     public ResponseEntity<CommonResponse> closeOrOpenSelectedIssues(@RequestBody @Valid IssueForUpdatingVO issueForUpdatingVO) {
         issueService.closeOrOpenSelectedIssues(issueForUpdatingVO.getIssueIdList(), issueForUpdatingVO.getState());
         return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
     }
 
-    @DeleteMapping("issues/{issueId}")
+    @DeleteMapping("/{issueId}")
     public ResponseEntity<CommonResponse> deleteIssue(HttpServletRequest request,
                                                       @PathVariable Long issueId) {
         String jwtToken = JwtUtils.getJwtTokenFromHeader(request);

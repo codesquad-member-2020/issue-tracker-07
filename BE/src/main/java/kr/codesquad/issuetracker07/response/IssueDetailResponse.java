@@ -8,7 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class IssueResponse {
+public class IssueDetailResponse {
 
     private boolean status;
 

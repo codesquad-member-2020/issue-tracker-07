@@ -1,5 +1,6 @@
 package kr.codesquad.issuetracker07.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,9 +23,11 @@ public class Attachment {
 
     @ManyToOne
     @JoinColumn(name = "issue_id")
+    @JsonIgnore
     private Issue issue;
 
     @ManyToOne
     @JoinColumn(name = "label_id")
+    @JsonIgnore
     private Label label;
 }

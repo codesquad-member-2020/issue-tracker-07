@@ -1,5 +1,6 @@
 package kr.codesquad.issuetracker07.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,14 +27,19 @@ public class Label {
 
     private String backgroundColor;
 
+    @JsonIgnore
     private String createdBy;
 
+    @JsonIgnore
     private LocalDateTime createdAt;
 
+    @JsonIgnore
     private String modifiedBy;
 
+    @JsonIgnore
     private LocalDateTime modifiedAt;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "label")
     List<Attachment> attachmentList;
 }

@@ -1,15 +1,12 @@
 package kr.codesquad.issuetracker07.service;
 
+import kr.codesquad.issuetracker07.dto.*;
 import kr.codesquad.issuetracker07.entity.Attachment;
 import kr.codesquad.issuetracker07.entity.Issue;
-import kr.codesquad.issuetracker07.entity.Label;
 import kr.codesquad.issuetracker07.entity.User;
-import kr.codesquad.issuetracker07.dto.*;
-import kr.codesquad.issuetracker07.repository.AttachmentRepository;
 import kr.codesquad.issuetracker07.repository.IssueRepository;
-import kr.codesquad.issuetracker07.repository.LabelRepository;
+import kr.codesquad.issuetracker07.response.IssueDetailResponse;
 import kr.codesquad.issuetracker07.response.IssueListResponse;
-import kr.codesquad.issuetracker07.response.IssueResponse;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -25,16 +22,8 @@ public class IssueService {
 
     private final IssueRepository issueRepository;
 
-    private final LabelRepository labelRepository;
-
-    private final AttachmentRepository attachmentRepository;
-
-    public IssueService(IssueRepository issueRepository,
-                        LabelRepository labelRepository,
-                        AttachmentRepository attachmentRepository) {
+    public IssueService(IssueRepository issueRepository) {
         this.issueRepository = issueRepository;
-        this.labelRepository = labelRepository;
-        this.attachmentRepository = attachmentRepository;
     }
 
     public void makeNewIssue(User user, String title, String description) {
@@ -45,8 +34,8 @@ public class IssueService {
                                  .isOpen(true)
                                  .createdBy(user.getName())
                                  .createdAt(LocalDateTime.now())
-                                 .modifiedBy(null)
-                                 .modifiedAt(null)
+                                 .modifiedBy(user.getName())
+                                 .modifiedAt(LocalDateTime.now())
                                  .milestone(null)
                                  .commentList(new ArrayList<>())
                                  .assigneeList(new ArrayList<>())
@@ -69,7 +58,7 @@ public class IssueService {
                                       .build();
     }
 
-    public IssueResponse makeIssueResponse(Issue issue) {
+    public IssueDetailResponse makeIssueResponse(Issue issue) {
         IssueVO issueVO = IssueVO.builder()
                                  .id(issue.getId())
                                  .title(issue.getTitle())
@@ -107,7 +96,7 @@ public class IssueService {
                                  }).collect(Collectors.toList()))
                                  .build();
 
-        return new IssueResponse().builder()
+        return new IssueDetailResponse().builder()
                                   .status(true)
                                   .issue(issueVO)
                                   .build();
@@ -117,29 +106,13 @@ public class IssueService {
         return issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
     }
 
-    public void makeNewLabel(User user, Issue issue, LabelVO labelVO) {
-        if (user.getName().equals(issue.getUser().getName())) {
-            Label label = new Label().builder()
-                                     .title(labelVO.getTitle())
-                                     .description(labelVO.getDescription())
-                                     .backgroundColor(labelVO.getBackgroundColor())
-                                     .build();
-            labelRepository.save(label);
-            Attachment attachment = new Attachment().builder()
-                                                    .issue(issue)
-                                                    .label(label)
-                                                    .isAttached(false)
-                                                    .build();
-            attachmentRepository.save(attachment);
-            issueRepository.save(issue);
-        }
-    }
-
-    public void attachLabel(Long issueId, Long labelId) {
-        Attachment attachment = attachmentRepository.findByIssue_IdAndLabel_Id(issueId, labelId)
-                                                    .orElseThrow(NoSuchElementException::new);
-        attachment.setAttached(true);
-        attachmentRepository.save(attachment);
+    public void modifyIssue(User user, Long issueId, IssueRequestVO issueRequestVO) {
+        Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
+        issue.setTitle(issueRequestVO.getTitle());
+        issue.setDescription(issueRequestVO.getDescription());
+        issue.setModifiedBy(user.getName());
+        issue.setModifiedAt(LocalDateTime.now());
+        issueRepository.save(issue);
     }
 
     public void closeOrOpenSelectedIssues(List<Long> issueIdList, String state) {
@@ -201,26 +174,5 @@ public class IssueService {
         if (state.equals("close")) {
             issue.setOpen(false);
         }
-    }
-
-    public void deleteLabel(Long issueId, Long labelId) {
-        Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
-        Label label = labelRepository.findById(labelId).orElseThrow(NoSuchElementException::new);
-        Attachment attachment = attachmentRepository.findByIssue_IdAndLabel_Id(issueId, labelId).orElseThrow(NoSuchElementException::new);
-
-        issue.getAttachmentList().remove(attachment);
-        label.getAttachmentList().remove(attachment);
-
-        attachmentRepository.delete(attachment);
-        labelRepository.delete(label);
-    }
-
-    public void modifyIssue(User user, Long issueId, IssueRequestVO issueRequestVO) {
-        Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
-        issue.setTitle(issueRequestVO.getTitle());
-        issue.setDescription(issueRequestVO.getDescription());
-        issue.setModifiedBy(user.getName());
-        issue.setModifiedAt(LocalDateTime.now());
-        issueRepository.save(issue);
     }
 }

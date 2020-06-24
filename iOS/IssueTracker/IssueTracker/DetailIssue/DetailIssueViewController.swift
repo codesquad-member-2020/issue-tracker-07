@@ -56,14 +56,13 @@ final class DetailIssueViewController: UIViewController {
     }
     
     private func insertTitleViewModel() {
-        let titleViewModel = IssueTitleViewModel(issue: issueInfo?.contents.first)
+        let titleViewModel = IssueTitleViewModel(issueInfo: issueInfo)
         dataSource.insertViewModel(title: titleViewModel)
     }
     
     private func insertContentViewModels() {
-        var viewmodels = [IssueContentViewModel]()
-        viewmodels.append(IssueContentViewModel(content: issueInfo?.contents.first))
-        viewmodels.append(contentsOf: issueInfo?.comment.map { IssueContentViewModel(content: $0) } ?? [])
+        var viewmodels = [IssueCommentViewModel]()
+        viewmodels.append(contentsOf: issueInfo?.comments.map { IssueCommentViewModel(comment: $0) } ?? [])
         dataSource.insertViewModel(content: viewmodels)
     }
 }

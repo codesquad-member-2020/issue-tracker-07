@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Issue: Codable, Contentable {
+struct Issue: Codable {
     var id: Int
     var title: String
     var content: String?

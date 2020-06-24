@@ -11,10 +11,10 @@ import UIKit
 final class DetailIssueCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     private var titleViewModel: IssueTitleViewModel?
-    private var contentViewModels: [IssueContentViewModel]?
+    private var commentViewModels: [IssueCommentViewModel]?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return contentViewModels?.count ?? 0
+        return commentViewModels?.count ?? 0
         
     }
     
@@ -24,7 +24,7 @@ final class DetailIssueCollectionViewDataSource: NSObject, UICollectionViewDataS
             cell.contentLabel.numberOfLines = 0
         }
         
-        guard let viewModel = contentViewModels?[indexPath.item] else { return cell }
+        guard let viewModel = commentViewModels?[indexPath.item] else { return cell }
         
         setUpContentViewModel(cell: cell, viewModel: viewModel)
         
@@ -43,8 +43,8 @@ final class DetailIssueCollectionViewDataSource: NSObject, UICollectionViewDataS
         self.titleViewModel = viewModel
     }
     
-    func insertViewModel(content viewModel: [IssueContentViewModel]) {
-        self.contentViewModels = viewModel
+    func insertViewModel(content viewModel: [IssueCommentViewModel]) {
+        self.commentViewModels = viewModel
     }
     
     func setUpTitleViewModel(header: DetailIssueCollectionReusableView) {
@@ -95,14 +95,14 @@ final class DetailIssueCollectionViewDataSource: NSObject, UICollectionViewDataS
         titleViewModel?.isOpen.fire()
     }
     
-    func setUpContentViewModel(cell: DetailIssueCollectionViewCell, viewModel: IssueContentViewModel) {
+    func setUpContentViewModel(cell: DetailIssueCollectionViewCell, viewModel: IssueCommentViewModel) {
         setUpContentImageViewBinding(cell: cell, viewModel: viewModel)
         setUpContentAuthorLabelBinding(cell: cell, viewModel: viewModel)
         setUpReportingLabelBinding(cell: cell, viewModel: viewModel)
         setUpContentLabelBinding(cell: cell, viewModel: viewModel)
     }
     
-    func setUpContentImageViewBinding(cell: DetailIssueCollectionViewCell, viewModel: IssueContentViewModel) {
+    func setUpContentImageViewBinding(cell: DetailIssueCollectionViewCell, viewModel: IssueCommentViewModel) {
         viewModel.imageURL.bind { url in
             guard let urlString = url,
                 let url = URL(string: urlString),
@@ -112,14 +112,14 @@ final class DetailIssueCollectionViewDataSource: NSObject, UICollectionViewDataS
         viewModel.imageURL.fire()
     }
     
-    func setUpContentAuthorLabelBinding(cell: DetailIssueCollectionViewCell, viewModel: IssueContentViewModel) {
+    func setUpContentAuthorLabelBinding(cell: DetailIssueCollectionViewCell, viewModel: IssueCommentViewModel) {
         viewModel.authorName.bind { authorName in
             cell.authorLabel.text = authorName
         }
         viewModel.authorName.fire()
     }
     
-    func setUpReportingLabelBinding(cell: DetailIssueCollectionViewCell, viewModel: IssueContentViewModel) {
+    func setUpReportingLabelBinding(cell: DetailIssueCollectionViewCell, viewModel: IssueCommentViewModel) {
         viewModel.reportingDate.bind { reportingDate in
             guard let reportingDate = reportingDate,
                 let date = DateFormatter().dateConverter.date(from: reportingDate) else { return }
@@ -128,7 +128,7 @@ final class DetailIssueCollectionViewDataSource: NSObject, UICollectionViewDataS
         viewModel.reportingDate.fire()
     }
     
-    func setUpContentLabelBinding(cell: DetailIssueCollectionViewCell, viewModel: IssueContentViewModel) {
+    func setUpContentLabelBinding(cell: DetailIssueCollectionViewCell, viewModel: IssueCommentViewModel) {
         viewModel.content.bind { content in
             cell.contentLabel.text = content
         }

@@ -42,5 +42,6 @@ struct MileStone: Codable {
 struct Label: Codable {
     var id: Int
     var title: String
+    var description: String?
     var backgroundColor: String
 }

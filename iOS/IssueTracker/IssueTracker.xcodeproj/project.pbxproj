@@ -28,6 +28,7 @@
 		4491CE6C24A33E1C003D9283 /* LabelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4491CE6B24A33E1C003D9283 /* LabelListViewController.swift */; };
 		4491CE6E24A34B0F003D9283 /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4491CE6D24A34B0F003D9283 /* LabelCell.swift */; };
 		4491CE7024A34BF7003D9283 /* LabelListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4491CE6F24A34BF7003D9283 /* LabelListDataSource.swift */; };
+		4491CE7224A34F13003D9283 /* LabelListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4491CE7124A34F13003D9283 /* LabelListUseCase.swift */; };
 		44E5CEA8248F56E9001A46AE /* InputStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E5CEA7248F56E9001A46AE /* InputStackView.swift */; };
 		44F2923424A1E3BD00AFF41A /* IssueCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F2923324A1E3BD00AFF41A /* IssueCommentViewModel.swift */; };
 		A5012D142494F3670027E192 /* BorderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5012D132494F3670027E192 /* BorderLabel.swift */; };
@@ -96,6 +97,7 @@
 		4491CE6B24A33E1C003D9283 /* LabelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListViewController.swift; sourceTree = "<group>"; };
 		4491CE6D24A34B0F003D9283 /* LabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
 		4491CE6F24A34BF7003D9283 /* LabelListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListDataSource.swift; sourceTree = "<group>"; };
+		4491CE7124A34F13003D9283 /* LabelListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListUseCase.swift; sourceTree = "<group>"; };
 		44E5CEA7248F56E9001A46AE /* InputStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStackView.swift; sourceTree = "<group>"; };
 		44F2923324A1E3BD00AFF41A /* IssueCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCommentViewModel.swift; sourceTree = "<group>"; };
 		A5012D132494F3670027E192 /* BorderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderLabel.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				4491CE6B24A33E1C003D9283 /* LabelListViewController.swift */,
 				4491CE6D24A34B0F003D9283 /* LabelCell.swift */,
 				4491CE6F24A34BF7003D9283 /* LabelListDataSource.swift */,
+				4491CE7124A34F13003D9283 /* LabelListUseCase.swift */,
 			);
 			path = LabelList;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				A516C5E02495287B008D3DF2 /* LabelLayout.swift in Sources */,
 				445BD2472498A3B300DBC485 /* IssueViewModel.swift in Sources */,
 				44238C75249B792F00DCE83A /* DetailIssueViewController.swift in Sources */,
+				4491CE7224A34F13003D9283 /* LabelListUseCase.swift in Sources */,
 				A51A1D6F248F3004005262DF /* BorderView.swift in Sources */,
 				A516C5D824952285008D3DF2 /* IssueTableViewCell.swift in Sources */,
 				444CD62A24A0ADE4003767FE /* DetailIssueCollectionViewDataSource.swift in Sources */,

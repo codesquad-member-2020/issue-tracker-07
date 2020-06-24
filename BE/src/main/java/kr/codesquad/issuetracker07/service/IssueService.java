@@ -2,7 +2,7 @@ package kr.codesquad.issuetracker07.service;
 
 import kr.codesquad.issuetracker07.dto.*;
 import kr.codesquad.issuetracker07.entity.*;
-import kr.codesquad.issuetracker07.repository.IssueRepository;
+import kr.codesquad.issuetracker07.repository.*;
 import kr.codesquad.issuetracker07.response.IssueDetailResponse;
 import kr.codesquad.issuetracker07.response.IssueListResponse;
 import org.springframework.stereotype.Service;
@@ -19,8 +19,24 @@ public class IssueService {
 
     private final IssueRepository issueRepository;
 
-    public IssueService(IssueRepository issueRepository) {
+    private final AttachmentLabelRepository attachmentLabelRepository;
+
+    private final LabelRepository labelRepository;
+
+    private final AttachmentMilestoneRepository attachmentMilestoneRepository;
+
+    private final MilestoneRepository milestoneRepository;
+
+    public IssueService(IssueRepository issueRepository,
+                        AttachmentLabelRepository attachmentLabelRepository,
+                        LabelRepository labelRepository,
+                        AttachmentMilestoneRepository attachmentMilestoneRepository,
+                        MilestoneRepository milestoneRepository) {
         this.issueRepository = issueRepository;
+        this.attachmentLabelRepository = attachmentLabelRepository;
+        this.labelRepository = labelRepository;
+        this.attachmentMilestoneRepository = attachmentMilestoneRepository;
+        this.milestoneRepository = milestoneRepository;
     }
 
     public void makeNewIssue(User user, String title, String description) {
@@ -161,11 +177,11 @@ public class IssueService {
 
     private List<EmojiSummaryVO> getEmojiSummaryVOList(Comment comment) {
         return comment.getAddingList().stream()
-                .map(adding -> EmojiSummaryVO.builder()
-                        .id(adding.getEmoji().getId())
-                        .unicode(adding.getEmoji().getUnicode())
-                        .build())
-                .collect(Collectors.toList());
+                                       .map(adding -> EmojiSummaryVO.builder()
+                                                                    .id(adding.getEmoji().getId())
+                                                                    .unicode(adding.getEmoji().getUnicode())
+                                                                    .build())
+                                       .collect(Collectors.toList());
     }
 
     private void setIssueOpen(String state, Issue issue) {
@@ -173,5 +189,27 @@ public class IssueService {
         if (state.equals("close")) {
             issue.setOpen(false);
         }
+    }
+
+    public void attachLabel(Long issueId, Long labelId) {
+        Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
+        Label label = labelRepository.findById(labelId).orElseThrow(NoSuchElementException::new);
+        AttachmentLabel attachmentLabel = AttachmentLabel.builder()
+                                                         .issue(issue)
+                                                         .label(label)
+                                                         .isAttached(true)
+                                                         .build();
+        attachmentLabelRepository.save(attachmentLabel);
+    }
+
+    public void attachMilestone(Long issueId, Long milestoneId) {
+        Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
+        Milestone milestone = milestoneRepository.findById(milestoneId).orElseThrow(NoSuchElementException::new);
+        AttachmentMilestone attachmentMilestone = AttachmentMilestone.builder()
+                                                                     .issue(issue)
+                                                                     .milestone(milestone)
+                                                                     .isAttached(true)
+                                                                     .build();
+        attachmentMilestoneRepository.save(attachmentMilestone);
     }
 }

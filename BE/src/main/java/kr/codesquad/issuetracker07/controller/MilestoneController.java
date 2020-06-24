@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/issues/{issueId}/milestones")
+@RequestMapping("/milestones")
 public class MilestoneController {
 
     private final UserService userService;
@@ -33,52 +33,40 @@ public class MilestoneController {
 
     @PostMapping("")
     public ResponseEntity<CommonResponse> makeNewMilestone(HttpServletRequest request,
-                                                           @PathVariable Long issueId,
                                                            @RequestBody MilestoneVO milestoneVO) {
         String jwtToken = JwtUtils.getJwtTokenFromHeader(request);
         String userName = jwtService.getUserNameFromJwtToken(jwtToken);
         User user = userService.findUserByName(userName);
-        milestoneService.makeNewMilestone(user, issueId, milestoneVO);
+        milestoneService.makeNewMilestone(user, milestoneVO);
         return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
     }
 
     @GetMapping("")
-    public ResponseEntity<MilestoneListResponse> getAllMilestoneList(@PathVariable Long issueId) {
-        MilestoneListResponse milestoneListResponse = milestoneService.makeMilestoneList(issueId);
+    public ResponseEntity<MilestoneListResponse> getAllMilestoneList() {
+        MilestoneListResponse milestoneListResponse = milestoneService.makeMilestoneList();
         return new ResponseEntity<>(milestoneListResponse, HttpStatus.OK);
     }
 
     @GetMapping("/{milestoneId}")
-    public ResponseEntity<MilestoneDetailResponse> getMilestoneDetail(@PathVariable Long issueId,
-                                                                      @PathVariable Long milestoneId) {
-        MilestoneDetailResponse milestoneDetailResponse = milestoneService.makeMilestoneDetail(issueId, milestoneId);
+    public ResponseEntity<MilestoneDetailResponse> getMilestoneDetail(@PathVariable Long milestoneId) {
+        MilestoneDetailResponse milestoneDetailResponse = milestoneService.makeMilestoneDetail(milestoneId);
         return new ResponseEntity<>(milestoneDetailResponse, HttpStatus.OK);
     }
 
     @PutMapping("/{milestoneId}")
     public ResponseEntity<CommonResponse> modifyMilestone(HttpServletRequest request,
-                                                          @PathVariable Long issueId,
                                                           @PathVariable Long milestoneId,
                                                           @RequestBody MilestoneVO milestoneVO) {
         String jwtToken = JwtUtils.getJwtTokenFromHeader(request);
         String userName = jwtService.getUserNameFromJwtToken(jwtToken);
         User user = userService.findUserByName(userName);
-        milestoneService.modifyMilestone(user, issueId, milestoneId, milestoneVO);
-        return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
-    }
-
-
-    @PatchMapping("/{milestoneId}")
-    public ResponseEntity<CommonResponse> attachMilestoneToIssue(@PathVariable Long issueId,
-                                                                 @PathVariable Long milestoneId) {
-        milestoneService.attachMilestone(issueId, milestoneId);
+        milestoneService.modifyMilestone(user, milestoneId, milestoneVO);
         return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
     }
 
     @DeleteMapping("/{milestoneId}")
-    public ResponseEntity<CommonResponse> deleteMilestone(@PathVariable Long issueId,
-                                                          @PathVariable Long milestoneId) {
-        milestoneService.deleteMilestone(issueId, milestoneId);
+    public ResponseEntity<CommonResponse> deleteMilestone(@PathVariable Long milestoneId) {
+        milestoneService.deleteMilestone(milestoneId);
         return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
     }
 }

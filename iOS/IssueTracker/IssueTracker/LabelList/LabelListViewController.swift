@@ -10,4 +10,13 @@ import UIKit
 
 class LabelListViewController: UIViewController {
 
+    @IBOutlet weak var labelListTableView: UITableView!
+    
+    private var dataSource: LabelListDataSource!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        dataSource = LabelListDataSource()
+        labelListTableView.dataSource = dataSource
+    }
 }

@@ -1002,7 +1002,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기능에 대한 레이블입니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dvh-ul-DfW">
-                                                    <rect key="frame" x="20" y="48.5" width="145" height="29.5"/>
+                                                    <rect key="frame" x="20" y="48.5" width="355" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" name="DateColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1012,6 +1012,8 @@
                                                 <constraint firstItem="k4x-2T-b9q" firstAttribute="leading" secondItem="l7f-zI-1X3" secondAttribute="leadingMargin" id="3ZP-40-Udn"/>
                                                 <constraint firstItem="Dvh-ul-DfW" firstAttribute="leading" secondItem="k4x-2T-b9q" secondAttribute="leading" id="846-nB-LvL"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Dvh-ul-DfW" secondAttribute="bottom" constant="5" id="R2R-Mb-l1X"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Dvh-ul-DfW" secondAttribute="trailing" id="abU-yG-6b6"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="k4x-2T-b9q" secondAttribute="trailing" priority="1" id="ayL-o9-Ygf"/>
                                                 <constraint firstItem="Dvh-ul-DfW" firstAttribute="top" secondItem="k4x-2T-b9q" secondAttribute="bottom" constant="10" id="p4e-ly-eXJ"/>
                                                 <constraint firstItem="k4x-2T-b9q" firstAttribute="top" secondItem="l7f-zI-1X3" secondAttribute="topMargin" constant="5" id="s0e-Oq-2Wg"/>
                                             </constraints>

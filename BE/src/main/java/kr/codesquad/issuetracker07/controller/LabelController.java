@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/issues/{issueId}/labels")
+@RequestMapping("/labels")
 public class LabelController {
 
     private final UserService userService;
@@ -35,51 +35,40 @@ public class LabelController {
 
     @PostMapping("")
     public ResponseEntity<CommonResponse> makeLabel(HttpServletRequest request,
-                                                    @PathVariable Long issueId,
                                                     @RequestBody LabelVO labelVO) {
         String jwtToken = JwtUtils.getJwtTokenFromHeader(request);
         String userName = jwtService.getUserNameFromJwtToken(jwtToken);
         User user = userService.findUserByName(userName);
-        labelService.makeNewLabel(user, issueId, labelVO);
+        labelService.makeNewLabel(user, labelVO);
         return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
     }
 
     @GetMapping("")
-    public ResponseEntity<LabelListResponse> getAllLabelList(@PathVariable Long issueId) {
-        LabelListResponse labelListResponse = labelService.makeLabelList(issueId);
+    public ResponseEntity<LabelListResponse> getAllLabelList() {
+        LabelListResponse labelListResponse = labelService.makeLabelList();
         return new ResponseEntity<>(labelListResponse, HttpStatus.OK);
     }
 
     @GetMapping("/{labelId}")
-    public ResponseEntity<LabelDetailResponse> getLabelDetail(@PathVariable Long issueId,
-                                                               @PathVariable Long labelId) {
-        LabelDetailResponse labelDetailResponse = labelService.makeLabelDetail(issueId, labelId);
+    public ResponseEntity<LabelDetailResponse> getLabelDetail(@PathVariable Long labelId) {
+        LabelDetailResponse labelDetailResponse = labelService.makeLabelDetail(labelId);
         return new ResponseEntity<>(labelDetailResponse, HttpStatus.OK);
     }
 
     @PutMapping("/{labelId}")
     public ResponseEntity<CommonResponse> modifyLabel(HttpServletRequest request,
-                                                      @PathVariable Long issueId,
                                                       @PathVariable Long labelId,
                                                       @RequestBody LabelVO labelVO) {
         String jwtToken = JwtUtils.getJwtTokenFromHeader(request);
         String userName = jwtService.getUserNameFromJwtToken(jwtToken);
         User user = userService.findUserByName(userName);
-        labelService.modifyLabel(user, issueId, labelId, labelVO);
-        return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
-    }
-
-    @PatchMapping("/{labelId}")
-    public ResponseEntity<CommonResponse> attachLabelToIssue(@PathVariable Long issueId,
-                                                             @PathVariable Long labelId) {
-        labelService.attachLabel(issueId, labelId);
+        labelService.modifyLabel(user, labelId, labelVO);
         return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
     }
 
     @DeleteMapping("/{labelId}")
-    public ResponseEntity<CommonResponse> deleteLabel(@PathVariable Long issueId,
-                                                      @PathVariable Long labelId) {
-        labelService.deleteLabel(issueId, labelId);
+    public ResponseEntity<CommonResponse> deleteLabel(@PathVariable Long labelId) {
+        labelService.deleteLabel(labelId);
         return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
     }
 }

@@ -78,6 +78,20 @@ public class IssueController {
         return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
     }
 
+    @PatchMapping("/{issueId}/labels/{labelId}")
+    public ResponseEntity<CommonResponse> attachLabelToIssue(@PathVariable Long issueId,
+                                                             @PathVariable Long labelId) {
+        issueService.attachLabel(issueId, labelId);
+        return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
+    }
+
+    @PatchMapping("/{issueId}/milestones/{milestoneId}")
+    public ResponseEntity<CommonResponse> attachMilestoneToIssue(@PathVariable Long issueId,
+                                                                 @PathVariable Long milestoneId) {
+        issueService.attachMilestone(issueId, milestoneId);
+        return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
+    }
+
     @DeleteMapping("/{issueId}")
     public ResponseEntity<CommonResponse> deleteIssue(HttpServletRequest request,
                                                       @PathVariable Long issueId) {

@@ -1,11 +1,16 @@
 package kr.codesquad.issuetracker07.service;
 
+import kr.codesquad.issuetracker07.dto.AssigneeSummaryVO;
+import kr.codesquad.issuetracker07.entity.Assignee;
 import kr.codesquad.issuetracker07.entity.AuthProvider;
 import kr.codesquad.issuetracker07.entity.User;
 import kr.codesquad.issuetracker07.repository.UserRepository;
+import kr.codesquad.issuetracker07.response.AssigneeListResponse;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -46,5 +51,24 @@ public class UserService {
 
     public User findUserByLoginId(String loginId) {
         return userRepository.findByLoginId(loginId).orElseThrow(NoSuchElementException::new);
+    }
+
+    public AssigneeListResponse makeAssigneeList() {
+        List<User> userList = userRepository.findAll();
+        List<AssigneeSummaryVO> assigneeSummaryVOList = userList.stream()
+                                                                .map(user -> AssigneeSummaryVO.builder()
+                                                                                              .id(user.getId())
+                                                                                              .name(user.getName())
+                                                                                              .imageUrl(user.getImageUrl())
+                                                                                              .build())
+                                                                .collect(Collectors.toList());
+        return AssigneeListResponse.builder()
+                .status(true)
+                .assignee(assigneeSummaryVOList)
+                .build();
+    }
+
+    public User findUserById(Long assigneeId) {
+        return userRepository.findById(assigneeId).orElseThrow(NoSuchElementException::new);
     }
 }

@@ -1,5 +1,6 @@
 package kr.codesquad.issuetracker07.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Data
@@ -30,14 +30,13 @@ public class Comment {
 
     private LocalDateTime modifiedAt;
 
-    @OneToMany(mappedBy = "comment")
-    private List<Adding> addingList;
-
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_name")
     private User user;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "issue_id")
     private Issue issue;
 }

@@ -1,12 +1,12 @@
 package kr.codesquad.issuetracker07.controller;
 
+import kr.codesquad.issuetracker07.response.IssueDetailResponse;
 import kr.codesquad.issuetracker07.entity.Issue;
 import kr.codesquad.issuetracker07.entity.User;
 import kr.codesquad.issuetracker07.dto.IssueForUpdatingVO;
 import kr.codesquad.issuetracker07.dto.IssueRequestVO;
 import kr.codesquad.issuetracker07.response.CommonResponse;
 import kr.codesquad.issuetracker07.response.IssueListResponse;
-import kr.codesquad.issuetracker07.response.IssueDetailResponse;
 import kr.codesquad.issuetracker07.service.IssueService;
 import kr.codesquad.issuetracker07.service.JwtService;
 import kr.codesquad.issuetracker07.service.UserService;
@@ -89,6 +89,14 @@ public class IssueController {
     public ResponseEntity<CommonResponse> attachMilestoneToIssue(@PathVariable Long issueId,
                                                                  @PathVariable Long milestoneId) {
         issueService.attachMilestone(issueId, milestoneId);
+        return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
+    }
+
+    @PatchMapping("/{issueId}/assignees/{assigneeId}")
+    public ResponseEntity<CommonResponse> assignAssigneeToIssue(@PathVariable Long issueId,
+                                                                 @PathVariable Long assigneeId) {
+        User user = userService.findUserById(assigneeId);
+        issueService.assignAssignee(user, issueId);
         return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
     }
 

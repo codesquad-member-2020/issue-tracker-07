@@ -27,6 +27,7 @@
 		4484801A24925D88007AEFEC /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4484801924925D88007AEFEC /* SignUpResponse.swift */; };
 		4491CE6C24A33E1C003D9283 /* LabelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4491CE6B24A33E1C003D9283 /* LabelListViewController.swift */; };
 		4491CE6E24A34B0F003D9283 /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4491CE6D24A34B0F003D9283 /* LabelCell.swift */; };
+		4491CE7024A34BF7003D9283 /* LabelListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4491CE6F24A34BF7003D9283 /* LabelListDataSource.swift */; };
 		44E5CEA8248F56E9001A46AE /* InputStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E5CEA7248F56E9001A46AE /* InputStackView.swift */; };
 		44F2923424A1E3BD00AFF41A /* IssueCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F2923324A1E3BD00AFF41A /* IssueCommentViewModel.swift */; };
 		A5012D142494F3670027E192 /* BorderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5012D132494F3670027E192 /* BorderLabel.swift */; };
@@ -94,6 +95,7 @@
 		4484801924925D88007AEFEC /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		4491CE6B24A33E1C003D9283 /* LabelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListViewController.swift; sourceTree = "<group>"; };
 		4491CE6D24A34B0F003D9283 /* LabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
+		4491CE6F24A34BF7003D9283 /* LabelListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListDataSource.swift; sourceTree = "<group>"; };
 		44E5CEA7248F56E9001A46AE /* InputStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStackView.swift; sourceTree = "<group>"; };
 		44F2923324A1E3BD00AFF41A /* IssueCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCommentViewModel.swift; sourceTree = "<group>"; };
 		A5012D132494F3670027E192 /* BorderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderLabel.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			children = (
 				4491CE6B24A33E1C003D9283 /* LabelListViewController.swift */,
 				4491CE6D24A34B0F003D9283 /* LabelCell.swift */,
+				4491CE6F24A34BF7003D9283 /* LabelListDataSource.swift */,
 			);
 			path = LabelList;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				A52634B824A1CD15009C6A44 /* DetailIssueCollectionReusableView.swift in Sources */,
 				A5BC41D92491F37800F094CF /* NetworkManager.swift in Sources */,
 				A513C51124979B8A00818C04 /* Issue.swift in Sources */,
+				4491CE7024A34BF7003D9283 /* LabelListDataSource.swift in Sources */,
 				445BD24B2498F3F000DBC485 /* DateFormatterExtension.swift in Sources */,
 				443DE7F224939B9C00308A7B /* SignUpUseCase.swift in Sources */,
 				444BAF3524A0E82D005431EB /* DetailIssueUseCase.swift in Sources */,

@@ -26,6 +26,7 @@
 		44848018249243C6007AEFEC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 44848017249243C6007AEFEC /* Alamofire */; };
 		4484801A24925D88007AEFEC /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4484801924925D88007AEFEC /* SignUpResponse.swift */; };
 		4491CE6C24A33E1C003D9283 /* LabelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4491CE6B24A33E1C003D9283 /* LabelListViewController.swift */; };
+		4491CE6E24A34B0F003D9283 /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4491CE6D24A34B0F003D9283 /* LabelCell.swift */; };
 		44E5CEA8248F56E9001A46AE /* InputStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E5CEA7248F56E9001A46AE /* InputStackView.swift */; };
 		44F2923424A1E3BD00AFF41A /* IssueCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F2923324A1E3BD00AFF41A /* IssueCommentViewModel.swift */; };
 		A5012D142494F3670027E192 /* BorderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5012D132494F3670027E192 /* BorderLabel.swift */; };
@@ -92,6 +93,7 @@
 		4484801424920527007AEFEC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4484801924925D88007AEFEC /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		4491CE6B24A33E1C003D9283 /* LabelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListViewController.swift; sourceTree = "<group>"; };
+		4491CE6D24A34B0F003D9283 /* LabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
 		44E5CEA7248F56E9001A46AE /* InputStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStackView.swift; sourceTree = "<group>"; };
 		44F2923324A1E3BD00AFF41A /* IssueCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCommentViewModel.swift; sourceTree = "<group>"; };
 		A5012D132494F3670027E192 /* BorderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderLabel.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				4491CE6B24A33E1C003D9283 /* LabelListViewController.swift */,
+				4491CE6D24A34B0F003D9283 /* LabelCell.swift */,
 			);
 			path = LabelList;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				A57F6368249262580083051A /* SignInResponse.swift in Sources */,
 				A57F63552492154A0083051A /* SignUpViewModel.swift in Sources */,
 				A5012D142494F3670027E192 /* BorderLabel.swift in Sources */,
+				4491CE6E24A34B0F003D9283 /* LabelCell.swift in Sources */,
 				443DE7EB24935F6F00308A7B /* SignInInfo.swift in Sources */,
 				A54A873E248FB98F00A81604 /* Dynamic.swift in Sources */,
 				A57F636B249264670083051A /* IssueListViewController.swift in Sources */,

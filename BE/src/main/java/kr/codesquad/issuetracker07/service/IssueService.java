@@ -153,6 +153,59 @@ public class IssueService {
         return false;
     }
 
+    public void attachLabel(Long issueId, Long labelId) {
+        Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
+        Label label = labelRepository.findById(labelId).orElseThrow(NoSuchElementException::new);
+        AttachmentLabel attachmentLabel = AttachmentLabel.builder()
+                                                         .issue(issue)
+                                                         .label(label)
+                                                         .isAttached(true)
+                                                         .build();
+        attachmentLabelRepository.save(attachmentLabel);
+    }
+
+    public void attachMilestone(Long issueId, Long milestoneId) {
+        Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
+        Milestone milestone = milestoneRepository.findById(milestoneId).orElseThrow(NoSuchElementException::new);
+        AttachmentMilestone attachmentMilestone = AttachmentMilestone.builder()
+                                                                     .issue(issue)
+                                                                     .milestone(milestone)
+                                                                     .isAttached(true)
+                                                                     .build();
+        attachmentMilestoneRepository.save(attachmentMilestone);
+    }
+
+    public void assignAssignee(User user, Long issueId) {
+        Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
+        Assignee assignee = Assignee.builder()
+                                    .id(user.getId())
+                                    .name(user.getName())
+                                    .imageUrl(user.getImageUrl())
+                                    .issue(issue)
+                                    .build();
+        assigneeRepository.save(assignee);
+        issue.addAssignee(assignee);
+        issueRepository.save(issue);
+    }
+
+    public void makeNewComment(User user, Long issueId, CommentVO commentVO) {
+        Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
+        Comment comment = Comment.builder()
+                                 .writer(user.getName())
+                                 .imageUrl(user.getImageUrl())
+                                 .content(commentVO.getContent())
+                                 .createdAt(LocalDateTime.now())
+                                 .modifiedAt(LocalDateTime.now())
+                                 .issue(issue)
+                                 .user(user)
+                                 .build();
+        commentRepository.save(comment);
+        user.addIssue(issue);
+        issueRepository.save(issue);
+        issue.addComment(comment);
+        commentRepository.save(comment);
+    }
+
     private IssueSummaryVO makeIssueSummaryVO(Issue issue) {
         return IssueSummaryVO.builder()
                              .id(issue.getId())
@@ -191,40 +244,5 @@ public class IssueService {
         if (state.equals("close")) {
             issue.setOpen(false);
         }
-    }
-
-    public void attachLabel(Long issueId, Long labelId) {
-        Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
-        Label label = labelRepository.findById(labelId).orElseThrow(NoSuchElementException::new);
-        AttachmentLabel attachmentLabel = AttachmentLabel.builder()
-                                                         .issue(issue)
-                                                         .label(label)
-                                                         .isAttached(true)
-                                                         .build();
-        attachmentLabelRepository.save(attachmentLabel);
-    }
-
-    public void attachMilestone(Long issueId, Long milestoneId) {
-        Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
-        Milestone milestone = milestoneRepository.findById(milestoneId).orElseThrow(NoSuchElementException::new);
-        AttachmentMilestone attachmentMilestone = AttachmentMilestone.builder()
-                                                                     .issue(issue)
-                                                                     .milestone(milestone)
-                                                                     .isAttached(true)
-                                                                     .build();
-        attachmentMilestoneRepository.save(attachmentMilestone);
-    }
-
-    public void assignAssignee(User user, Long issueId) {
-        Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
-        Assignee assignee = Assignee.builder()
-                                    .id(user.getId())
-                                    .name(user.getName())
-                                    .imageUrl(user.getImageUrl())
-                                    .issue(issue)
-                                    .build();
-        assigneeRepository.save(assignee);
-        issue.addAssignee(assignee);
-        issueRepository.save(issue);
     }
 }

@@ -1,5 +1,6 @@
 package kr.codesquad.issuetracker07.controller;
 
+import kr.codesquad.issuetracker07.dto.CommentVO;
 import kr.codesquad.issuetracker07.response.IssueDetailResponse;
 import kr.codesquad.issuetracker07.entity.Issue;
 import kr.codesquad.issuetracker07.entity.User;
@@ -111,5 +112,16 @@ public class IssueController {
             return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
         }
         return new ResponseEntity<>(new CommonResponse(false), HttpStatus.OK);
+    }
+
+    @PostMapping("/{issueId}/comments")
+    public ResponseEntity<CommonResponse> makeComment(HttpServletRequest request,
+                                                      @PathVariable Long issueId,
+                                                      @RequestBody CommentVO commentVO) {
+        String jwtToken = JwtUtils.getJwtTokenFromHeader(request);
+        String userName = jwtService.getUserNameFromJwtToken(jwtToken);
+        User user = userService.findUserByName(userName);
+        issueService.makeNewComment(user, issueId, commentVO);
+        return new ResponseEntity<>(new CommonResponse(true), HttpStatus.OK);
     }
 }

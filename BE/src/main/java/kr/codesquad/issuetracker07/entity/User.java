@@ -14,10 +14,14 @@ import java.util.List;
 @Builder
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @JsonProperty("login")
     private String name;
 
-    @Id
+    @Column(unique = true)
     @JsonProperty("name")
     private String loginId;
 

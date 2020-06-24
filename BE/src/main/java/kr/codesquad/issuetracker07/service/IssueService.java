@@ -27,16 +27,24 @@ public class IssueService {
 
     private final MilestoneRepository milestoneRepository;
 
+    private final CommentRepository commentRepository;
+
+    private final AssigneeRepository assigneeRepository;
+
     public IssueService(IssueRepository issueRepository,
                         AttachmentLabelRepository attachmentLabelRepository,
                         LabelRepository labelRepository,
                         AttachmentMilestoneRepository attachmentMilestoneRepository,
-                        MilestoneRepository milestoneRepository) {
+                        MilestoneRepository milestoneRepository,
+                        CommentRepository commentRepository,
+                        AssigneeRepository assigneeRepository) {
         this.issueRepository = issueRepository;
         this.attachmentLabelRepository = attachmentLabelRepository;
         this.labelRepository = labelRepository;
         this.attachmentMilestoneRepository = attachmentMilestoneRepository;
         this.milestoneRepository = milestoneRepository;
+        this.commentRepository = commentRepository;
+        this.assigneeRepository = assigneeRepository;
     }
 
     public void makeNewIssue(User user, String title, String description) {
@@ -54,8 +62,19 @@ public class IssueService {
                            .assigneeList(new ArrayList<>())
                            .attachmentLabelList(new ArrayList<>())
                            .build();
+        Comment comment = Comment.builder()
+                                 .writer(user.getName())
+                                 .imageUrl(user.getImageUrl())
+                                 .content(issue.getDescription())
+                                 .createdAt(LocalDateTime.now())
+                                 .modifiedAt(LocalDateTime.now())
+                                 .issue(issue)
+                                 .user(user)
+                                 .build();
         user.addIssue(issue);
         issueRepository.save(issue);
+        issue.addComment(comment);
+        commentRepository.save(comment);
     }
 
     public List<Issue> findAllIssue() {
@@ -72,42 +91,34 @@ public class IssueService {
     }
 
     public IssueDetailResponse makeIssueDetail(Issue issue) {
-        IssueVO issueVO = IssueVO.builder()
-                                 .id(issue.getId())
-                                 .title(issue.getTitle())
-                                 .authorName(issue.getUser().getName())
-                                 .imageUrl(issue.getUser().getImageUrl())
-                                 .isOpen(issue.isOpen())
-                                 .createdAt(issue.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                                 .comment(issue.getCommentList().stream()
-                                                                .map(comment -> CommentSummaryVO.builder()
-                                                                                                .id(comment.getId())
-                                                                                                .name(comment.getWriter())
-                                                                                                .imageUrl(comment.getImageUrl())
-                                                                                                .content(comment.getContent())
-                                                                                                .createdAt(comment.getCreatedAt())
-                                                                                                .modifiedAt(comment.getModifiedAt())
-                                                                                                .emoji(getEmojiSummaryVOList(comment))
-                                                                                                .build())
-                                                                .collect(Collectors.toList()))
-                                 .milestone(issue.getAttachmentMilestoneList().stream()
-                                                                              .filter(AttachmentMilestone::isAttached)
-                                                                              .map(this::makeMilestoneSummaryVO)
-                                                                              .collect(Collectors.toList()))
-                                 .label(issue.getAttachmentLabelList().stream()
-                                                                      .filter(AttachmentLabel::isAttached)
-                                                                      .map(this::makeLabelSummaryVO)
-                                                                      .collect(Collectors.toList()))
-                                 .assignee(issue.getAssigneeList().stream().map(assignee -> AssigneeSummaryVO.builder()
-                                                                                                             .id(assignee.getId())
-                                                                                                             .name(assignee.getName())
-                                                                                                             .imageUrl(assignee.getImageUrl())
-                                                                                                             .build()).collect(Collectors.toList()))
-                                 .build();
-
         return IssueDetailResponse.builder()
                                   .status(true)
-                                  .issue(issueVO)
+                                  .id(issue.getId())
+                                  .title(issue.getTitle())
+                                  .isOpen(issue.isOpen())
+                                  .comment(issue.getCommentList().stream()
+                                                                 .map(comment -> CommentSummaryVO.builder()
+                                                                                                 .id(comment.getId())
+                                                                                                 .name(comment.getWriter())
+                                                                                                 .imageUrl(comment.getImageUrl())
+                                                                                                 .content(comment.getContent())
+                                                                                                 .createdAt(comment.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                                                                                                 .modifiedAt(comment.getModifiedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                                                                                                 .build())
+                                                                 .collect(Collectors.toList()))
+                                  .milestone(issue.getAttachmentMilestoneList().stream()
+                                                                               .filter(AttachmentMilestone::isAttached)
+                                                                               .map(this::makeMilestoneSummaryVO)
+                                                                               .collect(Collectors.toList()))
+                                  .label(issue.getAttachmentLabelList().stream()
+                                                                       .filter(AttachmentLabel::isAttached)
+                                                                       .map(this::makeLabelSummaryVO)
+                                                                       .collect(Collectors.toList()))
+                                  .assignee(issue.getAssigneeList().stream().map(assignee -> AssigneeSummaryVO.builder()
+                                                                                                              .id(assignee.getId())
+                                                                                                              .name(assignee.getName())
+                                                                                                              .imageUrl(assignee.getImageUrl())
+                                                                                                              .build()).collect(Collectors.toList()))
                                   .build();
     }
 
@@ -175,15 +186,6 @@ public class IssueService {
                              .build();
     }
 
-    private List<EmojiSummaryVO> getEmojiSummaryVOList(Comment comment) {
-        return comment.getAddingList().stream()
-                                       .map(adding -> EmojiSummaryVO.builder()
-                                                                    .id(adding.getEmoji().getId())
-                                                                    .unicode(adding.getEmoji().getUnicode())
-                                                                    .build())
-                                       .collect(Collectors.toList());
-    }
-
     private void setIssueOpen(String state, Issue issue) {
         issue.setOpen(true);
         if (state.equals("close")) {
@@ -211,5 +213,18 @@ public class IssueService {
                                                                      .isAttached(true)
                                                                      .build();
         attachmentMilestoneRepository.save(attachmentMilestone);
+    }
+
+    public void assignAssignee(User user, Long issueId) {
+        Issue issue = issueRepository.findById(issueId).orElseThrow(NoSuchElementException::new);
+        Assignee assignee = Assignee.builder()
+                                    .id(user.getId())
+                                    .name(user.getName())
+                                    .imageUrl(user.getImageUrl())
+                                    .issue(issue)
+                                    .build();
+        assigneeRepository.save(assignee);
+        issue.addAssignee(assignee);
+        issueRepository.save(issue);
     }
 }

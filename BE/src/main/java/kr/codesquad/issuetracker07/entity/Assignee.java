@@ -1,5 +1,6 @@
 package kr.codesquad.issuetracker07.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +16,6 @@ import javax.persistence.*;
 public class Assignee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -23,6 +23,7 @@ public class Assignee {
     private String imageUrl;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "issue_id")
     private Issue issue;
 }

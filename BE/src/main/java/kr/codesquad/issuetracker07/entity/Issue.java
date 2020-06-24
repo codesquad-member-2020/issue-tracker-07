@@ -47,4 +47,14 @@ public class Issue {
     @ManyToOne
     @JsonIgnore
     private User user;
+
+    public void addComment(Comment comment) {
+        comment.setIssue(this);
+        getCommentList().add(comment);
+    }
+
+    public void addAssignee(Assignee assignee) {
+        assignee.setIssue(this);
+        getAssigneeList().add(assignee);
+    }
 }

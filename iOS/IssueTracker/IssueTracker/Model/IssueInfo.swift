@@ -9,26 +9,22 @@
 import Foundation
 
 struct IssueInfo: Codable {
-    var contents: [Issue]
-    var emoji: [Emoji]
-    var comment: [Comment]
-    var assignee: [Assignee]
-}
-
-struct Emoji: Codable {
     var id: Int
-    var unicode: String
-    var clickCount: Int
+    var title: String
+    var isOpen: Bool
+    var milestone: [MileStone]
+    var label: [Label]
+    var assignee: [Assignee]
+    var comments: [Comment]
 }
 
-struct Comment: Codable, Contentable {
+struct Comment: Codable {
     var id: Int
     var authorName: String?
     var imageURL: String?
     var content: String?
     var reportingDate: String
     var modifiedDate: String
-    var emoji: [Emoji]
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -37,7 +33,6 @@ struct Comment: Codable, Contentable {
         case content
         case reportingDate = "createdAt"
         case modifiedDate = "modifiedAt"
-        case emoji
     }
 }
 

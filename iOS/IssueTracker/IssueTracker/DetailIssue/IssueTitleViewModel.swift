@@ -16,11 +16,11 @@ class IssueTitleViewModel {
     var imageURL: Dynamic<String?>
     var isOpen: Dynamic<Bool?>
     
-    init(issue: Issue?) {
-        id = .init(issue?.id)
-        title = .init(issue?.title)
-        authorName = .init(issue?.authorName)
-        imageURL = .init(issue?.imageURL)
-        isOpen = .init(issue?.isOpen)
+    init(issueInfo: IssueInfo?) {
+        id = .init(issueInfo?.id)
+        title = .init(issueInfo?.title)
+        authorName = .init(issueInfo?.comments.first?.authorName)
+        imageURL = .init(issueInfo?.comments.first?.imageURL)
+        isOpen = .init(issueInfo?.isOpen)
     }
 }

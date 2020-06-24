@@ -25,7 +25,6 @@ struct Comment: Codable {
     var content: String?
     var reportingDate: String
     var modifiedDate: String
-    var emoji: [Emoji]
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -34,14 +33,7 @@ struct Comment: Codable {
         case content
         case reportingDate = "createdAt"
         case modifiedDate = "modifiedAt"
-        case emoji
     }
-}
-
-struct Emoji: Codable {
-    var id: Int
-    var unicode: String
-    var clickCount: Int
 }
 
 struct Assignee: Codable {

@@ -38,7 +38,7 @@ class ConfigurationView: UIView {
     private func setUpCloseButton() {
         closeButton = BorderButton()
         closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-        closeButton.tintColor = .black
+        closeButton.tintColor = .label
         addSubview(closeButton)
     }
     

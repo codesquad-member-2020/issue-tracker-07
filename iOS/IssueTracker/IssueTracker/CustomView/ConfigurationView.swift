@@ -12,8 +12,10 @@ import SnapKit
 class ConfigurationView: UIView {
     
     private(set) var closeButton: BorderButton!
+    private var divisionLineView: UIView!
     private(set) var resetButton: BorderButton!
     private(set) var saveButton: BorderButton!
+    private(set) var containerStackView: UIStackView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,6 +35,7 @@ class ConfigurationView: UIView {
         setUpDivisionLineView()
         setUpResetButton()
         setUpSaveButton()
+        setUpContainerStackView()
     }
     
     private func setUpCloseButton() {
@@ -43,14 +46,9 @@ class ConfigurationView: UIView {
     }
     
     private func setUpDivisionLineView() {
-        let divisionLineView = UIView()
+        divisionLineView = UIView()
         divisionLineView.backgroundColor = .systemGray
         addSubview(divisionLineView)
-        divisionLineView.snp.makeConstraints {
-            $0.height.equalTo(0.5)
-            $0.width.equalToSuperview()
-            $0.top.equalTo(closeButton.snp.bottom).offset(15)
-        }
     }
     
     private func setUpResetButton() {
@@ -71,15 +69,31 @@ class ConfigurationView: UIView {
         addSubview(saveButton)
     }
     
+    private func setUpContainerStackView() {
+        containerStackView = UIStackView()
+        containerStackView.axis = .vertical
+        addSubview(containerStackView)
+    }
+    
     private func makeContraints() {
         makeContraintsCloseButton()
+        makeContraintsDivisionLineView()
         makeConstraintsResetButton()
         makeConstraintsSaveButton()
+        makeConstraintsContainerStackView()
     }
     
     private func makeContraintsCloseButton() {
         closeButton.snp.makeConstraints {
             $0.top.leading.equalToSuperview().inset(15)
+        }
+    }
+    
+    private func makeContraintsDivisionLineView() {
+        divisionLineView.snp.makeConstraints {
+            $0.height.equalTo(0.5)
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(closeButton.snp.bottom).offset(15)
         }
     }
     
@@ -96,6 +110,14 @@ class ConfigurationView: UIView {
             $0.height.equalToSuperview().dividedBy(8)
             $0.trailing.equalToSuperview().inset(15)
             $0.bottom.equalTo(resetButton.snp.bottom)
+        }
+    }
+    
+    private func makeConstraintsContainerStackView() {
+        containerStackView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(30)
+            $0.top.equalTo(divisionLineView.snp.bottom).offset(10)
+            $0.bottom.equalTo(saveButton.snp.top).offset(-10)
         }
     }
 }

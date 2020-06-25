@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aFR-Pi-fOj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="O5r-Jh-FX2">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -815,7 +815,7 @@
                     <tabBarItem key="tabBarItem" title="이슈" image="1.circle" catalog="system" selectedImage="1.circle.fill" id="Beb-cs-Dk5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="eO0-gc-O09">
-                        <rect key="frame" x="0.0" y="44" width="414" height="104.5"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -949,7 +949,7 @@
                     <tabBarItem key="tabBarItem" title="설정" image="4.alt.circle" catalog="system" selectedImage="4.circle.fill" id="6TB-BC-Dpc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Bwq-GW-IZn">
-                        <rect key="frame" x="0.0" y="44" width="414" height="104.5"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1036,7 +1036,11 @@
                         <viewLayoutGuide key="safeArea" id="zAU-wz-Ckd"/>
                     </view>
                     <navigationItem key="navigationItem" title="레이블" id="szA-bl-yWC">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="LRf-mM-yb7"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="LRf-mM-yb7">
+                            <connections>
+                                <action selector="plusButtonTapped:" destination="XNs-1M-cmS" id="Pj3-xR-6VN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="labelListTableView" destination="uRf-Z4-ouR" id="Xlu-AV-uSI"/>
@@ -1044,7 +1048,50 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e2h-Ee-XDn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3308.6956521739135" y="138.61607142857142"/>
+            <point key="canvasLocation" x="3064" y="139"/>
+        </scene>
+        <!--Edit Label View Controller-->
+        <scene sceneID="lV9-EV-x5P">
+            <objects>
+                <viewController storyboardIdentifier="editLabelViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ty9-Ec-2J9" customClass="EditLabelViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ify-NF-quc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5J7-ap-EF4">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0g7-G1-6qo" customClass="ConfigurationView" customModule="IssueTracker" customModuleProvider="target">
+                                <rect key="frame" x="20.5" y="269" width="373" height="358"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="5J7-ap-EF4" secondAttribute="bottom" id="H0u-5K-9CF"/>
+                            <constraint firstItem="5J7-ap-EF4" firstAttribute="top" secondItem="ify-NF-quc" secondAttribute="top" id="JwA-NX-ZYm"/>
+                            <constraint firstItem="5J7-ap-EF4" firstAttribute="trailing" secondItem="rd8-x8-cyS" secondAttribute="trailing" id="bdG-fk-N2v"/>
+                            <constraint firstItem="5J7-ap-EF4" firstAttribute="leading" secondItem="rd8-x8-cyS" secondAttribute="leading" id="cgt-yC-X5e"/>
+                            <constraint firstItem="0g7-G1-6qo" firstAttribute="width" secondItem="5J7-ap-EF4" secondAttribute="width" multiplier="0.9" id="kV3-Le-Jfr"/>
+                            <constraint firstItem="0g7-G1-6qo" firstAttribute="centerX" secondItem="ify-NF-quc" secondAttribute="centerX" id="teQ-3x-cbX"/>
+                            <constraint firstItem="0g7-G1-6qo" firstAttribute="centerY" secondItem="ify-NF-quc" secondAttribute="centerY" id="u0u-kv-71L"/>
+                            <constraint firstItem="0g7-G1-6qo" firstAttribute="height" secondItem="5J7-ap-EF4" secondAttribute="height" multiplier="0.4" id="zwU-Kh-JrP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rd8-x8-cyS"/>
+                    </view>
+                    <connections>
+                        <outlet property="configurationView" destination="0g7-G1-6qo" id="PKB-Rt-GCI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SI3-vs-ii4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3735" y="139"/>
         </scene>
         <!--레이블-->
         <scene sceneID="vaq-tu-Y7W">
@@ -1053,7 +1100,7 @@
                     <tabBarItem key="tabBarItem" title="레이블" image="2.circle" catalog="system" selectedImage="2.circle.fill" id="oEl-F9-Qo9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="1u9-QN-M8c">
-                        <rect key="frame" x="0.0" y="44" width="414" height="104.5"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

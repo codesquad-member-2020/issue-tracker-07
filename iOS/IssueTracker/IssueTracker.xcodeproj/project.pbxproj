@@ -54,6 +54,7 @@
 		A54A065D24A43934004FB111 /* LabelListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A065C24A43934004FB111 /* LabelListResponse.swift */; };
 		A54A065F24A43B25004FB111 /* LabelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A065E24A43B25004FB111 /* LabelViewModel.swift */; };
 		A54A066224A4435F004FB111 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A54A066124A4435F004FB111 /* SnapKit */; };
+		A54A066424A445D2004FB111 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A066324A445D2004FB111 /* ConfigurationView.swift */; };
 		A54A873B248F7F3000A81604 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A873A248F7F3000A81604 /* SignInViewModel.swift */; };
 		A54A873E248FB98F00A81604 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A873D248FB98F00A81604 /* Dynamic.swift */; };
 		A57F63552492154A0083051A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F63542492154A0083051A /* SignUpViewModel.swift */; };
@@ -67,6 +68,7 @@
 		A5BC41D724911A7100F094CF /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BC41D624911A7100F094CF /* OAuthManager.swift */; };
 		A5BC41D92491F37800F094CF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BC41D82491F37800F094CF /* NetworkManager.swift */; };
 		A5BC41DC2491F48600F094CF /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BC41DB2491F48600F094CF /* UIViewControllerExtension.swift */; };
+		A5FD392B24A45B5C00D9F810 /* EditLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD392A24A45B5C00D9F810 /* EditLabelViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +130,7 @@
 		A52634B724A1CD15009C6A44 /* DetailIssueCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIssueCollectionReusableView.swift; sourceTree = "<group>"; };
 		A54A065C24A43934004FB111 /* LabelListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListResponse.swift; sourceTree = "<group>"; };
 		A54A065E24A43B25004FB111 /* LabelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewModel.swift; sourceTree = "<group>"; };
+		A54A066324A445D2004FB111 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		A54A873A248F7F3000A81604 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		A54A873D248FB98F00A81604 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		A57F63542492154A0083051A /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -143,6 +146,7 @@
 		A5BC41D624911A7100F094CF /* OAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthManager.swift; sourceTree = "<group>"; };
 		A5BC41D82491F37800F094CF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A5BC41DB2491F48600F094CF /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		A5FD392A24A45B5C00D9F810 /* EditLabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLabelViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +210,7 @@
 		4491CE6A24A33DEB003D9283 /* LabelList */ = {
 			isa = PBXGroup;
 			children = (
+				A5FD392924A45B3C00D9F810 /* EditLabel */,
 				4491CE6B24A33E1C003D9283 /* LabelListViewController.swift */,
 				4491CE6D24A34B0F003D9283 /* LabelCell.swift */,
 				4491CE6F24A34BF7003D9283 /* LabelListDataSource.swift */,
@@ -295,6 +300,7 @@
 				A51A1D6E248F3004005262DF /* BorderView.swift */,
 				A51A1D70248F383D005262DF /* BorderButton.swift */,
 				A5012D132494F3670027E192 /* BorderLabel.swift */,
+				A54A066324A445D2004FB111 /* ConfigurationView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -352,6 +358,14 @@
 				A513C5142497B54400818C04 /* UIColorExtension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		A5FD392924A45B3C00D9F810 /* EditLabel */ = {
+			isa = PBXGroup;
+			children = (
+				A5FD392A24A45B5C00D9F810 /* EditLabelViewController.swift */,
+			);
+			path = EditLabel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -492,6 +506,7 @@
 				A52634B624A1C6B5009C6A44 /* IssueTitleViewModel.swift in Sources */,
 				A51A1D5A248F26C1005262DF /* AppDelegate.swift in Sources */,
 				A57F6368249262580083051A /* SignInResponse.swift in Sources */,
+				A5FD392B24A45B5C00D9F810 /* EditLabelViewController.swift in Sources */,
 				A57F63552492154A0083051A /* SignUpViewModel.swift in Sources */,
 				A5012D142494F3670027E192 /* BorderLabel.swift in Sources */,
 				4491CE6E24A34B0F003D9283 /* LabelCell.swift in Sources */,
@@ -512,6 +527,7 @@
 				A5B1AA3A249C98AB008B166F /* SettingViewController.swift in Sources */,
 				A5B1AA3C249C9AB1008B166F /* TokenDecoder.swift in Sources */,
 				A51A1D71248F383D005262DF /* BorderButton.swift in Sources */,
+				A54A066424A445D2004FB111 /* ConfigurationView.swift in Sources */,
 				A51A1D5C248F26C1005262DF /* SceneDelegate.swift in Sources */,
 				443DE7F42493A70800308A7B /* SignInUseCase.swift in Sources */,
 				4491CE6C24A33E1C003D9283 /* LabelListViewController.swift in Sources */,

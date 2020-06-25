@@ -42,4 +42,10 @@ class LabelListViewController: UIViewController {
             self.present(alert, animated: true)
         })
     }
+    
+    @IBAction func plusButtonTapped(_ sender: UIBarButtonItem) {
+        guard let editLabelViewController = storyboard?.instantiateViewController(withIdentifier: EditLabelViewController.identifier) as? EditLabelViewController else { return }
+        editLabelViewController.modalPresentationStyle = .overFullScreen
+        present(editLabelViewController, animated: true)
+    }
 }

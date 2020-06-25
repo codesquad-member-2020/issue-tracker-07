@@ -10,5 +10,8 @@ import UIKit
 
 class LabelCell: UITableViewCell {
     static let identifier: String = "labelCell"
+
+    @IBOutlet weak var titleLabel: BorderLabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
 }
 

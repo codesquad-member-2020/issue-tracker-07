@@ -13,7 +13,15 @@ class LabelListViewController: UIViewController {
     @IBOutlet weak var labelListTableView: UITableView!
     
     private var dataSource: LabelListDataSource!
-    private var labelList: [Label]?
+    private var labelList: [Label]? {
+        didSet {
+            guard oldValue != nil else {
+                dataSource.insertViewModel(labels: labelList?.map { LabelViewModel(label: $0) })
+                labelListTableView.reloadData()
+                return
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

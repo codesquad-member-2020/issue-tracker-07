@@ -14,9 +14,9 @@ class LabelViewModel {
     var backgroundColor: Dynamic<UIColor?>
     var description: Dynamic<String?>
     
-    init(label: Label) {
-        title = Dynamic(label.title)
-        backgroundColor = Dynamic(UIColor.init(hex: label.backgroundColor))
-        description = Dynamic(label.description)
+    init(label: Label?) {
+        title = Dynamic(label?.title)
+        backgroundColor = Dynamic(UIColor.init(hex: label?.backgroundColor))
+        description = Dynamic(label?.description)
     }
 }

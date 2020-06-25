@@ -12,10 +12,11 @@ struct LabelListUseCase {
     
     func request(sucessHandler: @escaping ([Label]) -> (), failureHandler: @escaping (Error) -> ()) {
         let requestComponents = RequestComponents(url: EndPoint(path: .labelList).url, method: .get, body: EmptyBody())
-        let responseComponents = ResponseComponents(statusCodeRange: 200...299, decodableType: [Label].self)
+        let responseComponents = ResponseComponents(statusCodeRange: 200...299, decodableType: LabelListResponse.self)
         NetworkManager().request(requestComponents: requestComponents,
                                  responseComponents: responseComponents,
-                                 successHandler: sucessHandler,
+                                 successHandler: {
+                                    sucessHandler($0.label) },
                                  failHandler: failureHandler)
     }
 }

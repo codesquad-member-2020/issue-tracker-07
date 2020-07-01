@@ -17,6 +17,7 @@ struct EndPoint {
         case localLogin
         case issueList
         case deleteIssue(Int)
+        case labelList
         
         var description: String {
             switch self {
@@ -32,6 +33,8 @@ struct EndPoint {
                 return "/api/issues"
             case .deleteIssue(let id):
                 return "/api/issues/\(id)"
+            case .labelList:
+                return "/api/labels"
             }
         }
     }

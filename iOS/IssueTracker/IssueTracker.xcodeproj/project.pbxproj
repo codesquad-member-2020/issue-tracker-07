@@ -25,6 +25,11 @@
 		4484801524920527007AEFEC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4484801424920527007AEFEC /* SignUpViewController.swift */; };
 		44848018249243C6007AEFEC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 44848017249243C6007AEFEC /* Alamofire */; };
 		4484801A24925D88007AEFEC /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4484801924925D88007AEFEC /* SignUpResponse.swift */; };
+		4491CE6C24A33E1C003D9283 /* LabelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4491CE6B24A33E1C003D9283 /* LabelListViewController.swift */; };
+		4491CE6E24A34B0F003D9283 /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4491CE6D24A34B0F003D9283 /* LabelCell.swift */; };
+		4491CE7024A34BF7003D9283 /* LabelListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4491CE6F24A34BF7003D9283 /* LabelListDataSource.swift */; };
+		4491CE7224A34F13003D9283 /* LabelListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4491CE7124A34F13003D9283 /* LabelListUseCase.swift */; };
+		4491CE7424A4667D003D9283 /* FunctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4491CE7324A4667D003D9283 /* FunctionView.swift */; };
 		44E5CEA8248F56E9001A46AE /* InputStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E5CEA7248F56E9001A46AE /* InputStackView.swift */; };
 		44F2923424A1E3BD00AFF41A /* IssueCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F2923324A1E3BD00AFF41A /* IssueCommentViewModel.swift */; };
 		A5012D142494F3670027E192 /* BorderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5012D132494F3670027E192 /* BorderLabel.swift */; };
@@ -47,6 +52,10 @@
 		A51ACB10249A55CB004C0447 /* AppleLoginCertification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51ACB0F249A55CB004C0447 /* AppleLoginCertification.swift */; };
 		A52634B624A1C6B5009C6A44 /* IssueTitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52634B524A1C6B5009C6A44 /* IssueTitleViewModel.swift */; };
 		A52634B824A1CD15009C6A44 /* DetailIssueCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52634B724A1CD15009C6A44 /* DetailIssueCollectionReusableView.swift */; };
+		A54A065D24A43934004FB111 /* LabelListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A065C24A43934004FB111 /* LabelListResponse.swift */; };
+		A54A065F24A43B25004FB111 /* LabelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A065E24A43B25004FB111 /* LabelViewModel.swift */; };
+		A54A066224A4435F004FB111 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A54A066124A4435F004FB111 /* SnapKit */; };
+		A54A066424A445D2004FB111 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A066324A445D2004FB111 /* ConfigurationView.swift */; };
 		A54A873B248F7F3000A81604 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A873A248F7F3000A81604 /* SignInViewModel.swift */; };
 		A54A873E248FB98F00A81604 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54A873D248FB98F00A81604 /* Dynamic.swift */; };
 		A57F63552492154A0083051A /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F63542492154A0083051A /* SignUpViewModel.swift */; };
@@ -60,6 +69,7 @@
 		A5BC41D724911A7100F094CF /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BC41D624911A7100F094CF /* OAuthManager.swift */; };
 		A5BC41D92491F37800F094CF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BC41D82491F37800F094CF /* NetworkManager.swift */; };
 		A5BC41DC2491F48600F094CF /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BC41DB2491F48600F094CF /* UIViewControllerExtension.swift */; };
+		A5FD392B24A45B5C00D9F810 /* EditLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FD392A24A45B5C00D9F810 /* EditLabelViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +100,11 @@
 		445BD24C2498F40400DBC485 /* CalendarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtension.swift; sourceTree = "<group>"; };
 		4484801424920527007AEFEC /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4484801924925D88007AEFEC /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
+		4491CE6B24A33E1C003D9283 /* LabelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListViewController.swift; sourceTree = "<group>"; };
+		4491CE6D24A34B0F003D9283 /* LabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
+		4491CE6F24A34BF7003D9283 /* LabelListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListDataSource.swift; sourceTree = "<group>"; };
+		4491CE7124A34F13003D9283 /* LabelListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListUseCase.swift; sourceTree = "<group>"; };
+		4491CE7324A4667D003D9283 /* FunctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionView.swift; sourceTree = "<group>"; };
 		44E5CEA7248F56E9001A46AE /* InputStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputStackView.swift; sourceTree = "<group>"; };
 		44F2923324A1E3BD00AFF41A /* IssueCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueCommentViewModel.swift; sourceTree = "<group>"; };
 		A5012D132494F3670027E192 /* BorderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderLabel.swift; sourceTree = "<group>"; };
@@ -115,6 +130,9 @@
 		A51ACB0F249A55CB004C0447 /* AppleLoginCertification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginCertification.swift; sourceTree = "<group>"; };
 		A52634B524A1C6B5009C6A44 /* IssueTitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueTitleViewModel.swift; sourceTree = "<group>"; };
 		A52634B724A1CD15009C6A44 /* DetailIssueCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailIssueCollectionReusableView.swift; sourceTree = "<group>"; };
+		A54A065C24A43934004FB111 /* LabelListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelListResponse.swift; sourceTree = "<group>"; };
+		A54A065E24A43B25004FB111 /* LabelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewModel.swift; sourceTree = "<group>"; };
+		A54A066324A445D2004FB111 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 		A54A873A248F7F3000A81604 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		A54A873D248FB98F00A81604 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		A57F63542492154A0083051A /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -130,6 +148,7 @@
 		A5BC41D624911A7100F094CF /* OAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthManager.swift; sourceTree = "<group>"; };
 		A5BC41D82491F37800F094CF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A5BC41DB2491F48600F094CF /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		A5FD392A24A45B5C00D9F810 /* EditLabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLabelViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44848018249243C6007AEFEC /* Alamofire in Frameworks */,
+				A54A066224A4435F004FB111 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +207,19 @@
 				443DE7F124939B9C00308A7B /* SignUpUseCase.swift */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		4491CE6A24A33DEB003D9283 /* LabelList */ = {
+			isa = PBXGroup;
+			children = (
+				A5FD392924A45B3C00D9F810 /* EditLabel */,
+				4491CE6B24A33E1C003D9283 /* LabelListViewController.swift */,
+				4491CE6D24A34B0F003D9283 /* LabelCell.swift */,
+				4491CE6F24A34BF7003D9283 /* LabelListDataSource.swift */,
+				4491CE7124A34F13003D9283 /* LabelListUseCase.swift */,
+				A54A065E24A43B25004FB111 /* LabelViewModel.swift */,
+			);
+			path = LabelList;
 			sourceTree = "<group>";
 		};
 		44E5CEA6248F5692001A46AE /* Login */ = {
@@ -244,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				A51ACB0E249A4CDA004C0447 /* IssueTracker.entitlements */,
+				4491CE6A24A33DEB003D9283 /* LabelList */,
 				A5B1AA38249C9899008B166F /* Setting */,
 				44238C73249B791000DCE83A /* DetailIssue */,
 				A57F6369249264580083051A /* IssueList */,
@@ -268,6 +302,8 @@
 				A51A1D6E248F3004005262DF /* BorderView.swift */,
 				A51A1D70248F383D005262DF /* BorderButton.swift */,
 				A5012D132494F3670027E192 /* BorderLabel.swift */,
+				A54A066324A445D2004FB111 /* ConfigurationView.swift */,
+				4491CE7324A4667D003D9283 /* FunctionView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -278,6 +314,7 @@
 				A54A873D248FB98F00A81604 /* Dynamic.swift */,
 				A57F6365249261710083051A /* UserCertification.swift */,
 				A57F6367249262580083051A /* SignInResponse.swift */,
+				A54A065C24A43934004FB111 /* LabelListResponse.swift */,
 				444BAF3224A0D6A1005431EB /* IssueInfo.swift */,
 				443DE7EC24939AC300308A7B /* Network */,
 				A513C51024979B8A00818C04 /* Issue.swift */,
@@ -326,6 +363,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		A5FD392924A45B3C00D9F810 /* EditLabel */ = {
+			isa = PBXGroup;
+			children = (
+				A5FD392A24A45B5C00D9F810 /* EditLabelViewController.swift */,
+			);
+			path = EditLabel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -344,6 +389,7 @@
 			name = IssueTracker;
 			packageProductDependencies = (
 				44848017249243C6007AEFEC /* Alamofire */,
+				A54A066124A4435F004FB111 /* SnapKit */,
 			);
 			productName = IssueTracker;
 			productReference = A51A1D56248F26C1005262DF /* IssueTracker.app */;
@@ -397,6 +443,7 @@
 			mainGroup = A51A1D4D248F26C1005262DF;
 			packageReferences = (
 				44848016249243C6007AEFEC /* XCRemoteSwiftPackageReference "Alamofire" */,
+				A54A066024A4435F004FB111 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = A51A1D57248F26C1005262DF /* Products */;
 			projectDirPath = "";
@@ -436,12 +483,15 @@
 				A52634B824A1CD15009C6A44 /* DetailIssueCollectionReusableView.swift in Sources */,
 				A5BC41D92491F37800F094CF /* NetworkManager.swift in Sources */,
 				A513C51124979B8A00818C04 /* Issue.swift in Sources */,
+				4491CE7024A34BF7003D9283 /* LabelListDataSource.swift in Sources */,
 				445BD24B2498F3F000DBC485 /* DateFormatterExtension.swift in Sources */,
 				443DE7F224939B9C00308A7B /* SignUpUseCase.swift in Sources */,
 				444BAF3524A0E82D005431EB /* DetailIssueUseCase.swift in Sources */,
 				A516C5E02495287B008D3DF2 /* LabelLayout.swift in Sources */,
+				A54A065D24A43934004FB111 /* LabelListResponse.swift in Sources */,
 				445BD2472498A3B300DBC485 /* IssueViewModel.swift in Sources */,
 				44238C75249B792F00DCE83A /* DetailIssueViewController.swift in Sources */,
+				4491CE7224A34F13003D9283 /* LabelListUseCase.swift in Sources */,
 				A51A1D6F248F3004005262DF /* BorderView.swift in Sources */,
 				A516C5D824952285008D3DF2 /* IssueTableViewCell.swift in Sources */,
 				444CD62A24A0ADE4003767FE /* DetailIssueCollectionViewDataSource.swift in Sources */,
@@ -452,6 +502,7 @@
 				443DE7EE24939AF900308A7B /* ResponseComponents.swift in Sources */,
 				443DE7F024939B1200308A7B /* RequestComponents.swift in Sources */,
 				4484801A24925D88007AEFEC /* SignUpResponse.swift in Sources */,
+				4491CE7424A4667D003D9283 /* FunctionView.swift in Sources */,
 				A57F6366249261710083051A /* UserCertification.swift in Sources */,
 				A51A1D5E248F26C1005262DF /* LoginViewController.swift in Sources */,
 				A5BC41D32491163C00F094CF /* EndPoint.swift in Sources */,
@@ -459,8 +510,10 @@
 				A52634B624A1C6B5009C6A44 /* IssueTitleViewModel.swift in Sources */,
 				A51A1D5A248F26C1005262DF /* AppDelegate.swift in Sources */,
 				A57F6368249262580083051A /* SignInResponse.swift in Sources */,
+				A5FD392B24A45B5C00D9F810 /* EditLabelViewController.swift in Sources */,
 				A57F63552492154A0083051A /* SignUpViewModel.swift in Sources */,
 				A5012D142494F3670027E192 /* BorderLabel.swift in Sources */,
+				4491CE6E24A34B0F003D9283 /* LabelCell.swift in Sources */,
 				443DE7EB24935F6F00308A7B /* SignInInfo.swift in Sources */,
 				A54A873E248FB98F00A81604 /* Dynamic.swift in Sources */,
 				A57F636B249264670083051A /* IssueListViewController.swift in Sources */,
@@ -470,6 +523,7 @@
 				444CD62824A0AC57003767FE /* DetailIssueCollectionViewCell.swift in Sources */,
 				A516C5DA249524EC008D3DF2 /* LabelCollectionViewCell.swift in Sources */,
 				A51ACB10249A55CB004C0447 /* AppleLoginCertification.swift in Sources */,
+				A54A065F24A43B25004FB111 /* LabelViewModel.swift in Sources */,
 				A54A873B248F7F3000A81604 /* SignInViewModel.swift in Sources */,
 				443DE7E924935E4E00308A7B /* SignUpInfo.swift in Sources */,
 				445BD24D2498F40400DBC485 /* CalendarExtension.swift in Sources */,
@@ -477,8 +531,10 @@
 				A5B1AA3A249C98AB008B166F /* SettingViewController.swift in Sources */,
 				A5B1AA3C249C9AB1008B166F /* TokenDecoder.swift in Sources */,
 				A51A1D71248F383D005262DF /* BorderButton.swift in Sources */,
+				A54A066424A445D2004FB111 /* ConfigurationView.swift in Sources */,
 				A51A1D5C248F26C1005262DF /* SceneDelegate.swift in Sources */,
 				443DE7F42493A70800308A7B /* SignInUseCase.swift in Sources */,
+				4491CE6C24A33E1C003D9283 /* LabelListViewController.swift in Sources */,
 				A513C51324979CBC00818C04 /* IssueListUseCase.swift in Sources */,
 				444BAF3324A0D6A1005431EB /* IssueInfo.swift in Sources */,
 			);
@@ -755,6 +811,14 @@
 				minimumVersion = 5.2.1;
 			};
 		};
+		A54A066024A4435F004FB111 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -762,6 +826,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 44848016249243C6007AEFEC /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		A54A066124A4435F004FB111 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A54A066024A4435F004FB111 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
